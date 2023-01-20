@@ -5,4 +5,4 @@ Web-Front-End
     :target: https://discord.gg/r7eckfHjvy
     :alt: Discord server invite
 
-The front-end for the [official webpage](https://nksss.live) of NKSSS written in `TypeScript` using the `Next.js`, and `Tailwind CSS` frameworks.
+The front-end for the `official webpage <https://nksss.live>`_ of NKSSS written in `TypeScript` using the `Next.js`, and `Tailwind CSS` frameworks.
