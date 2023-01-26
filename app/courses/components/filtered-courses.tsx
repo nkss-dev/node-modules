@@ -7,7 +7,11 @@ import ContactInfo from '../../components/contact';
 const branches = ['CE', 'CS', 'EC', 'EE', 'IT', 'ME', 'PI'] as const;
 const semesters = ['1', '2', '3', '4', '5', '6', '7', '8'] as const;
 
-export default function FilteredCourses({ courses }: { courses: Array<Course> }) {
+export default function FilteredCourses({
+  courses,
+}: {
+  courses: Array<Course>;
+}) {
   const [branch, setBranch] = useState<Branch>();
   const [semester, setSemester] = useState<Semester>();
   const [showFilters, setShowFilters] = useState(true);
@@ -91,6 +95,16 @@ export default function FilteredCourses({ courses }: { courses: Array<Course> })
               {ContactInfo()}
             </>
           )}
+
+          <button
+            onClick={() => {
+              setBranch(undefined);
+              setSemester(undefined);
+              setShowFilters(true);
+            }}
+          >
+            Try another branch or semester
+          </button>
         </>
       )}
     </>
