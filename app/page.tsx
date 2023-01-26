@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import CoursesPageCard from './courses/(card)';
+import CoursesPageCard from './courses/components/courses-card';
 
 export default function HomePage() {
   return (

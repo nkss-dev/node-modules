@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { Fragment, useEffect, useState } from 'react';
-import ContactInfo from '../contact';
+import ContactInfo from '../../components/contact';
 
 const branches = ['CE', 'CS', 'EC', 'EE', 'IT', 'ME', 'PI'] as const;
 const semesters = ['1', '2', '3', '4', '5', '6', '7', '8'] as const;
@@ -27,7 +27,6 @@ export default function FilteredCourses({ courses }: { courses: Array<Course> })
     branch && semester && setShowFilters(false);
   }, [branch, semester]);
 
-  console.log(filteredCourses);
   return (
     <>
       {showFilters ? (

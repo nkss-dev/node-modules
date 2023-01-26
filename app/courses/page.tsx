@@ -1,4 +1,4 @@
-import FilteredCourses from './FilteredCourses';
+import FilteredCourses from './components/filtered-courses';
 
 async function fetchCourses() {
   const response = await fetch(`https://api.nksss.live/courses`);

@@ -1,9 +1,9 @@
 import Image from 'next/image';
-import maleOnPhone from '../../assets/maleOnPhone.png';
-import femaleOnPhoneRight from '../../assets/femaleOnPhoneRight.png';
-import femaleOnPhoneLeft from '../../assets/femaleOnPhoneLeft.png';
-import paperPlane from '../../assets/paperPlane.png';
-import background from '../../assets/translucentCircle.png';
+import maleOnPhone from '../../../assets/maleOnPhone.png';
+import femaleOnPhoneRight from '../../../assets/femaleOnPhoneRight.png';
+import femaleOnPhoneLeft from '../../../assets/femaleOnPhoneLeft.png';
+import paperPlane from '../../../assets/paperPlane.png';
+import background from '../../../assets/translucentCircle.png';
 
 export default function CoursesPageCard() {
   return (
