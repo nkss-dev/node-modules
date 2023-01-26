@@ -1,8 +1,8 @@
 'use client';
 
-import Link from 'next/link';
 import { Fragment, useEffect, useState } from 'react';
 import ContactInfo from '../../components/contact';
+import CourseCard from './course-card';
 
 const branches = ['CE', 'CS', 'EC', 'EE', 'IT', 'ME', 'PI'] as const;
 const semesters = ['1', '2', '3', '4', '5', '6', '7', '8'] as const;
@@ -108,18 +108,5 @@ export default function FilteredCourses({
         </>
       )}
     </>
-  );
-}
-
-function CourseCard({ course }: { course: Course }) {
-  return (
-    <Link href={`/courses/${course.code}`}>
-      <li>
-        <h2>{course.title}</h2>
-        <h4>Course Code: {course.code}</h4>
-        <h4>Prerequisites: {course.prereq}</h4>
-        <h4>Course Type: {course.kind}</h4>
-      </li>
-    </Link>
   );
 }
