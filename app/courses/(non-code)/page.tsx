@@ -3,7 +3,7 @@
 import useSWR from 'swr';
 import { Fragment, useEffect, useState } from 'react';
 import ContactInfo from '../../components/contact';
-import CourseCard from '../components/course-card';
+import Link from 'next/link';
 
 const branches = ['CE', 'CS', 'EC', 'EE', 'IT', 'ME', 'PI'] as const;
 const semesters = ['1', '2', '3', '4', '5', '6', '7', '8'] as const;
@@ -26,6 +26,7 @@ export default function CoursesPage() {
 
   const [branch, setBranch] = useState<Branch>();
   const [semester, setSemester] = useState<Semester>();
+  const [credits, setCredits] = useState<Array<number>>();
   const [filteredCourses, setFilteredCourses] = useState<Array<Course>>([]);
 
   useEffect(() => {
@@ -40,6 +41,16 @@ export default function CoursesPage() {
       );
     }
   }, [branch, semester, isLoading]);
+
+  useEffect(() => {
+    if (filteredCourses.length == 0) return;
+    setCredits(
+      filteredCourses[0].specifics.filter((specific) => {
+        if (specific.branch == branch && specific.semester == semester)
+          return specific.credits;
+      })[0].credits
+    );
+  }, [filteredCourses]);
 
   return (
     <>
@@ -100,18 +111,53 @@ export default function CoursesPage() {
       ) : (
         <>
           {filteredCourses.length ? (
-            <ul>
-              {filteredCourses.map((course: Course) => {
-                return <CourseCard course={course} key={course.code} />;
-              })}
-            </ul>
+            <table>
+              <thead>
+                <tr>
+                  <th rowSpan={2}>Code</th>
+                  <th rowSpan={2}>Title</th>
+                  <th rowSpan={2}>Prerequisites</th>
+                  <th colSpan={4}>Credits</th>
+                  <th rowSpan={2}>Type</th>
+                </tr>
+                <tr>
+                  <th>Lecture</th>
+                  <th>Tutorial</th>
+                  <th>Practical</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {filteredCourses.map((course: Course, index) => {
+                  return (
+                    <tr key={index} id="linkRow">
+                      <td>
+                        <Link href={`/courses/${course.code}`}>
+                          {course.code}
+                        </Link>
+                      </td>
+                      <td>{course.title}</td>
+                      <td>{course.prereq}</td>
+                      <td>{credits ? credits[0] : 0}</td>
+                      <td>{credits ? credits[1] : 0}</td>
+                      <td>{credits ? credits[2] : 0}</td>
+                      <td>{credits ? credits[3] : 0}</td>
+                      <td>{course.kind}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+
+              <tfoot>{/* TODO: Add sum of all credits */}</tfoot>
+            </table>
           ) : (
             <>
               <p>
                 No course found for the matching filters. Don't worry, we will
                 add them soon! If you want a particular course / set of courses
                 added sooner, please contact us at
-              </p>{' '}
+              </p>
               {ContactInfo()}
             </>
           )}
