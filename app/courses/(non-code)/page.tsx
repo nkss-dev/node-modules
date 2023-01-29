@@ -45,47 +45,57 @@ export default function CoursesPage() {
     <>
       {isLoading || !(branch && semester) ? (
         <form>
-          <fieldset>
-            <legend>Choose your branch</legend>
+          <table>
+            <tbody>
+              <tr>
+                <td>
+                  <fieldset>
+                    <legend>Choose your branch</legend>
 
-            {branches.map((value: string) => {
-              return (
-                <Fragment key={value}>
-                  <input
-                    type="radio"
-                    id={value}
-                    name="branch"
-                    value={value}
-                    onChange={(e) => {
-                      setBranch(e.target.value as Branch);
-                    }}
-                  />
-                  <label htmlFor={value}>{value}</label>
-                </Fragment>
-              );
-            })}
-          </fieldset>
+                    {branches.map((value: string) => {
+                      return (
+                        <Fragment key={value}>
+                          <input
+                            type="radio"
+                            id={value}
+                            name="branch"
+                            value={value}
+                            onChange={(e) => {
+                              setBranch(e.target.value as Branch);
+                            }}
+                          />
+                          <label htmlFor={value}>{value}</label>
+                        </Fragment>
+                      );
+                    })}
+                  </fieldset>
+                </td>
 
-          <fieldset>
-            <legend>Choose your semester</legend>
+                <td>
+                  <fieldset>
+                    <legend>Choose your semester</legend>
 
-            {semesters.map((value: Semester) => {
-              return (
-                <Fragment key={value}>
-                  <input
-                    type="radio"
-                    id={value}
-                    name="semester"
-                    value={value}
-                    onChange={(e) => {
-                      setSemester(e.target.value as Semester);
-                    }}
-                  />
-                  <label htmlFor={value}>{value}</label>
-                </Fragment>
-              );
-            })}
-          </fieldset>
+                    {semesters.map((value: Semester) => {
+                      return (
+                        <Fragment key={value}>
+                          <input
+                            type="radio"
+                            id={value}
+                            name="semester"
+                            value={value}
+                            onChange={(e) => {
+                              setSemester(e.target.value as Semester);
+                            }}
+                          />
+                          <label htmlFor={value}>{value}</label>
+                        </Fragment>
+                      );
+                    })}
+                  </fieldset>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </form>
       ) : (
         <>
