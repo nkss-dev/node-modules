@@ -1,4 +1,4 @@
-Web-Front-End
+NKSSS Website
 =============
 
 .. image:: https://img.shields.io/npm/v/next?label=next.js&logo=next.js
@@ -17,4 +17,4 @@ Web-Front-End
     :target: https://typescriptlang.org
     :alt: TypeScript version info
 
-The front-end for the `official webpage <https://nksss.live>`_ of NKSSS written in ``TypeScript`` using the ``Next.js``, and ``Tailwind CSS`` frameworks.
+The open-source repository for the `official webpage <https://nksss.live>`_ of NKSSS written in ``TypeScript`` using the ``Next.js``, and ``Tailwind CSS`` frameworks.
