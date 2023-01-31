@@ -1,6 +1,6 @@
 type Club = {
   name: string;
-  alias: NullString;
+  short_name: string;
   category: ClubCategory;
   description: string;
   branch: Array<Branch>;

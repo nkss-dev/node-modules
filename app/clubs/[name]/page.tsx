@@ -3,7 +3,7 @@ export async function generateStaticParams() {
   const clubs = await clubsResponse.json();
 
   return clubs.data.map((club: Club) => ({
-    name: club.alias.valid ? club.alias.string : club.name,
+    name: club.short_name,
   }));
 }
 
