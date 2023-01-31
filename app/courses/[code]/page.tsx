@@ -1,5 +1,5 @@
 import { serialize } from 'next-mdx-remote/serialize';
-import RenderMarkdown from '../components/render-markdown';
+import RenderMarkdown from '../../components/render-markdown';
 
 export async function generateStaticParams() {
   const coursesResponse = await fetch('https://api.nksss.live/courses');
@@ -47,7 +47,7 @@ export default async function CourseInfo({ params, searchParams }: any) {
                 <table>
                   <tbody>
                     <tr>
-                      <th>Course code:</th>
+                      <th>Code:</th>
                       <td>{course.code}</td>
                     </tr>
 
