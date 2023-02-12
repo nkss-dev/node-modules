@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import AnnouncementsPageCard from './components/announcements-card';
+import ClubsPageCard from './components/clubs-card';
 import CoursesPageCard from './components/courses-card';
 
 export default function HomePage() {
@@ -23,9 +25,21 @@ export default function HomePage() {
       <main>
         <nav>
           <ol>
+            <Link href="/announcements">
+              <li>
+                <AnnouncementsPageCard />
+              </li>
+            </Link>
+
             <Link href="/courses">
               <li>
                 <CoursesPageCard />
+              </li>
+            </Link>
+
+            <Link href="/clubs">
+              <li>
+                <ClubsPageCard />
               </li>
             </Link>
           </ol>
