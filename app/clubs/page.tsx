@@ -1,5 +1,6 @@
 import { Fragment } from 'react';
-import ClubsPageCard from '../../components/club-card';
+
+import ClubsPageCard from '../components/club-card';
 
 const clubCategories = [
   'Cultural Club',
@@ -32,14 +33,26 @@ const getCategorisedClubs = (
 export default async function ClubsPage() {
   const clubs: Array<ClubBasic> = await fetchClubs();
 
-  return clubCategories.map((category: ClubCategory, categoryIndex) => {
-    return (
-      <Fragment key={categoryIndex}>
-        <h2>{category}</h2>
-        <ol className="flex flex-row flex-wrap">
-          {getCategorisedClubs(category, clubs)}
-        </ol>
-      </Fragment>
-    );
-  });
+  return (
+    <>
+      <hgroup>
+        <h1>Clubs</h1>
+        <p>An overview all the clubs and societies of NIT-KKR</p>
+        <hr />
+      </hgroup>
+
+      <main>
+        {clubCategories.map((category: ClubCategory, categoryIndex) => {
+          return (
+            <Fragment key={categoryIndex}>
+              <h2>{category}</h2>
+              <ol>
+                {getCategorisedClubs(category, clubs)}
+              </ol>
+            </Fragment>
+          );
+        })}
+      </main>
+    </>
+  );
 }
