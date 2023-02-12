@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 
-import ClubsPageCard from '../components/club-card';
+import ClubCard from '../components/club-card';
 
 const clubCategories = [
   'Cultural Club',
@@ -25,7 +25,7 @@ const getCategorisedClubs = (
 
   return filteredClubs.map((club, index) => (
     <li key={index}>
-      <ClubsPageCard club={club} />
+      <ClubCard club={club} />
     </li>
   ));
 };
