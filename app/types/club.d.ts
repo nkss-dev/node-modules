@@ -2,6 +2,7 @@ type Club = {
   name: string;
   short_name: string;
   category: ClubCategory;
+  email: string;
   is_official: boolean;
   description: string;
   admins: Array<ClubAdmin>;
@@ -15,6 +16,7 @@ type ClubBasic = {
   short_name: string;
   category: string;
   short_description: string;
+  email: string;
   is_official: boolean;
 }
 
