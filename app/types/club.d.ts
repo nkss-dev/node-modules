@@ -2,13 +2,21 @@ type Club = {
   name: string;
   short_name: string;
   category: ClubCategory;
-  description: string;
-  branch: Array<Branch>;
   is_official: boolean;
-  faculties: Array<ClubFaculty>;
+  description: string;
   admins: Array<ClubAdmin>;
+  branch: Array<Branch>;
+  faculties: Array<ClubFaculty>;
   socials: Array<ClubSocial>;
 };
+
+type ClubBasic = {
+  name: string;
+  short_name: string;
+  category: string;
+  short_description: string;
+  is_official: boolean;
+}
 
 type ClubAdmin = {
   position: string;
