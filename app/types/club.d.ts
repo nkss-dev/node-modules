@@ -1,14 +1,21 @@
 type Club = {
   name: string;
-  short_name: string;
+  alias: string;
   category: ClubCategory;
   email: string;
   is_official: boolean;
-  description: string;
+  description: ClubDescription;
   admins: Array<ClubAdmin>;
   branch: Array<Branch>;
   faculties: Array<ClubFaculty>;
   socials: Array<ClubSocial>;
+};
+
+type ClubAdmin = {
+  name: string;
+  email: string;
+  phone: string;
+  position: string;
 };
 
 type ClubBasic = {
@@ -20,18 +27,19 @@ type ClubBasic = {
   is_official: boolean;
 }
 
-type ClubAdmin = {
-  position: string;
-  name: string;
-  phone: string;
-  email: string;
-};
-
 type ClubCategory =
   | 'Cultural Club'
   | 'Magazine'
   | 'Technical Club'
   | 'Technical Society';
+
+type ClubDescription = {
+  why_us: string;
+  about_us: string;
+  role_of_sophomore: string;
+  role_of_junior: string;
+  role_of_senior: string;
+};
 
 type ClubFaculty = {
   name: string;
