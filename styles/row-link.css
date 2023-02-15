@@ -1,0 +1,27 @@
+/* 
+ *  This is a CSS trick to extend a hyperlink from the
+ *  first cell of a row to all the cells of the row
+ *
+ *
+ *  HOW TO USE:
+ *
+ *  1. Wrap the content of the first cell in a row
+ *  with an <a> tag.
+ *
+ *  2. Assign the id `rowLink` to the row you want as
+ *  a hyperlink.
+ *
+*/
+
+tr#rowLink {
+  position: relative;
+}
+
+#rowLink a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
