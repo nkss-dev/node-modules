@@ -1,18 +1,16 @@
 import { serialize } from 'next-mdx-remote/serialize';
+
 import RenderMarkdown from '../../components/render-markdown';
+import { fetcher } from '../../utils/fetcher';
 
 export async function generateStaticParams() {
-  const coursesResponse = await fetch('https://api.nksss.live/courses');
-  const courses = await coursesResponse.json();
+  const courses: Array<Course> = await fetcher(
+    'https://api.nksss.live/courses'
+  );
 
-  return courses.data.map((course: Course) => ({
+  return courses.map((course) => ({
     code: course.code,
   }));
-}
-
-async function fetchCourse(code: string) {
-  const courseResponse = await fetch(`https://api.nksss.live/courses/${code}`);
-  return (await courseResponse.json()).data;
 }
 
 async function convertCourseContent(content: string[]) {
@@ -25,7 +23,9 @@ async function convertCourseContent(content: string[]) {
 
 export default async function CourseInfo({ params, searchParams }: any) {
   const { code } = params;
-  const course: Course = await fetchCourse(code);
+  const course: Course = await fetcher(
+    `https://api.nksss.live/courses/${code}`
+  );
   const courseContent = await convertCourseContent(course.content);
 
   return (

@@ -1,3 +1,5 @@
+import { fetcher } from "../../utils/fetcher";
+
 export async function generateStaticParams() {
   const clubsResponse = await fetch('https://api.nksss.live/clubs');
   const clubs = await clubsResponse.json();
@@ -7,14 +9,9 @@ export async function generateStaticParams() {
   }));
 }
 
-async function fetchClub(name: string) {
-  const clubResponse = await fetch(`https://api.nksss.live/clubs/${name}`);
-  return (await clubResponse.json()).data;
-}
-
 export default async function CourseInfo({ params, searchParams }: any) {
   const { name } = params;
-  const club: Club = await fetchClub(name);
+  const club: Club = await fetcher(`https://api.nksss.live/clubs/${name}`);
 
   return (
     <>

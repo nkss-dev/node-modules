@@ -1,6 +1,7 @@
 import { Fragment } from 'react';
 
 import ClubCard from '../components/club-card';
+import { fetcher } from '../utils/fetcher';
 
 const clubCategories = [
   'Cultural Club',
@@ -8,11 +9,6 @@ const clubCategories = [
   'Technical Club',
   'Technical Society',
 ] as const;
-
-async function fetchClubs() {
-  const clubsResponse = await fetch('https://api.nksss.live/clubs');
-  return (await clubsResponse.json()).data;
-}
 
 const getCategorisedClubs = (
   category: ClubCategory,
@@ -31,7 +27,7 @@ const getCategorisedClubs = (
 };
 
 export default async function ClubsPage() {
-  const clubs: Array<ClubBasic> = await fetchClubs();
+  const clubs: Array<ClubBasic> = await fetcher('https://api.nksss.live/clubs');
 
   return (
     <>

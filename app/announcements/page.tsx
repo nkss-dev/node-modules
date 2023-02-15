@@ -1,12 +1,9 @@
-async function fetchAnnouncements() {
-  const announcementsResponse = await fetch(
+import { fetcher } from '../utils/fetcher';
+
+export default async function AnnouncementsPage() {
+  const announcements: Array<AcademicAnnouncement> = await fetcher(
     'https://api.nksss.live/announcements'
   );
-  return (await announcementsResponse.json()).data;
-}
-
-export default async function ClubsPage() {
-  const announcements: Array<AcademicAnnouncement> = await fetchAnnouncements();
 
   return (
     <table>

@@ -2,16 +2,13 @@
 
 import useSWR from 'swr';
 import { Fragment, useEffect, useState } from 'react';
-import ContactInfo from '../../components/contact';
 import Link from 'next/link';
+
+import ContactInfo from '../../components/contact';
+import { fetcher } from '../../utils/fetcher';
 
 const branches = ['CE', 'CS', 'EC', 'EE', 'IT', 'ME', 'PI'] as const;
 const semesters = ['1', '2', '3', '4', '5', '6', '7', '8'] as const;
-
-const fetchCourses = (url: RequestInfo | URL) =>
-  fetch(url)
-    .then((res) => res.json())
-    .then((res) => res.data);
 
 export default function CoursesPage() {
   const {
@@ -20,7 +17,7 @@ export default function CoursesPage() {
     error,
   }: { data: Course[] | undefined; isLoading: boolean; error: any } = useSWR(
     'https://api.nksss.live/courses',
-    fetchCourses
+    fetcher
   );
   if (error) console.error(error);
 
