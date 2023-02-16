@@ -1,3 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-discord-200;
+    @apply font-poppins;
+    @apply text-white;
+
+    margin: auto;
+    min-height: 100vh;
+    width: 70%;
+  }
+
+  h1 {
+    font-size: 4rem;
+    font-weight: bold;
+    padding-top: 3rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  p {
+    margin-bottom: 1rem;
+  }
+}
