@@ -25,23 +25,17 @@ export default function HomePage() {
       <main>
         <nav>
           <ol>
-            <Link href="/announcements">
-              <li>
-                <AnnouncementsPageCard />
-              </li>
-            </Link>
+            <li>
+              <AnnouncementsPageCard />
+            </li>
 
-            <Link href="/courses">
-              <li>
-                <CoursesPageCard />
-              </li>
-            </Link>
+            <li>
+              <CoursesPageCard />
+            </li>
 
-            <Link href="/clubs">
-              <li>
-                <ClubsPageCard />
-              </li>
-            </Link>
+            <li>
+              <ClubsPageCard />
+            </li>
           </ol>
         </nav>
       </main>

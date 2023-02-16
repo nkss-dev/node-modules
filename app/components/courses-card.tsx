@@ -1,4 +1,6 @@
 import Image from 'next/image';
+import Link from 'next/link';
+
 import maleOnPhone from '../../public/assets/maleOnPhone.png';
 import femaleOnPhoneRight from '../../public/assets/femaleOnPhoneRight.png';
 import femaleOnPhoneLeft from '../../public/assets/femaleOnPhoneLeft.png';
@@ -7,20 +9,20 @@ import background from '../../public/assets/translucentCircle.png';
 
 export default function CoursesPageCard() {
   return (
-    <figure>
-      <Image src={paperPlane} alt="" />
-      <Image src={background} alt="" />
-      <Image src={background} alt="" />
-      <Image src={background} alt="" />
-      <Image src={maleOnPhone} alt="" />
-      <Image src={femaleOnPhoneRight} alt="" />
-      <Image src={femaleOnPhoneLeft} alt="" />
-      <figcaption>
+    <Link href="/courses">
+      <article>
+        <Image src={paperPlane} alt="" />
+        <Image src={background} alt="" />
+        <Image src={background} alt="" />
+        <Image src={background} alt="" />
+        <Image src={maleOnPhone} alt="" />
+        <Image src={femaleOnPhoneRight} alt="" />
+        <Image src={femaleOnPhoneLeft} alt="" />
         <hgroup>
-          <h1>Courses</h1>
+          <h2>Courses</h2>
           <p>Do we even learn something in these courses?</p>
         </hgroup>
-      </figcaption>
-    </figure>
+      </article>
+    </Link>
   );
 }

@@ -1,16 +1,18 @@
 import Image from 'next/image';
+import Link from 'next/link';
+
 import megaphone from '../../public/assets/megaphone.png';
 
 export default function AnnouncementsPageCard() {
   return (
-    <figure>
-      <Image src={megaphone} alt="" />
-      <figcaption>
+    <Link href='/announcements'>
+      <article>
+        <Image src={megaphone} alt='Announcements hyperlink image' />
         <hgroup>
-          <h1>Announcements</h1>
+          <h2>Announcements</h2>
           <p>Aaaah, not the exam results! Not RIGHT NOW!!</p>
         </hgroup>
-      </figcaption>
-    </figure>
+      </article>
+    </Link>
   );
 }

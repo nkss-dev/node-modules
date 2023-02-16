@@ -1,15 +1,16 @@
-import ImageWithFallback from './fallback-image';
+import Image from 'next/image';
+import Link from 'next/link';
 
 export default function ClubsPageCard() {
   return (
-    <figure>
-      <ImageWithFallback src="" width={85} height={85} alt="" />
-      <figcaption>
+    <Link href="/clubs">
+      <article>
+        <Image src="" width={85} height={85} alt="Clubs hyperlink image" />
         <hgroup>
-          <h1>Clubs</h1>
+          <h2>Clubs</h2>
           <p>Huh? What are clubs?? Never heard of them :(</p>
         </hgroup>
-      </figcaption>
-    </figure>
+      </article>
+    </Link>
   );
 }
