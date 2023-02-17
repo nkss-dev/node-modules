@@ -3,7 +3,7 @@
 import Image, { ImageProps } from 'next/image';
 import { useEffect, useState } from 'react';
 
-import fallbackImage from '../../public/assets/404.svg'
+import fallbackImage from '../public/assets/404.svg'
 
 interface ImageWithFallbackProps extends ImageProps {
   fallback?: ImageProps['src'];

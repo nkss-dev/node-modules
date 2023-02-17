@@ -1,7 +1,7 @@
 import { serialize } from 'next-mdx-remote/serialize';
 
-import RenderMarkdown from '../../components/render-markdown';
-import { fetcher } from '../../utils/fetcher';
+import RenderMarkdown from '../../../components/render-markdown';
+import { fetcher } from '../../../utils/fetcher';
 
 export async function generateStaticParams() {
   const courses: Array<Course> = await fetcher(

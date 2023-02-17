@@ -1,4 +1,4 @@
-import { fetcher } from '../utils/fetcher';
+import { fetcher } from '../../utils/fetcher';
 
 export default async function AnnouncementsPage() {
   const announcements: Array<AcademicAnnouncement> = await fetcher(

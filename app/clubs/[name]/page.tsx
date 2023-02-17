@@ -1,4 +1,4 @@
-import { fetcher } from "../../utils/fetcher";
+import { fetcher } from "../../../utils/fetcher";
 
 export async function generateStaticParams() {
   const clubsResponse = await fetch('https://api.nksss.live/clubs');

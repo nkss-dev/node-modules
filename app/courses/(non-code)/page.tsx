@@ -4,8 +4,8 @@ import useSWR from 'swr';
 import { Fragment, useEffect, useState } from 'react';
 import Link from 'next/link';
 
-import ContactInfo from '../../components/contact';
-import { fetcher } from '../../utils/fetcher';
+import ContactInfo from '../../../components/contact';
+import { fetcher } from '../../../utils/fetcher';
 
 const branches = ['CE', 'CS', 'EC', 'EE', 'IT', 'ME', 'PI'] as const;
 const semesters = ['1', '2', '3', '4', '5', '6', '7', '8'] as const;

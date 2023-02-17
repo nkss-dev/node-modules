@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 
-import ClubCard from '../components/club-card';
-import { fetcher } from '../utils/fetcher';
+import ClubCard from '../../components/club-card';
+import { fetcher } from '../../utils/fetcher';
 
 const clubCategories = [
   'Cultural Club',
