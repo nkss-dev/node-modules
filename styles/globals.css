@@ -6,7 +6,7 @@
 
 @layer base {
   body {
-    @apply bg-discord-200;
+    @apply bg-palette-600;
     @apply font-poppins;
     @apply text-white;
 
@@ -31,7 +31,31 @@
     font-weight: bold;
   }
 
+  h4 {
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+
+  hr {
+    @apply border-palette-500;
+  }
+
   p {
-    margin-bottom: 1rem;
+    margin-bottom: .5rem;
+  }
+
+  table {
+    @apply border-palette-400;
+    @apply p-4;
+    @apply rounded-lg;
+    @apply text-center;
+  }
+
+  th,
+  td {
+    @apply border-2;
+    @apply border-dotted;
+    @apply border-palette-400;
+    @apply p-2;
   }
 }
