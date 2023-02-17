@@ -1,8 +1,9 @@
 'use client';
 
 import useSWR from 'swr';
-import { Fragment, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { Chip, Stack } from '@mui/material';
 
 import ContactInfo from '../../../components/contact';
 import { fetcher } from '../../../utils/fetcher';
@@ -51,123 +52,127 @@ export default function CoursesPage() {
 
   return (
     <>
-      {isLoading || !(branch && semester) ? (
-        <form>
-          <table>
-            <tbody>
+      <table className="w-full">
+        <tbody>
+          <tr className="flex flex-row justify-evenly">
+            <td className="border-none w-2/5">
+              <fieldset className="p-2 border-2 rounded border-palette-400">
+                <legend className="px-2">Choose your branch</legend>
+
+                <Stack
+                  direction="row"
+                  spacing={4}
+                  className="flex flex-row flex-wrap justify-center"
+                >
+                  {branches.map((value: Branch) => {
+                    const isSelected = value === branch;
+                    return (
+                      <Chip
+                        className={
+                          'text-palette-100 hover:bg-palette-400' +
+                          (isSelected ? ' bg-palette-400' : '')
+                        }
+                        label={value}
+                        onClick={() => {
+                          setBranch(value);
+                        }}
+                        variant={isSelected ? 'filled' : 'outlined'}
+                      />
+                    );
+                  })}
+                </Stack>
+              </fieldset>
+            </td>
+
+            <td className="border-none w-2/5">
+              <fieldset className="p-2 border-2 rounded border-palette-400">
+                <legend className="px-2">Choose your semester</legend>
+
+                <Stack
+                  direction="row"
+                  spacing={4}
+                  className="flex flex-row flex-wrap justify-center"
+                >
+                  {semesters.map((value: Semester) => {
+                    const isSelected = value === semester;
+                    return (
+                      <Chip
+                        className={
+                          'text-palette-100 hover:bg-palette-400' +
+                          (isSelected ? ' bg-palette-400' : '')
+                        }
+                        label={value}
+                        onClick={() => {
+                          setSemester(value);
+                        }}
+                        variant={isSelected ? 'filled' : 'outlined'}
+                      />
+                    );
+                  })}
+                </Stack>
+              </fieldset>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <br />
+      <br />
+
+      {!isLoading && (branch && semester) ? (
+        filteredCourses.length ? (
+          <table className='border-2 w-full'>
+            <thead>
               <tr>
-                <td>
-                  <fieldset>
-                    <legend>Choose your branch</legend>
-
-                    {branches.map((value: string) => {
-                      return (
-                        <Fragment key={value}>
-                          <input
-                            type="radio"
-                            id={value}
-                            name="branch"
-                            value={value}
-                            onChange={(e) => {
-                              setBranch(e.target.value as Branch);
-                            }}
-                          />
-                          <label htmlFor={value}>{value}</label>
-                        </Fragment>
-                      );
-                    })}
-                  </fieldset>
-                </td>
-
-                <td>
-                  <fieldset>
-                    <legend>Choose your semester</legend>
-
-                    {semesters.map((value: Semester) => {
-                      return (
-                        <Fragment key={value}>
-                          <input
-                            type="radio"
-                            id={value}
-                            name="semester"
-                            value={value}
-                            onChange={(e) => {
-                              setSemester(e.target.value as Semester);
-                            }}
-                          />
-                          <label htmlFor={value}>{value}</label>
-                        </Fragment>
-                      );
-                    })}
-                  </fieldset>
-                </td>
+                <th rowSpan={2}>Code</th>
+                <th rowSpan={2}>Title</th>
+                <th rowSpan={2}>Prerequisites</th>
+                <th colSpan={4}>Credits</th>
+                <th rowSpan={2}>Type</th>
               </tr>
+              <tr>
+                <th>Lecture</th>
+                <th>Tutorial</th>
+                <th>Practical</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {filteredCourses.map((course: Course, index) => {
+                return (
+                  <tr key={index} id="rowLink">
+                    <td>
+                      <Link href={`/courses/${course.code}`}>
+                        {course.code}
+                      </Link>
+                    </td>
+                    <td>{course.title}</td>
+                    <td>{course.prereq}</td>
+                    <td>{credits ? credits[0] : 0}</td>
+                    <td>{credits ? credits[1] : 0}</td>
+                    <td>{credits ? credits[2] : 0}</td>
+                    <td>{credits ? credits[3] : 0}</td>
+                    <td>{course.kind}</td>
+                  </tr>
+                );
+              })}
             </tbody>
+
+            <tfoot>{/* TODO: Add sum of all credits */}</tfoot>
           </table>
-        </form>
+        ) : (
+          <>
+            <p>
+              No course found for the matching filters. Don't worry, we will add
+              them soon! If you want a particular course / set of courses added
+              sooner, please contact us at
+            </p>
+            {ContactInfo()}
+          </>
+        )
       ) : (
-        <>
-          {filteredCourses.length ? (
-            <table>
-              <thead>
-                <tr>
-                  <th rowSpan={2}>Code</th>
-                  <th rowSpan={2}>Title</th>
-                  <th rowSpan={2}>Prerequisites</th>
-                  <th colSpan={4}>Credits</th>
-                  <th rowSpan={2}>Type</th>
-                </tr>
-                <tr>
-                  <th>Lecture</th>
-                  <th>Tutorial</th>
-                  <th>Practical</th>
-                  <th>Total</th>
-                </tr>
-              </thead>
-
-              <tbody>
-                {filteredCourses.map((course: Course, index) => {
-                  return (
-                    <tr key={index} id="linkRow">
-                      <td>
-                        <Link href={`/courses/${course.code}`}>
-                          {course.code}
-                        </Link>
-                      </td>
-                      <td>{course.title}</td>
-                      <td>{course.prereq}</td>
-                      <td>{credits ? credits[0] : 0}</td>
-                      <td>{credits ? credits[1] : 0}</td>
-                      <td>{credits ? credits[2] : 0}</td>
-                      <td>{credits ? credits[3] : 0}</td>
-                      <td>{course.kind}</td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-
-              <tfoot>{/* TODO: Add sum of all credits */}</tfoot>
-            </table>
-          ) : (
-            <>
-              <p>
-                No course found for the matching filters. Don't worry, we will
-                add them soon! If you want a particular course / set of courses
-                added sooner, please contact us at
-              </p>
-              {ContactInfo()}
-            </>
-          )}
-
-          <button
-            onClick={() => {
-              setBranch(undefined);
-              setSemester(undefined);
-            }}
-          >
-            Try another branch or semester
-          </button>
-        </>
+        <></>
       )}
     </>
   );
