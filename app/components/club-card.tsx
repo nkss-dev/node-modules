@@ -1,11 +1,12 @@
 import Link from 'next/link';
+
 import ImageWithFallback from './fallback-image';
 
 export default function ClubCard({ club }: { club: ClubBasic }) {
   return (
     <Link href={`/clubs/${club.short_name}`}>
-      <article>
-        <header>
+      <article className="bg-palette-700 hover:bg-palette-800 flex flex-col mb-4 mr-4 p-6 relative rounded-lg shadow w-96 h-52">
+        <header className="flex flex-row items-center mb-4">
           <ImageWithFallback
             src={`/assets/clubs/${club.short_name}/logo.png`}
             width={85}
@@ -13,16 +14,16 @@ export default function ClubCard({ club }: { club: ClubBasic }) {
             alt="club logo"
             style={{ borderRadius: '50%', height: '85px' }}
           />
-          <hgroup>
-            <h3>{club.name}</h3>
+          <hgroup className="h-fit items-center px-4">
+            <h4 className="mb-1 min-w-fit tracking-tight">{club.name}</h4>
             <address>
-              <small>
-                <p>{club.email}</p>
-              </small>
+              <p className="text-palette-300">
+                <small>{club.email}</small>
+              </p>
             </address>
           </hgroup>
         </header>
-        <p>{club.short_description}</p>
+        <p className="text-palette-300 tracking-tight">{club.short_description}</p>
       </article>
     </Link>
   );
