@@ -27,13 +27,20 @@ export default function CoursesPage() {
   const [filteredCourses, setFilteredCourses] = useState<Array<Course>>([]);
 
   useEffect(() => {
-    if (branch && semester && courses) {
+    if (!courses) return;
+
+    if (!branch && !semester) {
+      setFilteredCourses(courses);
+    } else {
       setFilteredCourses(
-        courses.filter((course) =>
-          course.specifics.some(
-            (specific) =>
-              specific.branch == branch && specific.semester == semester
-          )
+        courses.filter(
+          (course) =>
+            (!branch ||
+              course.specifics.some((specific) => specific.branch == branch)) &&
+            (!semester ||
+              course.specifics.some(
+                (specific) => specific.semester == semester
+              ))
         )
       );
     }
@@ -42,7 +49,7 @@ export default function CoursesPage() {
   const getCredits = (specifics: Array<Specifics>) => {
     var credits: Array<number> = [];
     specifics.map((specific) => {
-        if (specific.branch == branch && specific.semester == semester)
+      if (specific.branch == branch && specific.semester == semester)
         credits = specific.credits;
     });
     return credits;
@@ -117,9 +124,36 @@ export default function CoursesPage() {
       <br />
       <br />
 
-      {!isLoading && (branch && semester) ? (
+      {!isLoading && !(branch && semester) && filteredCourses.length > 0 ? (
+        <>
+          {branch || semester ? <></> : <h2>All courses:</h2>}
+          {branch ? <h2>All courses in the {branch} branch</h2> : <></>}
+          {semester ? <h2>All courses in semester {semester}</h2> : <></>}
+
+          <br />
+
+          <ul>
+            {filteredCourses.map((course) => {
+              return (
+                <Link href={`/courses/${course.code}`} key={course.code}>
+                  <li className="list-disclosure-closed ml-8">
+                    <h4 className="hover:underline">
+                      {course.code}:{' '}
+                      <span className="font-normal">{course.title}</span>
+                    </h4>
+                  </li>
+                </Link>
+              );
+            })}
+          </ul>
+        </>
+      ) : (
+        <></>
+      )}
+
+      {!isLoading && branch && semester ? (
         filteredCourses.length ? (
-          <table className='border-2 w-full'>
+          <table className="border-2 w-full">
             <thead>
               <tr>
                 <th rowSpan={2}>Code</th>
