@@ -1,0 +1,34 @@
+/*
+ *  This is a CSS trick to create a custom list style
+ *  where you can set style as follows:
+ *
+ *        <prefix><counter><suffix>
+ *
+ *  Here, `prefix` and `suffix` are user defined
+ *  strings and `counter` is the list number.
+ *
+ *
+ *  HOW TO USE:
+ *
+ *  1. Pass `li-before-text` and `li-after-text` to every
+ *     <li> element in your list. Example:
+ *
+ *       <li li-before-text="foo" li-after-text="bar">
+ *
+ *  2. Assign the id `customList` to the <ol> you want
+ *     as your custom list.
+ *
+ *     PS: This works on <ul> as well but it is not
+ *         semantic to use <ul> for an ordered list.
+ *
+*/
+
+#customList {
+  list-style-type: none;
+  counter-reset: elementCounter;
+}
+
+#customList > li:before {
+  content: attr(li-before-text) counter(elementCounter) attr(li-after-text);
+  counter-increment: elementCounter;
+}

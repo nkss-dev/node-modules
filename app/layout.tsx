@@ -1,3 +1,4 @@
+import '../styles/custom-list.css'
 import '../styles/globals.css'
 import '../styles/row-link.css'
 
