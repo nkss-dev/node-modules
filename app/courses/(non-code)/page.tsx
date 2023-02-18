@@ -69,7 +69,7 @@ export default function CoursesPage() {
                   spacing={4}
                   className="flex flex-row flex-wrap justify-center"
                 >
-                  {branches.map((value: Branch) => {
+                  {branches.map((value: Branch, index) => {
                     const isSelected = value === branch;
                     return (
                       <Chip
@@ -77,6 +77,7 @@ export default function CoursesPage() {
                           'text-palette-100 hover:bg-palette-400' +
                           (isSelected ? ' bg-palette-400' : '')
                         }
+                        key={index}
                         label={value}
                         onClick={() => {
                           setBranch(value);
@@ -98,7 +99,7 @@ export default function CoursesPage() {
                   spacing={4}
                   className="flex flex-row flex-wrap justify-center"
                 >
-                  {semesters.map((value: Semester) => {
+                  {semesters.map((value: Semester, index) => {
                     const isSelected = value === semester;
                     return (
                       <Chip
@@ -106,6 +107,7 @@ export default function CoursesPage() {
                           'text-palette-100 hover:bg-palette-400' +
                           (isSelected ? ' bg-palette-400' : '')
                         }
+                        key={index}
                         label={value}
                         onClick={() => {
                           setSemester(value);
@@ -193,34 +195,36 @@ export default function CoursesPage() {
             </tbody>
 
             <tfoot>
-              <th />
-              <th />
-              <th />
-              <th>
-                {filteredCourses.reduce(
-                  (sum, { specifics }) => sum + getCredits(specifics)[0],
-                  0
-                )}
-              </th>
-              <th>
-                {filteredCourses.reduce(
-                  (sum, { specifics }) => sum + getCredits(specifics)[1],
-                  0
-                )}
-              </th>
-              <th>
-                {filteredCourses.reduce(
-                  (sum, { specifics }) => sum + getCredits(specifics)[2],
-                  0
-                )}
-              </th>
-              <th>
-                {filteredCourses.reduce(
-                  (sum, { specifics }) => sum + getCredits(specifics)[3],
-                  0
-                )}
-              </th>
-              <th />
+              <tr>
+                <th />
+                <th />
+                <th />
+                <th>
+                  {filteredCourses.reduce(
+                    (sum, { specifics }) => sum + getCredits(specifics)[0],
+                    0
+                  )}
+                </th>
+                <th>
+                  {filteredCourses.reduce(
+                    (sum, { specifics }) => sum + getCredits(specifics)[1],
+                    0
+                  )}
+                </th>
+                <th>
+                  {filteredCourses.reduce(
+                    (sum, { specifics }) => sum + getCredits(specifics)[2],
+                    0
+                  )}
+                </th>
+                <th>
+                  {filteredCourses.reduce(
+                    (sum, { specifics }) => sum + getCredits(specifics)[3],
+                    0
+                  )}
+                </th>
+                <th />
+              </tr>
             </tfoot>
           </table>
         ) : (
