@@ -13,7 +13,7 @@ export default function HomePage() {
         <br />
         <p>
           Welcome! The{' '}
-          <Link href="/about" className="text-hyperlink">
+          <Link className="hyperlink" href="/about">
             NKSSS team
           </Link>{' '}
           aims to solve as many issues you face in our college as
