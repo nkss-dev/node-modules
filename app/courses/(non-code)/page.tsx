@@ -158,7 +158,36 @@ export default function CoursesPage() {
               })}
             </tbody>
 
-            <tfoot>{/* TODO: Add sum of all credits */}</tfoot>
+            <tfoot>
+              <th />
+              <th />
+              <th />
+              <th>
+                {filteredCourses.reduce(
+                  (sum, { specifics }) => sum + getCredits(specifics)[0],
+                  0
+                )}
+              </th>
+              <th>
+                {filteredCourses.reduce(
+                  (sum, { specifics }) => sum + getCredits(specifics)[1],
+                  0
+                )}
+              </th>
+              <th>
+                {filteredCourses.reduce(
+                  (sum, { specifics }) => sum + getCredits(specifics)[2],
+                  0
+                )}
+              </th>
+              <th>
+                {filteredCourses.reduce(
+                  (sum, { specifics }) => sum + getCredits(specifics)[3],
+                  0
+                )}
+              </th>
+              <th />
+            </tfoot>
           </table>
         ) : (
           <>
