@@ -24,7 +24,6 @@ export default function CoursesPage() {
 
   const [branch, setBranch] = useState<Branch>();
   const [semester, setSemester] = useState<Semester>();
-  const [credits, setCredits] = useState<Array<number>>();
   const [filteredCourses, setFilteredCourses] = useState<Array<Course>>([]);
 
   useEffect(() => {
@@ -40,15 +39,14 @@ export default function CoursesPage() {
     }
   }, [branch, semester, isLoading]);
 
-  useEffect(() => {
-    if (filteredCourses.length == 0) return;
-    setCredits(
-      filteredCourses[0].specifics.filter((specific) => {
+  const getCredits = (specifics: Array<Specifics>) => {
+    var credits: Array<number> = [];
+    specifics.map((specific) => {
         if (specific.branch == branch && specific.semester == semester)
-          return specific.credits;
-      })[0].credits
-    );
-  }, [filteredCourses]);
+        credits = specific.credits;
+    });
+    return credits;
+  };
 
   return (
     <>
@@ -140,6 +138,7 @@ export default function CoursesPage() {
 
             <tbody>
               {filteredCourses.map((course: Course, index) => {
+                const credits = getCredits(course.specifics);
                 return (
                   <tr key={index} id="rowLink">
                     <td>
