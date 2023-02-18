@@ -12,23 +12,23 @@ export default async function AnnouncementsPage() {
         const date = new Date(announcement.date_of_creation);
         return (
           <tr key={index}>
-            <td>{date.toLocaleDateString()}</td>
-            <td>
+            <td className='font-roboto-mono'>{date.toLocaleDateString()}</td>
+            <td className='text-start'>
               {announcement.subtitle ? (
                 <ul>
                   <li>
-                    <a href={announcement.title_link} target="_blank">
+                    <a className="hyperlink" href={announcement.title_link} target="_blank">
                       {announcement.title}
                     </a>
                   </li>
                   <li>
-                    <a href={announcement.subtitle_link} target="_blank">
+                    <a className="hyperlink" href={announcement.subtitle_link} target="_blank">
                       {announcement.subtitle}
                     </a>
                   </li>
                 </ul>
               ) : (
-                <a href={announcement.title_link} target="_blank">
+                <a className="hyperlink" href={announcement.title_link} target="_blank">
                   {announcement.title}
                 </a>
               )}

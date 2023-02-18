@@ -9,7 +9,9 @@ export default async function AnnouncementsLayout({
         <h1>Announcements</h1>
         <p>
           Check out all the latest announcements fetched directly from{' '}
-          <a href="https://nitkkr.ac.in/?page_id=621" target="_blank">here</a>
+          <a className="hyperlink" href="https://nitkkr.ac.in/?page_id=621" target="_blank">
+            here
+          </a>
         </p>
         <hr />
         <p>
@@ -22,6 +24,9 @@ export default async function AnnouncementsLayout({
           </small>
         </p>
       </hgroup>
+
+      <br />
+
       <main>{children}</main>
     </>
   );
