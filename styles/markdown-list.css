@@ -1,0 +1,23 @@
+/*
+ *  This is a CSS work-around to allow markdown rendered
+ *  list elements to retain their list-style.
+ *
+ *
+ *  HOW TO USE:
+ *
+ *  1. Wrap the markdown component in a <div> element.
+ *
+ *  2. Simply add the `markdown-list` class to the
+ *     wrapping <div> element.
+ *
+ */
+
+div.markdown-list ul {
+  list-style: disc;
+  margin-left: 2rem;
+}
+
+div.markdown-list ol {
+  list-style: decimal;
+  margin-left: 2rem;
+}

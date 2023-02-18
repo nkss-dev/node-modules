@@ -1,5 +1,6 @@
 import '../styles/custom-list.css'
 import '../styles/globals.css'
+import '../styles/markdown-list.css'
 import '../styles/row-link.css'
 
 export default function RootLayout({
