@@ -1,12 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    './app/**/*.{js,ts,jsx,tsx}',
-    './components/**/*.{js,ts,jsx,tsx}',
-  ],
+  content: ['./app/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
   theme: {
     fontFamily: {
       poppins: 'Poppins, sans-serif',
+      'roboto-mono': 'Roboto Mono, sans-serif',
     },
     extend: {
       colors: {
@@ -21,8 +19,12 @@ module.exports = {
           800: '#292b2f',
           900: '#202225',
         },
-        hyperlink: '#0cbc8b'
-      },},
+        hyperlink: '#0cbc8b',
+      },
+      listStyleType: {
+        'disclosure-closed': 'disclosure-closed',
+      },
+    },
   },
   plugins: [],
 };
