@@ -1,0 +1,33 @@
+/*
+ *  This is a CSS trick to highlight an entire column
+ *  when one of the column's children is hovered over.
+ *
+ *
+ *  HOW TO USE:
+ *
+ *  Add the class `highlightCol` to the <table>, <td>,
+ *  and <th> elements on which you want this effect.
+ *
+ */
+
+table.highlightCol {
+  overflow: hidden;
+}
+
+td.highlightCol,
+th.highlightCol {
+  position: relative;
+}
+
+td.highlightCol:hover::after,
+th.highlightCol:hover::after {
+  @apply bg-palette-500;
+
+  content: '';
+  height: 10000px;
+  left: 0;
+  position: absolute;
+  top: -5000px;
+  width: 100%;
+  z-index: -1;
+}
