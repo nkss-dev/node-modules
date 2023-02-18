@@ -9,7 +9,7 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function CourseInfo({ params, searchParams }: any) {
+export default async function ClubPage({ params, searchParams }: any) {
   const { name } = params;
   const club: Club = await fetcher(`https://api.nksss.live/clubs/${name}`);
 

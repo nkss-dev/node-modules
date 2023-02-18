@@ -21,7 +21,7 @@ async function convertCourseContent(content: string[]) {
   );
 }
 
-export default async function CourseInfo({ params, searchParams }: any) {
+export default async function CoursePage({ params, searchParams }: any) {
   const { code } = params;
   const course: Course = await fetcher(
     `https://api.nksss.live/courses/${code}`
