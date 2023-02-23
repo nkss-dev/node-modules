@@ -37,15 +37,15 @@ export default async function ClubsPage() {
       </hgroup>
 
       <hr />
-      <br />
 
       <main>
         {clubCategories.map((category: ClubCategory, categoryIndex) => {
           return (
             <Fragment key={categoryIndex}>
-              <h2>{category}:</h2>
               <br />
-              <ol className="flex flex-row flex-wrap">
+              <h2>{category}</h2>
+              <br />
+              <ol className="flex flex-row flex-wrap gap-4">
                 {getCategorisedClubs(category, clubs)}
               </ol>
             </Fragment>

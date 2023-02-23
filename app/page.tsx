@@ -33,7 +33,7 @@ export default function HomePage() {
 
       <main>
         <nav>
-          <ol className="flex flex-row justify-evenly">
+          <ol className="flex flex-row flex-wrap gap-12 justify-evenly">
             <li>
               <AnnouncementsPageCard />
             </li>

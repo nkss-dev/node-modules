@@ -5,7 +5,7 @@ import ImageWithFallback from './fallback-image';
 export default function ClubCard({ club }: { club: ClubBasic }) {
   return (
     <Link href={`/clubs/${club.short_name}`}>
-      <article className="bg-palette-700 hover:bg-palette-800 flex flex-col mb-4 mr-4 p-6 relative rounded-lg shadow w-96 h-52">
+      <article className="bg-palette-700 hover:bg-palette-800 flex flex-col p-6 relative rounded-lg shadow w-96 h-52">
         <header className="flex flex-row items-center mb-4">
           <ImageWithFallback
             src={`/assets/clubs/${club.short_name}/logo.png`}
