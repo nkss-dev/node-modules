@@ -1,8 +1,8 @@
 import Link from 'next/link';
 
-import AnnouncementsPageCard from '../components/home/announcements-card';
-import ClubsPageCard from '../components/home/clubs-card';
-import CoursesPageCard from '../components/home/courses-card';
+import AnnouncementsPageCard from '../components/home-page/announcements-card';
+import ClubsPageCard from '../components/home-page/clubs-card';
+import CoursesPageCard from '../components/home-page/courses-card';
 
 export default function HomePage() {
   return (
