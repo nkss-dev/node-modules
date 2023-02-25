@@ -4,8 +4,8 @@ export async function generateStaticParams() {
   const clubsResponse = await fetch('https://api.nksss.live/clubs');
   const clubs = await clubsResponse.json();
 
-  return clubs.data.map((club: Club) => ({
-    name: club.alias ? club.alias : club.name,
+  return clubs.data.map((club: ClubBasic) => ({
+    name: club.short_name,
   }));
 }
 
