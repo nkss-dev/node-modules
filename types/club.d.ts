@@ -25,9 +25,11 @@ type ClubBasic = {
   short_description: string;
   email: string;
   is_official: boolean;
-}
+};
 
 type ClubCategory =
+  | 'Committee'
+  | 'Crew'
   | 'Cultural Club'
   | 'Magazine'
   | 'Technical Club'

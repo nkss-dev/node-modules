@@ -4,6 +4,8 @@ import ClubCard from '../../components/club-card';
 import { fetcher } from '../../utils/fetcher';
 
 const clubCategories = [
+  'Committee',
+  'Crew',
   'Cultural Club',
   'Magazine',
   'Technical Club',
