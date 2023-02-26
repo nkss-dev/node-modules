@@ -1,3 +1,5 @@
+import Balancer from 'react-wrap-balancer';
+
 export default async function CoursesLayout({
   children,
 }: {
@@ -13,12 +15,15 @@ export default async function CoursesLayout({
         </p>
         <hr />
         <p>
-          <small>
-            This page will soon, with the v1 release, display as many of the
-            400+ courses that our college offers for their B. Tech. degree.
-          </small>
+          <Balancer>
+            <small>
+              This page will soon, with the v1 release, display as many of the
+              400+ courses that our college offers for their B. Tech. degree.
+            </small>
+          </Balancer>
         </p>
       </hgroup>
+
       <main>{children}</main>
     </>
   );

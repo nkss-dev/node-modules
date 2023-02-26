@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Balancer from 'react-wrap-balancer';
 
 import AnnouncementsPageCard from '../components/home-page/announcements-card';
 import ClubsPageCard from '../components/home-page/clubs-card';
@@ -12,19 +13,21 @@ export default function HomePage() {
         <h2>v1-alpha</h2>
         <br />
         <p>
-          Welcome! The{' '}
-          <Link className="hyperlink" href="/about">
-            NKSSS team
-          </Link>{' '}
-          aims to solve as many issues you face in our college as
-          technologically possible! The following 3 options are ones that we're
-          currently actively developing. This website is currently under
-          development and you will be notified once its full release rolls
-          around!
-          <br />
-          <br />
-          <strong>PS:</strong> NKSSS is <em>NOT</em> affiliated with NITKKR and
-          is completely student run.
+          <Balancer>
+            Welcome! The{' '}
+            <Link className="hyperlink" href="/about">
+              NKSSS team
+            </Link>{' '}
+            aims to solve as many issues you face in our college as
+            technologically possible! The following 3 options are ones that
+            we're currently actively developing. This website is currently under
+            development and you will be notified once its full release rolls
+            around!
+            <br />
+            <br />
+            <strong>PS:</strong> NKSSS is <em>NOT</em> affiliated with NITKKR
+            and is completely student run.
+          </Balancer>
         </p>
       </header>
 

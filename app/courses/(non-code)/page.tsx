@@ -2,10 +2,10 @@
 
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import Balancer from 'react-wrap-balancer';
 import useSWR from 'swr';
 
 import Chip from '../../../components/chip';
-import ContactInfo from '../../../components/contact';
 import { fetcher } from '../../../utils/fetcher';
 
 const branches = ['CE', 'CS', 'EC', 'EE', 'IT', 'ME', 'PI'] as const;
@@ -212,14 +212,14 @@ export default function CoursesPage() {
             </tfoot>
           </table>
         ) : (
-          <>
-            <p>
-              No course found for the matching filters. Don't worry, we will add
-              them soon! If you want a particular course / set of courses added
-              sooner, please contact us at
-            </p>
-            {ContactInfo()}
-          </>
+          <p>
+            <Balancer>
+              No courses were found for the given filters. Don't worry, we
+              will add them soon! If you want a particular course or a set of
+              courses added sooner, please contact us at any our handles
+              mentioned at the bottom of this page!
+            </Balancer>
+          </p>
         )
       ) : (
         <></>
