@@ -1,10 +1,10 @@
 'use client';
 
-import useSWR from 'swr';
-import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { Chip, Stack } from '@mui/material';
+import { useEffect, useState } from 'react';
+import useSWR from 'swr';
 
+import Chip from '../../../components/chip';
 import ContactInfo from '../../../components/contact';
 import { fetcher } from '../../../utils/fetcher';
 
@@ -61,62 +61,46 @@ export default function CoursesPage() {
         <tbody>
           <tr className="flex flex-row justify-evenly">
             <td className="border-none w-2/5">
-              <fieldset className="p-2 border-2 rounded border-palette-400">
+              <fieldset className="p-4 border-2 rounded border-palette-400">
                 <legend className="px-2">Choose your branch</legend>
 
-                <Stack
-                  direction="row"
-                  spacing={4}
-                  className="flex flex-row flex-wrap justify-center"
-                >
+                <section className="flex flex-row flex-wrap gap-4 justify-center">
                   {branches.map((value: Branch, index) => {
                     const isSelected = value === branch;
                     return (
                       <Chip
-                        className={
-                          'text-palette-100 hover:bg-palette-400' +
-                          (isSelected ? ' bg-palette-400' : '')
-                        }
                         key={index}
                         label={value}
                         onClick={() => {
                           setBranch(value);
                         }}
-                        variant={isSelected ? 'filled' : 'outlined'}
+                        isSelected={isSelected}
                       />
                     );
                   })}
-                </Stack>
+                </section>
               </fieldset>
             </td>
 
             <td className="border-none w-2/5">
-              <fieldset className="p-2 border-2 rounded border-palette-400">
+              <fieldset className="p-4 border-2 rounded border-palette-400">
                 <legend className="px-2">Choose your semester</legend>
 
-                <Stack
-                  direction="row"
-                  spacing={4}
-                  className="flex flex-row flex-wrap justify-center"
-                >
+                <section className="flex flex-row flex-wrap gap-4 justify-center">
                   {semesters.map((value: Semester, index) => {
                     const isSelected = value === semester;
                     return (
                       <Chip
-                        className={
-                          'text-palette-100 hover:bg-palette-400' +
-                          (isSelected ? ' bg-palette-400' : '')
-                        }
                         key={index}
                         label={value}
                         onClick={() => {
                           setSemester(value);
                         }}
-                        variant={isSelected ? 'filled' : 'outlined'}
+                        isSelected={isSelected}
                       />
                     );
                   })}
-                </Stack>
+                </section>
               </fieldset>
             </td>
           </tr>
@@ -182,7 +166,7 @@ export default function CoursesPage() {
                         {course.code}
                       </Link>
                     </td>
-                    <td>{course.title}</td>
+                    <td className="text-start">{course.title}</td>
                     <td>{course.prereq}</td>
                     <td>{credits ? credits[0] : 0}</td>
                     <td>{credits ? credits[1] : 0}</td>

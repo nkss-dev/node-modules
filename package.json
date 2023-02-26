@@ -6,9 +6,6 @@
     "start": "next start"
   },
   "dependencies": {
-    "@emotion/react": "^11.10.6",
-    "@emotion/styled": "^11.10.6",
-    "@mui/material": "^5.11.9",
     "clsx": "^1.2.1",
     "next": "latest",
     "next-mdx-remote": "^4.3.0",
