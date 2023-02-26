@@ -28,13 +28,13 @@ export default function Breadcrumb() {
         'flex flex-wrap justify-between p-4'
       )}
     >
-      <ol className="gap-2 inline-flex justify-start">
+      <ol className="gap-2 inline-flex items-center justify-start">
         <li className="p-2">
           <Link href="/">
             <Image
               className="rounded-full ring ring-palette-700 hover:ring-palette-200"
-              height={48}
-              width={48}
+              height={40}
+              width={40}
               src="/nksss.svg"
               alt="NKSSS Logo"
             />
@@ -43,10 +43,10 @@ export default function Breadcrumb() {
 
         {segments.map((segment, index) => (
           <Fragment key={index}>
-            <span className="h-fit m-auto">➜</span>
+            <span className="">➜</span>
             <li
               className={clsx(
-                'h-fit m-auto p-2',
+                'p-2',
                 index === segments.length - 1 && 'font-bold'
               )}
             >
@@ -61,12 +61,12 @@ export default function Breadcrumb() {
         ))}
       </ol>
 
-      <ol className="gap-2 inline-flex justify-end">
-        <li className="h-fit m-auto p-2">
+      <ol className="gap-2 inline-flex items-center justify-end">
+        <li className="p-2">
           <BiBell size={32} />
         </li>
 
-        <li className="h-fit m-auto p-2">
+        <li className="p-2">
           <Link href="/profile">
             <BsPersonFill size={32} />
           </Link>
