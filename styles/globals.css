@@ -11,13 +11,11 @@
     @apply font-poppins;
     @apply text-white;
 
-    margin: auto;
     min-height: 100vh;
-    width: 70%;
   }
 
   h1 {
-    font-size: 4rem;
+    font-size: 2.5rem;
     font-weight: bold;
     padding-top: 3rem;
   }
@@ -25,6 +23,7 @@
   h2 {
     font-size: 2rem;
     font-weight: bold;
+    margin-bottom: 16px;
   }
 
   h3 {
@@ -46,7 +45,7 @@
   }
 
   table {
-    @apply border-palette-400;
+    @apply border-palette-500;
     @apply p-4;
     @apply rounded-lg;
     @apply text-center;
@@ -68,6 +67,11 @@
 }
 
 @layer components {
+  .container {
+    margin: auto;
+    width: 70%;
+  }
+  
   .hyperlink {
     @apply hover:underline;
     @apply text-hyperlink;
