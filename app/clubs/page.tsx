@@ -3,6 +3,12 @@ import { Fragment } from 'react';
 import ClubCard from '../../components/club-card';
 import { fetcher } from '../../utils/fetcher';
 
+export const metadata = {
+  title: 'Clubs',
+  description:
+    'Check out all the official/unofficial clubs and societies of NIT-KKR',
+};
+
 const clubCategories = [
   'Cultural Club',
   'Technical Club',

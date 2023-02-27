@@ -1,8 +1,35 @@
+import { Metadata } from 'next';
 import { serialize } from 'next-mdx-remote/serialize';
 import Balancer from 'react-wrap-balancer';
 
 import RenderMarkdown from '../../../components/render-markdown';
 import { fetcher } from '../../../utils/fetcher';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { code: string };
+}): Promise<Metadata> {
+  const { code } = params;
+  const course: Course = await fetcher(
+    `https://api.nksss.live/courses/${code}`
+  );
+
+  const description = `The objectives of this course are:\n- ${course.objectives.join(
+    '\n- '
+  )}`;
+
+  return {
+    description: description,
+    title: course.title,
+
+    openGraph: {
+      title: course.title,
+      description: description,
+      url: 'https://nksss.live/courses',
+    },
+  };
+}
 
 export async function generateStaticParams() {
   const courses: Array<Course> = await fetcher(
@@ -223,16 +250,18 @@ export default async function CoursePage({ params, searchParams }: any) {
         <ol className="ml-8" id="customList">
           {courseContent.map((unit, index) => {
             return (
-                <li
-                  className="before:font-bold before:text-2xl mt-4"
-                  key={index}
-                  li-before-text="Unit "
-                  li-after-text=": "
-                >
-                  <article className="markdown-list">
-                    <Balancer><RenderMarkdown {...unit} /></Balancer>
-                  </article>
-                </li>
+              <li
+                className="before:font-bold before:text-2xl mt-4"
+                key={index}
+                li-before-text="Unit "
+                li-after-text=": "
+              >
+                <article className="markdown-list">
+                  <Balancer>
+                    <RenderMarkdown {...unit} />
+                  </Balancer>
+                </article>
+              </li>
             );
           })}
         </ol>

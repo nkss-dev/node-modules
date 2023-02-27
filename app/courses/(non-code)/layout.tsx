@@ -1,5 +1,11 @@
 import Balancer from 'react-wrap-balancer';
 
+export const metadata = {
+  title: 'Courses',
+  description:
+    "Check out all the courses with optional branch and semester filters for a better view at the credit distribution.",
+};
+
 export default async function CoursesLayout({
   children,
 }: {

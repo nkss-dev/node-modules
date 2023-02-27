@@ -1,9 +1,42 @@
+import { Metadata } from 'next';
 import Link from 'next/link';
 import Balancer from 'react-wrap-balancer';
 
 import AnnouncementsPageCard from '../components/home-page/announcements-card';
 import ClubsPageCard from '../components/home-page/clubs-card';
 import CoursesPageCard from '../components/home-page/courses-card';
+
+export function generateMetadata(): Metadata {
+  const project_name = 'NIT-KKR Student Support System';
+  const short_project_name = 'NKSSS';
+  const url = 'https://nksss.live';
+  const description =
+    'A student run initiative to address all the problems faced by college students which can be solved technologically';
+
+  return {
+    alternates: { canonical: url },
+    authors: [
+      { name: 'Priyanshu Tripathi', url: 'https://bio.link/getpsyched' },
+    ],
+    description: description,
+    colorScheme: 'dark',
+    creator: 'Priyanshu Tripathi',
+    title: short_project_name,
+
+    icons: {
+      icon: '/favicon.ico',
+    },
+
+    openGraph: {
+      title: project_name,
+      description: description,
+      url: url,
+      siteName: project_name,
+      locale: 'en-GB',
+      type: 'website',
+    },
+  };
+}
 
 export default function HomePage() {
   return (
