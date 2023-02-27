@@ -154,7 +154,7 @@ export default async function CoursePage({ params, searchParams }: any) {
                           {course.objectives.map(
                             (objective: string, index: number) => (
                               <li
-                                className="list-disclosure-closed ml-4"
+                                className="list-disclosure-closed mb-2 ml-4"
                                 key={index}
                               >
                                 {objective}
