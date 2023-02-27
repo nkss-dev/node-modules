@@ -75,7 +75,7 @@ export default async function CoursePage({ params, searchParams }: any) {
         <table className="w-full">
           <tbody>
             <tr className="flex flex-row flex-wrap justify-between">
-              <td className="border-none align-top">
+              <td className="align-top basis-0 border-none grow min-w-[60%] shrink-0">
                 <table>
                   <tbody>
                     <tr>
@@ -176,7 +176,7 @@ export default async function CoursePage({ params, searchParams }: any) {
               </td>
 
               {course.specifics.length > 1 ? (
-                <td className="border-none">
+                <td className="border-none mx-auto">
                   <table className="border-2 highlightCol">
                     <caption>Credit Distribution</caption>
 
