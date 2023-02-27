@@ -72,7 +72,11 @@ export default function CoursesPage() {
                         key={index}
                         label={value}
                         onClick={() => {
-                          setBranch(value);
+                          if (isSelected) {
+                            setBranch(undefined);
+                          } else {
+                            setBranch(value);
+                          }
                         }}
                         isSelected={isSelected}
                       />
@@ -94,7 +98,11 @@ export default function CoursesPage() {
                         key={index}
                         label={value}
                         onClick={() => {
-                          setSemester(value);
+                          if (isSelected) {
+                            setSemester(undefined);
+                          } else {
+                            setSemester(value);
+                          }
                         }}
                         isSelected={isSelected}
                       />
@@ -112,7 +120,7 @@ export default function CoursesPage() {
 
       {!isLoading && !(branch && semester) && filteredCourses.length > 0 ? (
         <>
-          {branch || semester ? <></> : <h2>All courses:</h2>}
+          {branch || semester ? <></> : <h2>All courses</h2>}
           {branch ? <h2>All courses in the {branch} branch</h2> : <></>}
           {semester ? <h2>All courses in semester {semester}</h2> : <></>}
 
@@ -214,10 +222,10 @@ export default function CoursesPage() {
         ) : (
           <p>
             <Balancer>
-              No courses were found for the given filters. Don't worry, we
-              will add them soon! If you want a particular course or a set of
-              courses added sooner, please contact us at any our handles
-              mentioned at the bottom of this page!
+              No courses were found for the given filters. Don't worry, we will
+              add them soon! If you want a particular course or a set of courses
+              added sooner, please contact us at any our handles mentioned at
+              the bottom of this page!
             </Balancer>
           </p>
         )
