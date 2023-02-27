@@ -1,5 +1,5 @@
 import { serialize } from 'next-mdx-remote/serialize';
-import { Fragment } from 'react';
+import Balancer from 'react-wrap-balancer';
 
 import RenderMarkdown from '../../../components/render-markdown';
 import { fetcher } from '../../../utils/fetcher';
@@ -56,6 +56,44 @@ export default async function CoursePage({ params, searchParams }: any) {
                       <td className="border-none text-left">{course.code}</td>
                     </tr>
 
+                    {course.specifics.length == 1 ? (
+                      <tr>
+                        <th className="align-top border-none text-right">
+                          Credits:
+                        </th>
+                        <td className="border-none text-left">
+                          <pre>
+                            <u className="no-underline" title="Lecture credits">
+                              {course.specifics[0].credits[0]}
+                              <sub>L</sub>
+                            </u>
+                            {' + '}
+                            <u
+                              className="no-underline"
+                              title="Tutorial credits"
+                            >
+                              {course.specifics[0].credits[1]}
+                              <sub>T</sub>
+                            </u>
+                            {' + '}
+                            <u
+                              className="no-underline"
+                              title="Practical credits"
+                            >
+                              {course.specifics[0].credits[2]}
+                              <sub>P</sub>
+                            </u>
+                            {' = '}
+                            <u className="no-underline" title="Total credits">
+                              {course.specifics[0].credits[3]}
+                            </u>
+                          </pre>
+                        </td>
+                      </tr>
+                    ) : (
+                      <></>
+                    )}
+
                     <tr>
                       <th className="align-top border-none text-right">
                         Prerequisites:
@@ -64,7 +102,12 @@ export default async function CoursePage({ params, searchParams }: any) {
                         {course.prereq.length > 0 ? (
                           <ul>
                             {course.prereq.map((prereq, index) => (
-                              <li key={index}>{prereq}</li>
+                              <li
+                                className="list-disclosure-closed ml-4"
+                                key={index}
+                              >
+                                {prereq}
+                              </li>
                             ))}
                           </ul>
                         ) : (
@@ -75,47 +118,6 @@ export default async function CoursePage({ params, searchParams }: any) {
 
                     <tr>
                       <th className="align-top border-none text-right">
-                        Type:
-                      </th>
-                      <td className="border-none text-left">{course.kind}</td>
-                    </tr>
-
-                    {course.specifics.length == 1 ? (
-                      <tr>
-                        <th className="align-top border-none text-right">
-                          Credits:
-                        </th>
-                        <td className="border-none text-left">
-                          <p>
-                            <u title="Lecture credits">
-                              L{course.specifics[0].credits[0]}
-                            </u>
-                            ,{' '}
-                            <u title="Tutorial credits">
-                              T{course.specifics[0].credits[1]}
-                            </u>
-                            ,{' '}
-                            <u title="Practical credits">
-                              P{course.specifics[0].credits[2]}
-                            </u>
-                            ,{' '}
-                            <u title="Total credits">
-                              T{course.specifics[0].credits[3]}
-                            </u>
-                          </p>
-                          <p className="mb-0">
-                            These credits are for the{' '}
-                            <b>{course.specifics[0].branch}</b> branch and
-                            semester <b>{course.specifics[0].semester}</b>.
-                          </p>
-                        </td>
-                      </tr>
-                    ) : (
-                      <></>
-                    )}
-
-                    <tr>
-                      <th className="align-top border-none text-right">
                         Objectives:
                       </th>
                       <td className="border-none text-left">
@@ -123,15 +125,22 @@ export default async function CoursePage({ params, searchParams }: any) {
                           {course.objectives.map(
                             (objective: string, index: number) => (
                               <li
-                                className="list-disclosure-closed list-inside"
+                                className="list-disclosure-closed ml-4"
                                 key={index}
                               >
-                                {objective}
+                                <Balancer>{objective}</Balancer>
                               </li>
                             )
                           )}
                         </ul>
                       </td>
+                    </tr>
+
+                    <tr>
+                      <th className="align-top border-none text-right">
+                        Type:
+                      </th>
+                      <td className="border-none text-left">{course.kind}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -146,7 +155,11 @@ export default async function CoursePage({ params, searchParams }: any) {
                       <tr>
                         <th>Branch</th>
                         {course.specifics.map(({ branch }, index) => {
-                          return <th className='highlightCol' key={index}>{branch}</th>;
+                          return (
+                            <th className="highlightCol" key={index}>
+                              {branch}
+                            </th>
+                          );
                         })}
                       </tr>
                     </thead>
@@ -173,7 +186,11 @@ export default async function CoursePage({ params, searchParams }: any) {
                                     value = specific.credits[2];
                                     break;
                                 }
-                                return <td className='highlightCol' key={mapIndex}>{value}</td>;
+                                return (
+                                  <td className="highlightCol" key={mapIndex}>
+                                    {value}
+                                  </td>
+                                );
                               })}
                             </tr>
                           );
@@ -185,7 +202,11 @@ export default async function CoursePage({ params, searchParams }: any) {
                       <tr>
                         <th>Total</th>
                         {course.specifics.map(({ credits }, index) => {
-                          return <td className='highlightCol' key={index}>{credits[3]}</td>;
+                          return (
+                            <td className="highlightCol" key={index}>
+                              {credits[3]}
+                            </td>
+                          );
                         })}
                       </tr>
                     </tfoot>
@@ -199,46 +220,41 @@ export default async function CoursePage({ params, searchParams }: any) {
         </table>
 
         <h2>Content</h2>
-        <ol className='ml-8' id="customList">
+        <ol className="ml-8" id="customList">
           {courseContent.map((unit, index) => {
             return (
-              <Fragment key={index}>
                 <li
-                  className="before:font-bold before:text-2xl"
+                  className="before:font-bold before:text-2xl mt-4"
+                  key={index}
                   li-before-text="Unit "
                   li-after-text=": "
                 >
-                  <div className="markdown-list">
-                    <RenderMarkdown {...unit} />
-                  </div>
+                  <article className="markdown-list">
+                    <Balancer><RenderMarkdown {...unit} /></Balancer>
+                  </article>
                 </li>
-                <br />
-              </Fragment>
             );
           })}
         </ol>
 
         <h2>Reference Books</h2>
-        <ul>
+        <ul className="mb-8">
           {course.book_names.map((book_name, index) => (
-            <li className="list-disclosure-closed ml-8" key={index}>
-              {book_name}
+            <li className="list-disclosure-closed mb-2 ml-8" key={index}>
+              <Balancer>{book_name}</Balancer>
             </li>
           ))}
         </ul>
 
         <h2>Outcomes</h2>
-        <ul>
+        <ul className="mb-8">
           {course.outcomes.map((outcome, index) => (
-            <li className="list-disclosure-closed ml-8" key={index}>
-              {outcome}
+            <li className="list-disclosure-closed mb-2 ml-8" key={index}>
+              <Balancer>{outcome}</Balancer>
             </li>
           ))}
         </ul>
       </main>
-
-      <br />
-      <br />
     </>
   );
 }

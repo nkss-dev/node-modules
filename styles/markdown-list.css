@@ -5,19 +5,29 @@
  *
  *  HOW TO USE:
  *
- *  1. Wrap the markdown component in a <div> element.
+ *  1. Wrap the markdown component in a tag of your choice.
  *
  *  2. Simply add the `markdown-list` class to the
- *     wrapping <div> element.
+ *     wrapping tag you chose.
  *
  */
 
-div.markdown-list ul {
-  list-style: disc;
+.markdown-list ul,
+.markdown-list ol,
+.markdown-list p {
+  margin-bottom: 2rem;
   margin-left: 2rem;
+  margin-top: 1rem;
 }
 
-div.markdown-list ol {
+.markdown-list ul {
+  list-style: disc;
+}
+
+.markdown-list ol {
   list-style: decimal;
-  margin-left: 2rem;
+}
+
+.markdown-list li {
+  margin-bottom: 1rem;
 }
