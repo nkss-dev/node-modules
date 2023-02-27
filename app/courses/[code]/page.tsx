@@ -59,7 +59,9 @@ export default async function CoursePage({ params, searchParams }: any) {
   return (
     <>
       <hgroup>
-        <h1>{course.title}</h1>
+        <h1>
+          <Balancer>{course.title}</Balancer>
+        </h1>
         <hr />
         <p>
           This page will soon contain a link to notes, past papers and reference
@@ -70,9 +72,9 @@ export default async function CoursePage({ params, searchParams }: any) {
       <br />
 
       <main>
-        <table>
+        <table className="w-full">
           <tbody>
-            <tr>
+            <tr className="flex flex-row flex-wrap justify-between">
               <td className="border-none align-top">
                 <table>
                   <tbody>
@@ -155,7 +157,7 @@ export default async function CoursePage({ params, searchParams }: any) {
                                 className="list-disclosure-closed ml-4"
                                 key={index}
                               >
-                                <Balancer>{objective}</Balancer>
+                                {objective}
                               </li>
                             )
                           )}
@@ -257,9 +259,7 @@ export default async function CoursePage({ params, searchParams }: any) {
                 li-after-text=": "
               >
                 <article className="markdown-list">
-                  <Balancer>
-                    <RenderMarkdown {...unit} />
-                  </Balancer>
+                  <RenderMarkdown {...unit} />
                 </article>
               </li>
             );
@@ -270,7 +270,7 @@ export default async function CoursePage({ params, searchParams }: any) {
         <ul className="mb-8">
           {course.book_names.map((book_name, index) => (
             <li className="list-disclosure-closed mb-2 ml-8" key={index}>
-              <Balancer>{book_name}</Balancer>
+              {book_name}
             </li>
           ))}
         </ul>
@@ -279,7 +279,7 @@ export default async function CoursePage({ params, searchParams }: any) {
         <ul className="mb-8">
           {course.outcomes.map((outcome, index) => (
             <li className="list-disclosure-closed mb-2 ml-8" key={index}>
-              <Balancer>{outcome}</Balancer>
+              {outcome}
             </li>
           ))}
         </ul>
