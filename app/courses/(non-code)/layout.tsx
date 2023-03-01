@@ -1,4 +1,5 @@
 import Balancer from 'react-wrap-balancer';
+import DefaultLayout from '../../../components/default-layout';
 
 export const metadata = {
   title: 'Courses',
@@ -12,25 +13,12 @@ export default async function CoursesLayout({
   children: React.ReactNode;
 }) {
   return (
-    <>
-      <hgroup>
-        <h1>Courses</h1>
-        <p>
-          Choose your branch and semester below to display the respective
-          courses!
-        </p>
-        <hr />
-        <p>
-          <Balancer>
-            <small>
-              This page will soon, with the v1 release, display as many of the
-              400+ courses that our college offers for their B. Tech. degree.
-            </small>
-          </Balancer>
-        </p>
-      </hgroup>
-
-      <main>{children}</main>
-    </>
+    <DefaultLayout
+      title='Courses'
+      description='Choose your branch and semester below to display the respective courses!'
+      prompt='This page will soon, with the v1 release, display as many of the 400+ courses that our college offers for their B. Tech. degree.'
+    >
+      {children}
+    </DefaultLayout>
   );
 }

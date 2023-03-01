@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import DefaultLayout from '../../../components/default-layout';
 import { fetcher } from '../../../utils/fetcher';
 
 export async function generateMetadata({
@@ -39,14 +40,11 @@ export default async function ClubPage({
   const club: Club = await fetcher(`https://api.nksss.live/clubs/${name}`);
 
   return (
-    <>
-      <hgroup>
-        <h1>{club.name}</h1>
-        <hr />
-        <p>This page will soon contain a full description of {name}</p>
-      </hgroup>
-
-      <main></main>
-    </>
+    <DefaultLayout
+      title={club.name}
+      prompt={`This page will soon contain a full description of ${name}`}
+    >
+      <></>
+    </DefaultLayout>
   );
 }

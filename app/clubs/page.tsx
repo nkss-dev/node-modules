@@ -1,6 +1,7 @@
 import { Fragment } from 'react';
 
 import ClubCard from '../../components/club-card';
+import DefaultLayout from '../../components/default-layout';
 import { fetcher } from '../../utils/fetcher';
 
 export const metadata = {
@@ -38,32 +39,22 @@ export default async function ClubsPage() {
   const clubs: Array<ClubBasic> = await fetcher('https://api.nksss.live/clubs');
 
   return (
-    <>
-      <hgroup>
-        <h1>Clubs</h1>
-        <p>An overview all the clubs and societies of NIT-KKR</p>
-      </hgroup>
-
-      <hr className="mb-4" />
-
-      <main>
-        <p className="font-bold text-red-400 underline">
-          <em>
-            PS: Some cards are disabled due to us not having any information
-            about the club yet.
-          </em>
-        </p>
-        {clubCategories.map((category: ClubCategory, categoryIndex) => {
-          return (
-            <Fragment key={categoryIndex}>
-              <h2>{category}</h2>
-              <ol className="flex flex-row flex-wrap gap-4 mb-8">
-                {getCategorisedClubs(category, clubs)}
-              </ol>
-            </Fragment>
-          );
-        })}
-      </main>
-    </>
+    <DefaultLayout
+      title="Clubs"
+      description="An overview all the clubs and societies of NIT-KKR"
+      prompt='Some cards are disabled due to us not having any information about the club yet.'
+      alert={true}
+    >
+      {clubCategories.map((category: ClubCategory, categoryIndex) => {
+        return (
+          <Fragment key={categoryIndex}>
+            <h2>{category}</h2>
+            <ol className="flex flex-row flex-wrap gap-4 mb-8">
+              {getCategorisedClubs(category, clubs)}
+            </ol>
+          </Fragment>
+        );
+      })}
+    </DefaultLayout>
   );
 }
