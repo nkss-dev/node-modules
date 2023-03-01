@@ -29,21 +29,24 @@ export default function CoursesPage() {
   useEffect(() => {
     if (!courses) return;
 
-    if (!branch && !semester) {
-      setFilteredCourses(courses);
-    } else {
-      setFilteredCourses(
-        courses.filter(
-          (course) =>
-            (!branch ||
-              course.specifics.some((specific) => specific.branch == branch)) &&
-            (!semester ||
-              course.specifics.some(
-                (specific) => specific.semester == semester
-              ))
-        )
-      );
-    }
+    setFilteredCourses(
+      courses.filter((course) => {
+        if (!branch && !semester) {
+          return true;
+        } else if (branch && !semester) {
+          return course.specifics.some((specific) => specific.branch == branch);
+        } else if (!branch && semester) {
+          return course.specifics.some(
+            (specific) => specific.semester == semester
+          );
+        } else {
+          return course.specifics.some(
+            (specific) =>
+              specific.branch == branch && specific.semester == semester
+          );
+        }
+      })
+    );
   }, [branch, semester, isLoading]);
 
   const getCredits = (specifics: Array<Specifics>) => {
