@@ -44,16 +44,20 @@ export default async function ClubsPage() {
         <p>An overview all the clubs and societies of NIT-KKR</p>
       </hgroup>
 
-      <hr />
+      <hr className="mb-4" />
 
       <main>
+        <p className="font-bold text-red-400 underline">
+          <em>
+            PS: Some cards are disabled due to us not having any information
+            about the club yet.
+          </em>
+        </p>
         {clubCategories.map((category: ClubCategory, categoryIndex) => {
           return (
             <Fragment key={categoryIndex}>
-              <br />
               <h2>{category}</h2>
-              <br />
-              <ol className="flex flex-row flex-wrap gap-4">
+              <ol className="flex flex-row flex-wrap gap-4 mb-8">
                 {getCategorisedClubs(category, clubs)}
               </ol>
             </Fragment>
