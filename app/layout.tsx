@@ -23,7 +23,7 @@ export default function RootLayout({
 
         <section className="container grow">{children}</section>
 
-        <footer className="bg-palette-800 p-4">
+        <footer className="bg-palette-800 p-4 mt-8">
           <section className="align-middle container flex flex-row flex-wrap justify-between">
             <ul className="gap-4 inline-flex flex-wrap">
               <li>

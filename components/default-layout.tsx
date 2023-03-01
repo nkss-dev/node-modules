@@ -4,7 +4,7 @@ export default function DefaultLayout({
   title,
   description,
   prompt,
-  alert = false,
+  alert,
   children,
 }: {
   title: string;
@@ -24,8 +24,9 @@ export default function DefaultLayout({
         <hr className="mt-2 mb-2" />
 
         {alert ? (
-          <p className="font-bold text-red-400 underline">
-            <em>PS: {prompt}</em>
+          <p className="text-red-400">
+            <strong className="font-bold">PS: </strong>
+            <em>{prompt}</em>
           </p>
         ) : (
           <p>{prompt}</p>

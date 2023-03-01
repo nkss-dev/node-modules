@@ -25,7 +25,7 @@ export default function Breadcrumb() {
       aria-label="Breadcrumb"
       className={clsx(
         'bg-palette-700 text-2xl',
-        'flex flex-wrap justify-between p-4'
+        'flex flex-wrap justify-between p-4 mb-8'
       )}
     >
       <ol className="gap-2 inline-flex items-center justify-start">
