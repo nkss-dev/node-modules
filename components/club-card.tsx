@@ -10,12 +10,12 @@ export default function ClubCard({ club }: { club: ClubBasic }) {
     <Link href={`/clubs/${club.short_name}`}>
       <button
         className={clsx(
-          'bg-palette-700 hover:bg-palette-800 flex flex-col p-6 relative rounded-lg shadow text-left w-96 h-52',
+          'bg-palette-700 hover:bg-palette-800 flex flex-col p-6 relative rounded-lg shadow text-left w-96 h-64',
           disabled ? 'cursor-not-allowed' : 'cursor-default'
         )}
         disabled={disabled}
       >
-        <header className="flex flex-row items-center mb-4 h-[60%]">
+        <header className="flex flex-row items-center mb-4 h-28">
           <ImageWithFallback
             src={`/assets/clubs/${club.short_name}/logo.png`}
             width={85}
