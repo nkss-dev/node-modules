@@ -171,7 +171,7 @@ export default function CoursesPage() {
               {filteredCourses.map((course: Course, index) => {
                 const credits = getCredits(course.specifics);
                 return (
-                  <tr key={index} id="rowLink">
+                  <tr className="hover:bg-palette-500" key={index} id="rowLink">
                     <td>
                       <Link href={`/courses/${course.code}`}>
                         {course.code}
