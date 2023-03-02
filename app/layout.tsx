@@ -21,10 +21,10 @@ export default function RootLayout({
 
         <Breadcrumb />
 
-        <section className="container grow">{children}</section>
+        <section className="container flex flex-col grow max-w-screen-lg">{children}</section>
 
-        <footer className="bg-palette-800 p-4 mt-8">
-          <section className="align-middle container flex flex-row flex-wrap justify-between">
+        <footer className="bg-palette-800 py-4 mt-8">
+          <section className="align-middle container flex flex-row flex-wrap justify-between max-w-screen-lg">
             <ul className="gap-4 inline-flex flex-wrap">
               <li>
                 <Link href="/">© 2023 NKSSS</Link>

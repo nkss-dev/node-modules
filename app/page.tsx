@@ -1,10 +1,9 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import { BsBook, BsMegaphone, BsPeople } from 'react-icons/bs';
 import Balancer from 'react-wrap-balancer';
 
-import AnnouncementsPageCard from '../components/home-page/announcements-card';
-import ClubsPageCard from '../components/home-page/clubs-card';
-import CoursesPageCard from '../components/home-page/courses-card';
+import HomeCardsLayout from '../components/home-cards-layout';
 
 export function generateMetadata(): Metadata {
   const project_name = 'NIT-KKR Student Support System';
@@ -40,50 +39,62 @@ export function generateMetadata(): Metadata {
 
 export default function HomePage() {
   return (
-    <>
-      <header className="text-center">
-        <h1>NIT-KKR Student Support System</h1>
-        <h2>v1-alpha</h2>
-        <br />
+    <article className="my-auto">
+      <hgroup className="mb-12">
+        <h1 className="mb-6">
+          <Balancer>NIT-KKR Student Support System</Balancer>
+        </h1>
+
         <p>
-          <Balancer>
-            Welcome! The{' '}
-            <Link className="hyperlink" href="/about">
-              NKSSS team
-            </Link>{' '}
-            aims to solve as many issues you face in our college as
-            technologically possible! The following 3 options are ones that
-            we're currently actively developing. This website is currently under
-            development and you will be notified once its full release rolls
-            around!
-            <br />
-            <br />
-            <strong>PS:</strong> NKSSS is <em>NOT</em> affiliated with NITKKR
-            and is completely student run.
-          </Balancer>
+          Welcome! The{' '}
+          <Link className="hyperlink" href="/about">
+            NKSSS team
+          </Link>{' '}
+          aims to solve as many issues you face in our college as
+          technologically possible! The following 3 options are ones that we're
+          currently actively developing. This website is currently under
+          development and you will be notified once its full release rolls
+          around!
+          <br />
+          <br />
+          <strong>PS:</strong> NKSSS is <em>NOT</em> affiliated with NITKKR and
+          is completely student run.
         </p>
-      </header>
+      </hgroup>
 
-      <br />
-      <br />
+      <nav>
+        <ol className="flex flex-row flex-wrap gap-12 justify-between">
+          <li>
+            <HomeCardsLayout
+              href="/announcements"
+              title="Announcements"
+              description="Aaaah, not the exam results! Not RIGHT NOW!!"
+            >
+              <BsMegaphone size={32} />
+            </HomeCardsLayout>
+          </li>
 
-      <main>
-        <nav>
-          <ol className="flex flex-row flex-wrap gap-12 justify-evenly">
-            <li>
-              <AnnouncementsPageCard />
-            </li>
+          <li>
+            <HomeCardsLayout
+              href="/courses"
+              title="Courses"
+              description="Do we even learn something in these courses?"
+            >
+              <BsBook size={32} />
+            </HomeCardsLayout>
+          </li>
 
-            <li>
-              <CoursesPageCard />
-            </li>
-
-            <li>
-              <ClubsPageCard />
-            </li>
-          </ol>
-        </nav>
-      </main>
-    </>
+          <li>
+            <HomeCardsLayout
+              href="/clubs"
+              title="Clubs"
+              description="Huh? What are clubs?? Never heard of them :("
+            >
+              <BsPeople size={32} />
+            </HomeCardsLayout>
+          </li>
+        </ol>
+      </nav>
+    </article>
   );
 }

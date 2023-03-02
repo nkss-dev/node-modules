@@ -21,57 +21,53 @@ export default function Breadcrumb() {
 
   if (segments.length === 0) return <></>;
   return (
-    <nav
-      aria-label="Breadcrumb"
-      className={clsx(
-        'bg-palette-700 text-2xl',
-        'flex flex-wrap justify-between p-4 mb-8'
-      )}
-    >
-      <ol className="gap-2 inline-flex items-center justify-start">
-        <li className="p-2">
-          <Link href="/">
-            <Image
-              className="rounded-full ring ring-palette-700 hover:ring-palette-200"
-              height={40}
-              width={40}
-              src="/nksss.svg"
-              alt="NKSSS Logo"
-            />
-          </Link>
-        </li>
+    <nav aria-label="Breadcrumb" className="bg-palette-700 py-4 mb-8">
+      <section className="container flex flex-wrap justify-between max-w-screen-lg text-2xl">
+        <ol className="gap-2 inline-flex items-center justify-start">
+          <li className="p-2">
+            <Link href="/">
+              <Image
+                className="rounded-full ring ring-palette-700 hover:ring-palette-200"
+                height={40}
+                width={40}
+                src="/nksss.svg"
+                alt="NKSSS Logo"
+              />
+            </Link>
+          </li>
 
-        {segments.map((segment, index) => (
-          <Fragment key={index}>
-            <span className="">➜</span>
-            <li
-              className={clsx(
-                'p-2',
-                index === segments.length - 1 && 'font-bold'
-              )}
-            >
-              <Link
-                className="hover:underline"
-                href={'/' + segments.slice(0, index + 1).join('/')}
+          {segments.map((segment, index) => (
+            <Fragment key={index}>
+              <span className="">➜</span>
+              <li
+                className={clsx(
+                  'p-2',
+                  index === segments.length - 1 && 'font-bold'
+                )}
               >
-                {capitalise(segment)}
-              </Link>
-            </li>
-          </Fragment>
-        ))}
-      </ol>
+                <Link
+                  className="hover:underline"
+                  href={'/' + segments.slice(0, index + 1).join('/')}
+                >
+                  {capitalise(segment)}
+                </Link>
+              </li>
+            </Fragment>
+          ))}
+        </ol>
 
-      <ol className="gap-2 inline-flex items-center justify-end">
-        <li className="p-2">
-          <BiBell size={32} />
-        </li>
+        <ol className="gap-2 inline-flex items-center justify-end">
+          <li className="p-2">
+            <BiBell size={32} />
+          </li>
 
-        <li className="p-2">
-          <Link href="/profile">
-            <BsPersonFill size={32} />
-          </Link>
-        </li>
-      </ol>
+          <li className="p-2">
+            <Link href="/profile">
+              <BsPersonFill size={32} />
+            </Link>
+          </li>
+        </ol>
+      </section>
     </nav>
   );
 }

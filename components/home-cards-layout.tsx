@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { ReactNode } from 'react';
 import Balancer from 'react-wrap-balancer';
 
-export default function HomePageCardLayout({
+export default function HomeCardsLayout({
   href,
   title,
   description,
@@ -15,22 +15,20 @@ export default function HomePageCardLayout({
 }) {
   return (
     <Link href={href}>
-      <article className="h-auto w-72">
-        <figure className="bg-palette-400 h-72 px-4 pt-4 rounded-lg relative">
+      <button className="w-56">
+        <figure className="bg-palette-400 w-fit p-4 mb-4 rounded-full">
           {children}
         </figure>
 
-        <br />
-
-        <hgroup className="text-center">
-          <h3 className="text-hyperlink">{title}</h3>
+        <hgroup className="text-start">
+          <h3 className="text-hyperlink">
+            <Balancer>{title}</Balancer>
+          </h3>
           <p>
-            <Balancer>
-              <small>{description}</small>
-            </Balancer>
+            <small>{description}</small>
           </p>
         </hgroup>
-      </article>
+      </button>
     </Link>
   );
 }

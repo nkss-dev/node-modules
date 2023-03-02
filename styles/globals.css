@@ -66,11 +66,6 @@
 }
 
 @layer components {
-  .container {
-    margin: auto;
-    width: 70%;
-  }
-
   .hyperlink {
     @apply hover:underline;
     @apply text-hyperlink;

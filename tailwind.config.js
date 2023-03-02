@@ -2,6 +2,10 @@
 module.exports = {
   content: ['./app/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
   theme: {
+    container: {
+      center: true,
+      padding: '2rem',
+    },
     fontFamily: {
       poppins: 'Poppins, sans-serif',
       'roboto-mono': 'Roboto Mono, sans-serif',
