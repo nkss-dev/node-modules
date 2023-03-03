@@ -21,15 +21,15 @@ export default function Breadcrumb() {
 
   if (segments.length === 0) return <></>;
   return (
-    <nav aria-label="Breadcrumb" className="bg-palette-700 py-4 mb-8">
-      <section className="container flex flex-wrap justify-between max-w-screen-lg text-2xl">
+    <nav aria-label="Breadcrumb" className="bg-palette-700 py-2 mb-8">
+      <section className="container flex flex-wrap justify-between max-w-screen-lg text-[22px]">
         <ol className="gap-2 inline-flex items-center justify-start">
           <li className="p-2">
             <Link href="/">
               <Image
                 className="rounded-full ring ring-palette-700 hover:ring-palette-200"
-                height={40}
-                width={40}
+                height={34}
+                width={34}
                 src="/nksss.svg"
                 alt="NKSSS Logo"
               />
@@ -38,7 +38,7 @@ export default function Breadcrumb() {
 
           {segments.map((segment, index) => (
             <Fragment key={index}>
-              <span className="">➜</span>
+              <span>➜</span>
               <li
                 className={clsx(
                   'p-2',
@@ -58,12 +58,12 @@ export default function Breadcrumb() {
 
         <ol className="gap-2 inline-flex items-center justify-end">
           <li className="p-2">
-            <BiBell size={32} />
+            <BiBell size={28} />
           </li>
 
           <li className="p-2">
             <Link href="/profile">
-              <BsPersonFill size={32} />
+              <BsPersonFill size={28} />
             </Link>
           </li>
         </ol>
