@@ -62,11 +62,12 @@ export default function CoursesPage() {
     <>
       <table className="w-full">
         <tbody>
-          <tr className="flex flex-row justify-evenly">
-            <td className="border-none w-2/5">
+          <tr className="flex flex-row justify-between gap-4">
+            <td className="border-none px-0">
               <fieldset className="p-4 border-2 rounded border-palette-400">
                 <legend className="px-2">Choose your branch</legend>
 
+                <Balancer>
                 <section className="flex flex-row flex-wrap gap-4 justify-center">
                   {branches.map((value: Branch, index) => {
                     const isSelected = value === branch;
@@ -86,13 +87,15 @@ export default function CoursesPage() {
                     );
                   })}
                 </section>
+                </Balancer>
               </fieldset>
             </td>
 
-            <td className="border-none w-2/5">
+            <td className="border-none px-0">
               <fieldset className="p-4 border-2 rounded border-palette-400">
                 <legend className="px-2">Choose your semester</legend>
 
+                <Balancer>
                 <section className="flex flex-row flex-wrap gap-4 justify-center">
                   {semesters.map((value: Semester, index) => {
                     const isSelected = value === semester;
@@ -112,6 +115,7 @@ export default function CoursesPage() {
                     );
                   })}
                 </section>
+                </Balancer>
               </fieldset>
             </td>
           </tr>
