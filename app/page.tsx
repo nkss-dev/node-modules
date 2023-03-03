@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { BsBook, BsMegaphone, BsPeople } from 'react-icons/bs';
@@ -62,35 +63,49 @@ export default function HomePage() {
         </p>
       </hgroup>
 
-      <nav>
-        <ol className="flex flex-row flex-wrap gap-12 justify-between">
-          <li>
+      <nav className="h-min">
+        <ol className="grid grid-cols-1 sm:grid-cols-6 grid-auto-rows gap-8">
+          <li
+            className={clsx('col-start-1 row-start-1 w-fit', 'sm:col-span-2')}
+          >
             <HomeCardsLayout
               href="/announcements"
               title="Announcements"
               description="Aaaah, not the exam results! Not RIGHT NOW!!"
             >
-              <BsMegaphone size={32} />
+              <BsMegaphone className="h-6 w-6 md:h-8 md:w-8" />
             </HomeCardsLayout>
           </li>
 
-          <li>
+          <li
+            className={clsx(
+              'col-start-1 row-start-2 w-fit',
+              'sm:col-span-2 sm:col-start-5 sm:row-start-1 sm:justify-self-end',
+              'md:col-start-3 md:row-start-1 md:justify-self-center'
+            )}
+          >
             <HomeCardsLayout
               href="/courses"
               title="Courses"
               description="Do we even learn something in these courses?"
             >
-              <BsBook size={32} />
+              <BsBook className="h-6 w-6 md:h-8 md:w-8" />
             </HomeCardsLayout>
           </li>
 
-          <li>
+          <li
+            className={clsx(
+              'col-start-1 row-start-3 w-fit',
+              'sm:col-span-2 sm:col-start-3 sm:row-start-2 sm:justify-self-center',
+              'md:col-start-5 md:row-start-1 md:justify-self-end'
+            )}
+          >
             <HomeCardsLayout
               href="/clubs"
               title="Clubs"
-              description="Huh? What are clubs?? Never heard of them :("
+              description="There are 20+ clubs? Since when??"
             >
-              <BsPeople size={32} />
+              <BsPeople className="h-6 w-6 md:h-8 md:w-8" />
             </HomeCardsLayout>
           </li>
         </ol>

@@ -15,9 +15,12 @@ export default function Chip({
   return (
     <button
       className={clsx(
-        'text-[14px] text-palette-200 hover:bg-palette-500',
+        'min-h-4 px-2 text-xs',
+        'sm:px-2',
+        'md:h-8 md:px-3 md:text-sm',
         isSelected && 'bg-palette-500',
-        'border h-8 items-center px-3 rounded-full'
+        'border items-center rounded-full',
+        'text-palette-200 hover:bg-palette-500'
       )}
       disabled={disabled}
       onClick={onClick}

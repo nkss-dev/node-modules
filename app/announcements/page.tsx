@@ -23,31 +23,19 @@ export default async function AnnouncementsPage() {
                 {announcement.subtitle ? (
                   <ul>
                     <li>
-                      <a
-                        className="hyperlink"
-                        href={announcement.title_link}
-                        target="_blank"
-                      >
+                      <a href={announcement.title_link} target="_blank">
                         {announcement.title}
                       </a>
                     </li>
 
                     <li>
-                      <a
-                        className="hyperlink"
-                        href={announcement.subtitle_link}
-                        target="_blank"
-                      >
+                      <a href={announcement.subtitle_link} target="_blank">
                         {announcement.subtitle}
                       </a>
                     </li>
                   </ul>
                 ) : (
-                  <a
-                    className="hyperlink"
-                    href={announcement.title_link}
-                    target="_blank"
-                  >
+                  <a href={announcement.title_link} target="_blank">
                     {announcement.title}
                   </a>
                 )}

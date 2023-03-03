@@ -1,11 +1,7 @@
 import Link from 'next/link';
 import { FaDiscord, FaFacebook, FaInstagram } from 'react-icons/fa';
 
-import '../styles/custom-list.css';
 import '../styles/globals.css';
-import '../styles/highlight-col.css';
-import '../styles/markdown-list.css';
-import '../styles/row-link.css';
 import Breadcrumb from './breadcrumb';
 
 export default function RootLayout({
@@ -21,7 +17,9 @@ export default function RootLayout({
 
         <Breadcrumb />
 
-        <section className="container flex flex-col grow max-w-screen-lg">{children}</section>
+        <section className="container flex flex-col grow max-w-screen-lg">
+          {children}
+        </section>
 
         <footer className="bg-palette-800 py-4 mt-8">
           <section className="align-middle container flex flex-row flex-wrap justify-between max-w-screen-lg">
@@ -30,26 +28,24 @@ export default function RootLayout({
                 <Link href="/">© 2023 NKSSS</Link>
               </li>
               <li>
-                <Link className="hover:underline" href="/about">
-                  About
-                </Link>
+                <Link href="/about">About</Link>
               </li>
             </ul>
 
             <address className="inline-flex">
               <ul className="gap-4 inline-flex">
-                <li className="">
-                  <a className="" href="https://discord.gg/3P3wg3Yahp">
+                <li>
+                  <a href="https://discord.gg/3P3wg3Yahp">
                     <FaDiscord size={20} />
                   </a>
                 </li>
                 <li>
-                  <a className="" href="https://instagram.com/nksss.live">
+                  <a href="https://instagram.com/nksss.live">
                     <FaInstagram size={20} />
                   </a>
                 </li>
                 <li>
-                  <a className="" href="https://facebook.com/nksss.live">
+                  <a href="https://facebook.com/nksss.live">
                     <FaFacebook size={20} />
                   </a>
                 </li>

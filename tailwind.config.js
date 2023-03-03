@@ -4,7 +4,11 @@ module.exports = {
   theme: {
     container: {
       center: true,
-      padding: '2rem',
+      padding: {
+        DEFAULT: '0.75rem',
+        sm: '1rem',
+        md: '2rem',
+      },
     },
     fontFamily: {
       poppins: 'Poppins, sans-serif',

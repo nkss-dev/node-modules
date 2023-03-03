@@ -19,7 +19,7 @@ export default function Breadcrumb() {
     (segment) => !(segment.startsWith('(') && segment.endsWith(')'))
   );
 
-  if (segments.length === 0) return <></>;
+  if (segments.length === 0) return <header className='mb-2 sm:mb-4 md:mb-8'></header>;
   return (
     <nav aria-label="Breadcrumb" className="bg-palette-700 py-2 mb-8">
       <section className="container flex flex-wrap justify-between max-w-screen-lg text-[22px]">
