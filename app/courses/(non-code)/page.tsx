@@ -68,25 +68,25 @@ export default function CoursesPage() {
                 <legend className="px-2">Choose your branch</legend>
 
                 <Balancer>
-                <section className="flex flex-row flex-wrap gap-4 justify-center">
-                  {branches.map((value: Branch, index) => {
-                    const isSelected = value === branch;
-                    return (
-                      <Chip
-                        key={index}
-                        label={value}
-                        onClick={() => {
-                          if (isSelected) {
-                            setBranch(undefined);
-                          } else {
-                            setBranch(value);
-                          }
-                        }}
-                        isSelected={isSelected}
-                      />
-                    );
-                  })}
-                </section>
+                  <section className="flex flex-row flex-wrap gap-4 justify-center">
+                    {branches.map((value: Branch, index) => {
+                      const isSelected = value === branch;
+                      return (
+                        <Chip
+                          key={index}
+                          label={value}
+                          onClick={() => {
+                            if (isSelected) {
+                              setBranch(undefined);
+                            } else {
+                              setBranch(value);
+                            }
+                          }}
+                          isSelected={isSelected}
+                        />
+                      );
+                    })}
+                  </section>
                 </Balancer>
               </fieldset>
             </td>
@@ -96,25 +96,25 @@ export default function CoursesPage() {
                 <legend className="px-2">Choose your semester</legend>
 
                 <Balancer>
-                <section className="flex flex-row flex-wrap gap-4 justify-center">
-                  {semesters.map((value: Semester, index) => {
-                    const isSelected = value === semester;
-                    return (
-                      <Chip
-                        key={index}
-                        label={value}
-                        onClick={() => {
-                          if (isSelected) {
-                            setSemester(undefined);
-                          } else {
-                            setSemester(value);
-                          }
-                        }}
-                        isSelected={isSelected}
-                      />
-                    );
-                  })}
-                </section>
+                  <section className="flex flex-row flex-wrap gap-4 justify-center">
+                    {semesters.map((value: Semester, index) => {
+                      const isSelected = value === semester;
+                      return (
+                        <Chip
+                          key={index}
+                          label={value}
+                          onClick={() => {
+                            if (isSelected) {
+                              setSemester(undefined);
+                            } else {
+                              setSemester(value);
+                            }
+                          }}
+                          isSelected={isSelected}
+                        />
+                      );
+                    })}
+                  </section>
                 </Balancer>
               </fieldset>
             </td>
@@ -159,7 +159,11 @@ export default function CoursesPage() {
               <tr>
                 <th rowSpan={2}>Code</th>
                 <th rowSpan={2}>Title</th>
-                <th rowSpan={2}>Prerequisites</th>
+                {filteredCourses.some(({ prereq }) => prereq.length > 0) ? (
+                  <th rowSpan={2}>Prerequisites</th>
+                ) : (
+                  <></>
+                )}
                 <th colSpan={4}>Credits</th>
                 <th rowSpan={2}>Type</th>
               </tr>
@@ -182,7 +186,11 @@ export default function CoursesPage() {
                       </Link>
                     </td>
                     <td className="text-start">{course.title}</td>
-                    <td>{course.prereq}</td>
+                    {filteredCourses.some(({ prereq }) => prereq.length > 0) ? (
+                      <td>{course.prereq}</td>
+                    ) : (
+                      <></>
+                    )}
                     <td>{credits ? credits[0] : 0}</td>
                     <td>{credits ? credits[1] : 0}</td>
                     <td>{credits ? credits[2] : 0}</td>
@@ -197,7 +205,11 @@ export default function CoursesPage() {
               <tr>
                 <th />
                 <th />
-                <th />
+                {filteredCourses.some(({ prereq }) => prereq.length > 0) ? (
+                  <th />
+                ) : (
+                  <></>
+                )}
                 <th>
                   {filteredCourses.reduce(
                     (sum, { specifics }) => sum + getCredits(specifics)[0],
