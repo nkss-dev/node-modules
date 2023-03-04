@@ -206,7 +206,15 @@ export default function CoursesPage() {
                         {filteredCourses.some(
                           ({ prereq }) => prereq.length > 0
                         ) ? (
-                          <td>{course.prereq}</td>
+                          <td>
+                            <ul>
+                              {course.prereq.map((prereq, index) => (
+                                <li key={index}>
+                                  {prereq}
+                                </li>
+                              ))}
+                            </ul>
+                          </td>
                         ) : (
                           <></>
                         )}
