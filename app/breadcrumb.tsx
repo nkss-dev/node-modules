@@ -19,15 +19,24 @@ export default function Breadcrumb() {
     (segment) => !(segment.startsWith('(') && segment.endsWith(')'))
   );
 
-  if (segments.length === 0) return <header className='mb-2 sm:mb-4 md:mb-8'></header>;
+  if (segments.length === 0)
+    return <header className="mb-2 sm:mb-4 md:mb-8"></header>;
   return (
-    <nav aria-label="Breadcrumb" className="bg-palette-700 py-2 mb-8">
-      <section className="container flex flex-wrap justify-between max-w-screen-lg text-[22px]">
+    <nav
+      aria-label="Breadcrumb"
+      className={clsx('mb-2 sm:mb-4 md:mb-8', 'bg-palette-700 py-2')}
+    >
+      <section className="container flex flex-wrap justify-between max-w-screen-lg md:text-[22px]">
         <ol className="gap-2 inline-flex items-center justify-start">
-          <li className="p-2">
+          <li className="sm:p-1 md:p-2">
             <Link href="/">
               <Image
-                className="rounded-full ring ring-palette-700 hover:ring-palette-200"
+                className={clsx(
+                  'h-7 w-7',
+                  'sm:h-8 sm:w-8',
+                  'md:h-9 md:w-9',
+                  'rounded-full ring ring-palette-700 hover:ring-palette-200'
+                )}
                 height={34}
                 width={34}
                 src="/nksss.svg"
@@ -41,29 +50,35 @@ export default function Breadcrumb() {
               <span>➜</span>
               <li
                 className={clsx(
-                  'p-2',
+                  'sm:p-1 md:p-2',
                   index === segments.length - 1 && 'font-bold'
                 )}
               >
-                <Link
-                  className="hover:underline"
-                  href={'/' + segments.slice(0, index + 1).join('/')}
-                >
-                  {capitalise(segment)}
+                <Link href={'/' + segments.slice(0, index + 1).join('/')}>
+                  <h3 className="mb-0">{capitalise(segment)}</h3>
                 </Link>
               </li>
             </Fragment>
           ))}
         </ol>
 
-        <ol className="gap-2 inline-flex items-center justify-end">
-          <li className="p-2">
-            <BiBell size={28} />
+        <ol
+          className={clsx(
+            'sm:gap-1 md:gap-2',
+            'inline-flex items-center justify-end'
+          )}
+        >
+          <li className="p-1">
+            <BiBell
+              className={clsx('h-5 w-5', 'sm:h-6 sm:w-6', 'md:h-7 md:w-7')}
+            />
           </li>
 
-          <li className="p-2">
+          <li className="p-1">
             <Link href="/profile">
-              <BsPersonFill size={28} />
+              <BsPersonFill
+                className={clsx('h-5 w-5', 'sm:h-6 sm:w-6', 'md:h-7 md:w-7')}
+              />
             </Link>
           </li>
         </ol>
