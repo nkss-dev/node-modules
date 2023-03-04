@@ -16,23 +16,28 @@ export default function HomeCardsLayout({
 }) {
   return (
     <Link href={href}>
-      <button className="w-56">
+      <button
+        className={clsx(
+          'inline-flex gap-4 min-w-min text-start',
+          'sm:flex sm:flex-col sm:w-56'
+        )}
+      >
         <figure
           className={clsx(
-            'h-12 w-12 p-3 mb-3',
-            'md:h-16 md:w-16 md:p-4 md:mb-4',
+            'h-12 w-12 p-3',
+            'md:h-16 md:w-16 md:p-4',
             'bg-palette-400 rounded-full'
           )}
         >
           {children}
         </figure>
 
-        <hgroup className="text-start">
-          <h3 className="text-hyperlink">
-            <Balancer>{title}</Balancer>
+        <hgroup className="w-fit">
+          <h3 className="text-hyperlink max-w-fit">
+            <Balancer className="min-w-fit">{title}</Balancer>
           </h3>
-          <p>
-            <small>{description}</small>
+          <p className="max-w-fit">
+            <small className="min-w-fit">{description}</small>
           </p>
         </hgroup>
       </button>
