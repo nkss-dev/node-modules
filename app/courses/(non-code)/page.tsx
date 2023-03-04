@@ -7,6 +7,7 @@ import useSWR from 'swr';
 
 import Chip from '../../../components/chip';
 import { fetcher } from '../../../utils/fetcher';
+import useIsScreenLessThan from '../../../utils/screen-width-check';
 
 const branches = ['CE', 'CS', 'EC', 'EE', 'IT', 'ME', 'PI'] as const;
 const semesters = ['1', '2', '3', '4', '5', '6', '7', '8'] as const;
@@ -22,6 +23,7 @@ export default function CoursesPage() {
   );
   if (error) console.error(error);
 
+  const isMobile = useIsScreenLessThan(768);
   const [branch, setBranch] = useState<Branch>();
   const [semester, setSemester] = useState<Semester>();
   const [filteredCourses, setFilteredCourses] = useState<Array<Course>>([]);
@@ -64,11 +66,11 @@ export default function CoursesPage() {
         <tbody>
           <tr className="flex flex-row justify-between gap-4">
             <td className="border-none px-0">
-              <fieldset className="p-4 border-2 rounded border-palette-400">
+              <fieldset className="p-2 sm:p-3 md:p-4 border-2 rounded border-palette-400">
                 <legend className="px-2">Choose your branch</legend>
 
                 <Balancer>
-                  <section className="flex flex-row flex-wrap gap-4 justify-center">
+                  <section className="flex flex-row flex-wrap gap-2 sm:gap-3 md:gap-4 justify-center">
                     {branches.map((value: Branch, index) => {
                       const isSelected = value === branch;
                       return (
@@ -92,11 +94,11 @@ export default function CoursesPage() {
             </td>
 
             <td className="border-none px-0">
-              <fieldset className="p-4 border-2 rounded border-palette-400">
+              <fieldset className="p-2 sm:p-3 md:p-4 border-2 rounded border-palette-400">
                 <legend className="px-2">Choose your semester</legend>
 
                 <Balancer>
-                  <section className="flex flex-row flex-wrap gap-4 justify-center">
+                  <section className="flex flex-row flex-wrap gap-2 sm:gap-3 md:gap-4 justify-center">
                     {semesters.map((value: Semester, index) => {
                       const isSelected = value === semester;
                       return (
@@ -154,23 +156,33 @@ export default function CoursesPage() {
         filteredCourses.length ? (
           <table className="border-2 w-full">
             <thead>
-              <tr>
-                <th rowSpan={2}>Code</th>
-                <th rowSpan={2}>Title</th>
-                {filteredCourses.some(({ prereq }) => prereq.length > 0) ? (
-                  <th rowSpan={2}>Prerequisites</th>
-                ) : (
-                  <></>
-                )}
-                <th colSpan={4}>Credits</th>
-                <th rowSpan={2}>Type</th>
-              </tr>
-              <tr>
-                <th>Lecture</th>
-                <th>Tutorial</th>
-                <th>Practical</th>
-                <th>Total</th>
-              </tr>
+              {isMobile ? (
+                <tr>
+                  <th>Code</th>
+                  <th>Title</th>
+                  <th>Credits</th>
+                </tr>
+              ) : (
+                <>
+                  <tr>
+                    <th rowSpan={2}>Code</th>
+                    <th rowSpan={2}>Title</th>
+                    {filteredCourses.some(({ prereq }) => prereq.length > 0) ? (
+                      <th rowSpan={2}>Prerequisites</th>
+                    ) : (
+                      <></>
+                    )}
+                    <th colSpan={4}>Credits</th>
+                    <th rowSpan={2}>Type</th>
+                  </tr>
+                  <tr>
+                    <th>Lecture</th>
+                    <th>Tutorial</th>
+                    <th>Practical</th>
+                    <th>Total</th>
+                  </tr>
+                </>
+              )}
             </thead>
 
             <tbody>
@@ -184,16 +196,27 @@ export default function CoursesPage() {
                       </Link>
                     </td>
                     <td className="text-start">{course.title}</td>
-                    {filteredCourses.some(({ prereq }) => prereq.length > 0) ? (
-                      <td>{course.prereq}</td>
+
+                    {isMobile ? (
+                      <>
+                        <td>{credits[3]}</td>
+                      </>
                     ) : (
-                      <></>
+                      <>
+                        {filteredCourses.some(
+                          ({ prereq }) => prereq.length > 0
+                        ) ? (
+                          <td>{course.prereq}</td>
+                        ) : (
+                          <></>
+                        )}
+                        <td>{credits ? credits[0] : 0}</td>
+                        <td>{credits ? credits[1] : 0}</td>
+                        <td>{credits ? credits[2] : 0}</td>
+                        <td>{credits ? credits[3] : 0}</td>
+                        <td>{course.kind}</td>
+                      </>
                     )}
-                    <td>{credits ? credits[0] : 0}</td>
-                    <td>{credits ? credits[1] : 0}</td>
-                    <td>{credits ? credits[2] : 0}</td>
-                    <td>{credits ? credits[3] : 0}</td>
-                    <td>{course.kind}</td>
                   </tr>
                 );
               })}
@@ -203,36 +226,42 @@ export default function CoursesPage() {
               <tr>
                 <th />
                 <th />
-                {filteredCourses.some(({ prereq }) => prereq.length > 0) ? (
-                  <th />
-                ) : (
+                {isMobile ? (
                   <></>
+                ) : (
+                  <>
+                    {filteredCourses.some(({ prereq }) => prereq.length > 0) ? (
+                      <th />
+                    ) : (
+                      <></>
+                    )}
+                    <th>
+                      {filteredCourses.reduce(
+                        (sum, { specifics }) => sum + getCredits(specifics)[0],
+                        0
+                      )}
+                    </th>
+                    <th>
+                      {filteredCourses.reduce(
+                        (sum, { specifics }) => sum + getCredits(specifics)[1],
+                        0
+                      )}
+                    </th>
+                    <th>
+                      {filteredCourses.reduce(
+                        (sum, { specifics }) => sum + getCredits(specifics)[2],
+                        0
+                      )}
+                    </th>
+                  </>
                 )}
-                <th>
-                  {filteredCourses.reduce(
-                    (sum, { specifics }) => sum + getCredits(specifics)[0],
-                    0
-                  )}
-                </th>
-                <th>
-                  {filteredCourses.reduce(
-                    (sum, { specifics }) => sum + getCredits(specifics)[1],
-                    0
-                  )}
-                </th>
-                <th>
-                  {filteredCourses.reduce(
-                    (sum, { specifics }) => sum + getCredits(specifics)[2],
-                    0
-                  )}
-                </th>
                 <th>
                   {filteredCourses.reduce(
                     (sum, { specifics }) => sum + getCredits(specifics)[3],
                     0
                   )}
                 </th>
-                <th />
+                {isMobile ? <></> : <th />}
               </tr>
             </tfoot>
           </table>
