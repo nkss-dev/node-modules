@@ -16,7 +16,7 @@ export default function Chip({
     <button
       className={clsx(
         'min-h-4 px-2 text-xs',
-        'sm:px-2',
+        'sm:h-6 sm:px-2',
         'md:h-8 md:px-3 md:text-sm',
         isSelected && 'bg-palette-500',
         'border items-center rounded-full',
