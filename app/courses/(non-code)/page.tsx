@@ -27,27 +27,32 @@ export default function CoursesPage() {
   const [branch, setBranch] = useState<Branch>();
   const [semester, setSemester] = useState<Semester>();
   const [filteredCourses, setFilteredCourses] = useState<Array<Course>>([]);
-
   useEffect(() => {
     if (!courses) return;
 
     setFilteredCourses(
-      courses.filter((course) => {
-        if (!branch && !semester) {
-          return true;
-        } else if (branch && !semester) {
-          return course.specifics.some((specific) => specific.branch == branch);
-        } else if (!branch && semester) {
-          return course.specifics.some(
-            (specific) => specific.semester == semester
-          );
-        } else {
-          return course.specifics.some(
-            (specific) =>
-              specific.branch == branch && specific.semester == semester
-          );
-        }
-      })
+      courses
+        .filter((course) => {
+          if (!branch && !semester) {
+            return true;
+          } else if (branch && !semester) {
+            return course.specifics.some(
+              (specific) => specific.branch == branch
+            );
+          } else if (!branch && semester) {
+            return course.specifics.some(
+              (specific) => specific.semester == semester
+            );
+          } else {
+            return course.specifics.some(
+              (specific) =>
+                specific.branch == branch && specific.semester == semester
+            );
+          }
+        })
+        .sort(({ code: codePrev }, { code: codeNext }) =>
+          Number(codePrev > codeNext)
+        )
     );
   }, [branch, semester, isLoading]);
 
