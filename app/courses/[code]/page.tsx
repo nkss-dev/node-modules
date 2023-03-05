@@ -5,6 +5,8 @@ import DefaultLayout from '../../../components/default-layout';
 import RenderMarkdown from '../../../components/render-markdown';
 import { fetcher } from '../../../utils/fetcher';
 
+export const revalidate = 0;
+
 export async function generateMetadata({
   params,
 }: {
