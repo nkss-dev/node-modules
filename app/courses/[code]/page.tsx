@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { serialize } from 'next-mdx-remote/serialize';
+import Link from 'next/link';
 
 import DefaultLayout from '../../../components/default-layout';
 import RenderMarkdown from '../../../components/render-markdown';
@@ -118,7 +119,7 @@ export default async function CoursePage({ params, searchParams }: any) {
                               className="list-disclosure-closed ml-4"
                               key={index}
                             >
-                              {prereq}
+                              <Link href={`/courses/${prereq}`}>{prereq}</Link>
                             </li>
                           ))}
                         </ul>
