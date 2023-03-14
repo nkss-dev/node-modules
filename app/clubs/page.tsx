@@ -42,14 +42,14 @@ export default async function ClubsPage() {
     <DefaultLayout
       title="Clubs"
       description="An overview all the clubs and societies of NIT-KKR"
-      prompt='Some cards are disabled due to us not having any information about the club yet.'
+      prompt="Some cards are disabled due to us not having any information about the club yet."
       alert={true}
     >
       {clubCategories.map((category: ClubCategory, categoryIndex) => {
         return (
           <Fragment key={categoryIndex}>
             <h2>{category}</h2>
-            <ol className="flex flex-row flex-wrap gap-4 mb-8">
+            <ol className="flex flex-row flex-wrap gap-2 sm:gap-4 mb-8">
               {getCategorisedClubs(category, clubs)}
             </ol>
           </Fragment>

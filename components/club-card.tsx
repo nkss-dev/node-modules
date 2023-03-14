@@ -10,22 +10,30 @@ export default function ClubCard({ club }: { club: ClubBasic }) {
     <Link href={`/clubs/${club.short_name}`}>
       <button
         className={clsx(
-          'bg-palette-700 hover:bg-palette-800 flex flex-col p-6 relative rounded-lg shadow text-left w-96 h-64',
+          'p-2 w-44 h-40',
+          'sm:p-4 sm:w-64 sm:h-60',
+          'md:p-6 md:w-72 md:h-64',
+          'bg-palette-700 hover:bg-palette-800 rounded-lg shadow',
           disabled ? 'cursor-not-allowed' : 'cursor-default'
         )}
         disabled={disabled}
       >
-        <header className="flex flex-row items-center mb-4 h-28">
+        <header className="flex flex-col gap-4 items-center mx-auto w-fit">
           <ImageWithFallback
+            className={clsx(
+              'h-12 w-12',
+              'sm:h-20 sm:w-20',
+              'md:h-24 md:w-24',
+              'rounded-full'
+            )}
             src={`/assets/clubs/${club.short_name}/logo.png`}
-            width={85}
-            height={85}
+            width={96}
+            height={96}
             alt="club logo"
-            style={{ borderRadius: '50%', height: '85px' }}
           />
-          <hgroup className="h-fit items-center px-4">
-            <h4 className="mb-1 min-w-fit tracking-tight">
-              <Balancer>{club.name}</Balancer>
+          <hgroup className="h-fit items-center">
+            <h4 className="mb-1">
+              <Balancer className="min-w-fit">{club.name}</Balancer>
             </h4>
             <address>
               <p className="text-palette-300">
@@ -34,9 +42,6 @@ export default function ClubCard({ club }: { club: ClubBasic }) {
             </address>
           </hgroup>
         </header>
-        <p className="text-palette-300 tracking-tight">
-          {club.short_description}
-        </p>
       </button>
     </Link>
   );
