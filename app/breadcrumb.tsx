@@ -20,11 +20,11 @@ export default function Breadcrumb() {
   );
 
   if (segments.length === 0)
-    return <header className="mb-2 sm:mb-4 md:mb-8"></header>;
+    return <header className="mb-4 md:mb-8"></header>;
   return (
     <nav
       aria-label="Breadcrumb"
-      className={clsx('mb-2 sm:mb-4 md:mb-8', 'bg-palette-700 py-2')}
+      className={clsx('mb-4 md:mb-8', 'bg-palette-700 py-2')}
     >
       <section className="container flex flex-wrap justify-between max-w-screen-lg md:text-[22px]">
         <ol className="gap-2 inline-flex items-center justify-start">
