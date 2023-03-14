@@ -31,7 +31,7 @@ export default async function AnnouncementsPage() {
     <ul>
       {Array.from(groupedAnnouncements).map(
         ([dateKey, announcementForDate], index) => (
-          <li className="font-roboto-mono mb-6" key={index}>
+          <li className="mb-6" key={index}>
             <h4>
               {dateKey.slice(0, 2)}
               <sup>{dateKey.slice(2, 4)}</sup>
