@@ -14,7 +14,7 @@ export default function ClubCard({ club }: { club: ClubBasic }) {
           'sm:p-4 sm:w-64 sm:h-60',
           'md:p-6 md:w-72 md:h-64',
           'bg-palette-700 hover:bg-palette-800 rounded-lg shadow',
-          disabled ? 'cursor-not-allowed' : 'cursor-default'
+          disabled ? 'cursor-not-allowed' : 'cursor-pointer'
         )}
         disabled={disabled}
       >
