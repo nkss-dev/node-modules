@@ -6,7 +6,7 @@ import DefaultLayout from '../../../components/default-layout';
 import RenderMarkdown from '../../../components/render-markdown';
 import { fetcher } from '../../../utils/fetcher';
 
-export const revalidate = 0;
+export const fetchCache = 'default-no-store';
 
 export async function generateMetadata({
   params,
@@ -18,7 +18,7 @@ export async function generateMetadata({
     `https://api.nksss.live/courses/${code}`
   );
 
-  const description = `The objectives of this course are:\n- ${course.objectives.join(
+  const description = `The objectives of this course are:\n\n- ${course.objectives.join(
     '\n- '
   )}`;
 
@@ -29,7 +29,7 @@ export async function generateMetadata({
     openGraph: {
       title: course.title,
       description: description,
-      url: 'https://nksss.live/courses',
+      url: `https://nksss.live/courses/${code}`,
     },
   };
 }
