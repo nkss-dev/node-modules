@@ -2,6 +2,7 @@ type Club = {
   name: string;
   alias: string;
   category: ClubCategory;
+  short_description: string;
   email: string;
   is_official: boolean;
   description: ClubDescription;
