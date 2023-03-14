@@ -13,6 +13,7 @@ type Club = {
 };
 
 type ClubAdmin = {
+  roll: string;
   name: string;
   email: string;
   phone: string;
