@@ -1,5 +1,8 @@
 import { Metadata } from 'next';
+
+import ClubAdminCard from '../../../components/club-admin-card';
 import DefaultLayout from '../../../components/default-layout';
+import RenderIcon from '../../../components/render-icon';
 import { fetcher } from '../../../utils/fetcher';
 
 export async function generateMetadata({
@@ -40,11 +43,39 @@ export default async function ClubPage({
   const club: Club = await fetcher(`https://api.nksss.live/clubs/${name}`);
 
   return (
-    <DefaultLayout
-      title={club.name}
-      prompt={`This page will soon contain a full description of ${name}`}
-    >
-      <></>
+    <DefaultLayout title={club.name} prompt={club.short_description}>
+      <hgroup className="mb-6 sm:mb-7 md:mb-8">
+        <h2>Join Us</h2>
+        <p>{club.description.why_us}</p>
+      </hgroup>
+
+      <hgroup className="mb-6 sm:mb-7 md:mb-8">
+        <h2>About Us</h2>
+        <p>{club.description.about_us}</p>
+      </hgroup>
+
+      <h3>Meet our post holders</h3>
+      <ul className="flex flex-row flex-wrap gap-4 mb-6">
+        {club.admins.map((admin, index) => (
+          <li key={index}>
+            <ClubAdminCard admin={admin} />
+          </li>
+        ))}
+      </ul>
+
+      <h3>Our public accounts</h3>
+      <ul className="flex flex-row flex-wrap gap-4">
+        {club.socials.map(({ platform, link }, index) => (
+          <li key={index}>
+            <a href={link}>
+              <RenderIcon
+                className="h-5 w-5 sm:h-7 sm:w-7 md:h-9 md:w-9"
+                platform={platform}
+              />
+            </a>
+          </li>
+        ))}
+      </ul>
     </DefaultLayout>
   );
 }
