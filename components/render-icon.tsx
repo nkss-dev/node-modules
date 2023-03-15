@@ -8,22 +8,28 @@ import {
   FaWordpress,
 } from 'react-icons/fa';
 
-export default function RenderIcon({ platform }: { platform: string }) {
+export default function RenderIcon({
+  className,
+  platform,
+}: {
+  className: string;
+  platform: string;
+}) {
   switch (platform) {
     case 'discord':
-      return <FaDiscord />;
+      return <FaDiscord className={className} />;
     case 'email':
-      return <FaMailBulk />;
+      return <FaMailBulk className={className} />;
     case 'facebook':
-      return <FaFacebook />;
+      return <FaFacebook className={className} />;
     case 'instagram':
-      return <FaInstagram />;
+      return <FaInstagram className={className} />;
     case 'linkedin':
-      return <FaLinkedin />;
+      return <FaLinkedin className={className} />;
     case 'quora':
-      return <FaQuora />;
+      return <FaQuora className={className} />;
     case 'wordpress':
-      return <FaWordpress />;
+      return <FaWordpress className={className} />;
     default:
       return <></>;
   }
