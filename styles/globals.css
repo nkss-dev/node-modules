@@ -6,10 +6,6 @@
 @tailwind utilities;
 
 @layer base {
-  a:hover {
-    text-decoration: underline;
-  }
-
   body {
     @apply bg-palette-600;
     @apply font-poppins;
@@ -26,12 +22,13 @@
 
   h2 {
     @apply text-xl sm:text-2xl md:text-3xl;
+    @apply mb-2 sm:mb-3 md:mb-4;
     font-weight: bold;
-    margin-bottom: 16px;
   }
 
   h3 {
     @apply text-lg sm:text-xl md:text-2xl;
+    @apply mb-2 sm:mb-3 md:mb-4;
     font-weight: bold;
   }
 
@@ -71,8 +68,8 @@
 }
 
 @layer components {
-  @import "custom-list.css";
-  @import "highlight-col.css";
-  @import "markdown-list.css";
-  @import "row-link.css";
+  @import 'custom-list.css';
+  @import 'highlight-col.css';
+  @import 'markdown-list.css';
+  @import 'row-link.css';
 }
