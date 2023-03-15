@@ -67,7 +67,7 @@ export default async function ClubPage({
       <ul className="flex flex-row flex-wrap gap-4">
         {club.socials.map(({ platform, link }, index) => (
           <li key={index}>
-            <a href={link}>
+            <a href={link} target="_blank">
               <RenderIcon
                 className="h-5 w-5 sm:h-7 sm:w-7 md:h-9 md:w-9"
                 platform={platform}
