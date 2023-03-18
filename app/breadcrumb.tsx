@@ -11,13 +11,14 @@ import { BsLink45Deg, BsPersonFill } from 'react-icons/bs';
 const capitalise = (text: string) => {
   return text
     .split(' ')
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1));
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
 };
 
 export default function Breadcrumb() {
-  const segments = useSelectedLayoutSegments().filter(
-    (segment) => !(segment.startsWith('(') && segment.endsWith(')'))
-  );
+  const segments = useSelectedLayoutSegments()
+    .filter((segment) => !(segment.startsWith('(') && segment.endsWith(')')))
+    .map((segment) => decodeURIComponent(segment));
 
   const [showQuickList, setShowQuickList] = useState(false);
 
@@ -83,9 +84,9 @@ export default function Breadcrumb() {
             {showQuickList && (
               <nav className="absolute right-0 bg-palette-500 min-w-max mt-1 rounded-md shadow-lg">
                 <ul className="py-2">
-                  <li className='mb-3'>
+                  <li className="mb-3">
                     <p className="px-3">Academic Calendars</p>
-                    <ul className='text-palette-300'>
+                    <ul className="text-palette-300">
                       <li className="hover:text-palette-100 list-disc list-inside px-3">
                         <a href="https://drive.google.com/file/d/1iJ6BxMBIqZEfFMe9c4ocidcm_madI13U">
                           Revised Academic Calendar
@@ -94,9 +95,9 @@ export default function Breadcrumb() {
                     </ul>
                   </li>
 
-                  <li className='mb-3'>
+                  <li className="mb-3">
                     <p className="px-3">Syllabi</p>
-                    <ul className='text-palette-300'>
+                    <ul className="text-palette-300">
                       <li className="hover:text-palette-100 list-disc list-inside px-3">
                         <a href="https://drive.google.com/file/d/16GZfj3pzUaiKMx-frey_K2dB2Oy6xe0d">
                           Civil Engineering
