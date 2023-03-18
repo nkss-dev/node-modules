@@ -1,6 +1,5 @@
 import clsx from 'clsx';
 import { Metadata } from 'next';
-import Link from 'next/link';
 import { BsBook, BsMegaphone, BsPeople } from 'react-icons/bs';
 import Balancer from 'react-wrap-balancer';
 
@@ -47,15 +46,9 @@ export default function HomePage() {
         </h1>
 
         <p>
-          Welcome! The{' '}
-          <Link className="hyperlink" href="/about">
-            NKSSS team
-          </Link>{' '}
-          aims to solve as many issues you face in our college as
-          technologically possible! The following 3 options are ones that we're
-          currently actively developing. This website is currently under
-          development and you will be notified once its full release rolls
-          around!
+          Welcome! This project aims to enable an easier path to figuring your
+          way in this college! We have many more features planned that you can
+          find in out about on our Discord server linked below.
           <br />
           <br />
           <strong>PS:</strong> NKSSS is <em>NOT</em> affiliated with NITKKR and
