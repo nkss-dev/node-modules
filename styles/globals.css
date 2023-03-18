@@ -41,7 +41,13 @@
     @apply border-palette-500;
   }
 
+  li {
+    @apply text-xs sm:text-sm md:text-base;
+  }
+
   p {
+    @apply text-xs sm:text-sm md:text-base;
+
     margin-bottom: 0.5rem;
   }
 
