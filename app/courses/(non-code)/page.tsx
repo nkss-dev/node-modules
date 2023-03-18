@@ -7,7 +7,7 @@ import useSWR from 'swr';
 
 import Chip from '../../../components/chip';
 import { fetcher } from '../../../utils/fetcher';
-import useIsScreenLessThan from '../../../utils/screen-width-check';
+import CoursesTable from './courses-table';
 
 const branches = ['CE', 'CS', 'EC', 'EE', 'IT', 'ME', 'PI'] as const;
 const semesters = ['1', '2', '3', '4', '5', '6', '7', '8'] as const;
@@ -23,7 +23,6 @@ export default function CoursesPage() {
   );
   if (error) console.error(error);
 
-  const isMobile = useIsScreenLessThan(768);
   const [branch, setBranch] = useState<Branch>();
   const [semester, setSemester] = useState<Semester>();
   const [filteredCourses, setFilteredCourses] = useState<Array<Course>>([]);
@@ -55,15 +54,6 @@ export default function CoursesPage() {
         )
     );
   }, [branch, semester, isLoading]);
-
-  const getCredits = (specifics: Array<Specifics>) => {
-    var credits: Array<number> = [];
-    specifics.map((specific) => {
-      if (specific.branch == branch && specific.semester == semester)
-        credits = specific.credits;
-    });
-    return credits;
-  };
 
   return (
     <>
@@ -159,125 +149,11 @@ export default function CoursesPage() {
 
       {!isLoading && branch && semester ? (
         filteredCourses.length ? (
-          <table className="border-2 w-full">
-            <thead>
-              {isMobile ? (
-                <tr>
-                  <th>Code</th>
-                  <th>Title</th>
-                  <th>Credits</th>
-                </tr>
-              ) : (
-                <>
-                  <tr>
-                    <th rowSpan={2}>Code</th>
-                    <th rowSpan={2}>Title</th>
-                    {filteredCourses.some(({ prereq }) => prereq.length > 0) ? (
-                      <th rowSpan={2}>Prerequisites</th>
-                    ) : (
-                      <></>
-                    )}
-                    <th colSpan={4}>Credits</th>
-                    <th rowSpan={2}>Type</th>
-                  </tr>
-                  <tr>
-                    <th>Lecture</th>
-                    <th>Tutorial</th>
-                    <th>Practical</th>
-                    <th>Total</th>
-                  </tr>
-                </>
-              )}
-            </thead>
-
-            <tbody>
-              {filteredCourses.map((course: Course, index) => {
-                const credits = getCredits(course.specifics);
-                return (
-                  <tr className="hover:bg-palette-500" key={index} id="rowLink">
-                    <td>
-                      <Link href={`/courses/${course.code}`}>
-                        {course.code}
-                      </Link>
-                    </td>
-                    <td className="text-start">{course.title}</td>
-
-                    {isMobile ? (
-                      <>
-                        <td>{credits[3]}</td>
-                      </>
-                    ) : (
-                      <>
-                        {filteredCourses.some(
-                          ({ prereq }) => prereq.length > 0
-                        ) ? (
-                          <td>
-                            <ul>
-                              {course.prereq.map((prereq, index) => (
-                                <li key={index}>
-                                  {prereq}
-                                </li>
-                              ))}
-                            </ul>
-                          </td>
-                        ) : (
-                          <></>
-                        )}
-                        <td>{credits ? credits[0] : 0}</td>
-                        <td>{credits ? credits[1] : 0}</td>
-                        <td>{credits ? credits[2] : 0}</td>
-                        <td>{credits ? credits[3] : 0}</td>
-                        <td>{course.kind}</td>
-                      </>
-                    )}
-                  </tr>
-                );
-              })}
-            </tbody>
-
-            <tfoot>
-              <tr>
-                <th />
-                <th />
-                {isMobile ? (
-                  <></>
-                ) : (
-                  <>
-                    {filteredCourses.some(({ prereq }) => prereq.length > 0) ? (
-                      <th />
-                    ) : (
-                      <></>
-                    )}
-                    <th>
-                      {filteredCourses.reduce(
-                        (sum, { specifics }) => sum + getCredits(specifics)[0],
-                        0
-                      )}
-                    </th>
-                    <th>
-                      {filteredCourses.reduce(
-                        (sum, { specifics }) => sum + getCredits(specifics)[1],
-                        0
-                      )}
-                    </th>
-                    <th>
-                      {filteredCourses.reduce(
-                        (sum, { specifics }) => sum + getCredits(specifics)[2],
-                        0
-                      )}
-                    </th>
-                  </>
-                )}
-                <th>
-                  {filteredCourses.reduce(
-                    (sum, { specifics }) => sum + getCredits(specifics)[3],
-                    0
-                  )}
-                </th>
-                {isMobile ? <></> : <th />}
-              </tr>
-            </tfoot>
-          </table>
+          <CoursesTable
+            branch={branch}
+            courses={filteredCourses}
+            semester={semester}
+          />
         ) : (
           <p>
             <Balancer>
