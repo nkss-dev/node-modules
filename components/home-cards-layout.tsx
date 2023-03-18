@@ -33,7 +33,9 @@ export default function HomeCardsLayout({
         </figure>
 
         <hgroup className="w-fit">
-          <h3 className="text-hyperlink max-w-fit">
+          <h3
+            className={clsx('mb-1 md:mb-2', 'text-hyperlink max-w-fit')}
+          >
             <Balancer className="min-w-fit">{title}</Balancer>
           </h3>
           <p className="max-w-fit">
