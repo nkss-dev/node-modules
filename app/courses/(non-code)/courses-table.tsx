@@ -49,11 +49,23 @@ export default function CoursesTable({
     return credits;
   };
 
-  const onExpandRow = (pool: string) => {
-    setProgrammeElectives((prev) => ({
-      ...prev,
-      [pool]: { ...prev[pool], isOpen: !prev[pool].isOpen },
+  const sumCreditColumn = (column: number) => {
+    var poolsFound = Object.keys(programmeElectives).map((pool) => ({
+      pool: pool,
+      found: false,
     }));
+
+    return courses.reduce((sum, { kind, specifics }) => {
+      const poolIndex = poolsFound.findIndex(({ pool }) => pool === kind);
+      if (poolIndex != -1 && poolsFound[poolIndex].found) {
+        return sum;
+      } else {
+        if (poolIndex !== -1) {
+          poolsFound[poolIndex].found = true;
+        }
+        return sum + getCredits(specifics)[column];
+      }
+    }, 0);
   };
 
   return (
@@ -175,32 +187,12 @@ export default function CoursesTable({
                 ) : (
                   <></>
                 )}
-                <th>
-                  {courses.reduce(
-                    (sum, { specifics }) => sum + getCredits(specifics)[0],
-                    0
-                  )}
-                </th>
-                <th>
-                  {courses.reduce(
-                    (sum, { specifics }) => sum + getCredits(specifics)[1],
-                    0
-                  )}
-                </th>
-                <th>
-                  {courses.reduce(
-                    (sum, { specifics }) => sum + getCredits(specifics)[2],
-                    0
-                  )}
-                </th>
+                <th>{sumCreditColumn(0)}</th>
+                <th>{sumCreditColumn(1)}</th>
+                <th>{sumCreditColumn(2)}</th>
               </>
             )}
-            <th>
-              {courses.reduce(
-                (sum, { specifics }) => sum + getCredits(specifics)[3],
-                0
-              )}
-            </th>
+            <th>{sumCreditColumn(3)}</th>
             {isMobile ? <></> : <th />}
           </tr>
         </tfoot>
