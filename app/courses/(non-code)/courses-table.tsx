@@ -239,7 +239,7 @@ const ElectivesTable = ({
                           {course.code}
                         </Link>
                       </td>
-                      <td>{course.title}</td>
+                      <td className="text-start">{course.title}</td>
                       <td>
                         <ul>
                           {course.prereq.map((prereq, index) => (
