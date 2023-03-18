@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { FaDiscord, FaFacebook, FaInstagram } from 'react-icons/fa';
+import { FaDiscord, FaFacebook, FaGithub, FaInstagram } from 'react-icons/fa';
 
 import '../styles/globals.css';
 import Breadcrumb from './breadcrumb';
@@ -35,17 +35,25 @@ export default function RootLayout({
             <address className="inline-flex">
               <ul className="gap-4 inline-flex">
                 <li>
-                  <a href="https://discord.gg/3P3wg3Yahp">
+                  <a href="https://discord.gg/3P3wg3Yahp" target="_blank">
                     <FaDiscord size={20} />
                   </a>
                 </li>
                 <li>
-                  <a href="https://instagram.com/nksss.live">
+                  <a
+                    href="https://github.com/NIT-KKR-Student-Support-System"
+                    target="_blank"
+                  >
+                    <FaGithub size={20} />
+                  </a>
+                </li>
+                <li>
+                  <a href="https://instagram.com/nksss.live" target="_blank">
                     <FaInstagram size={20} />
                   </a>
                 </li>
                 <li>
-                  <a href="https://facebook.com/nksss.live">
+                  <a href="https://facebook.com/nksss.live" target="_blank">
                     <FaFacebook size={20} />
                   </a>
                 </li>
