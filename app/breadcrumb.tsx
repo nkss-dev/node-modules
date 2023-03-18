@@ -139,11 +139,12 @@ export default function Breadcrumb() {
             )}
           </li>
 
-          <li className="p-1">
+          {/* TODO: Make notifications popup view */}
+          {/* <li className="p-1">
             <BiBell
               className={clsx('h-5 w-5', 'sm:h-6 sm:w-6', 'md:h-7 md:w-7')}
             />
-          </li>
+          </li> */}
 
           <li className="p-1">
             <Link href="/profile">
