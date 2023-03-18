@@ -57,88 +57,86 @@ export default function CoursesTable({
   };
 
   return (
-    <table className="border-2 w-full">
-      <thead>
-        {isMobile ? (
-          <tr>
-            <th>Code</th>
-            <th>Title</th>
-            <th>Credits</th>
-          </tr>
-        ) : (
-          <>
+    <>
+      <table className="border-2 w-full">
+        <thead>
+          {isMobile ? (
             <tr>
-              <th rowSpan={2}>Code</th>
-              <th rowSpan={2}>Title</th>
-              {courses.some(({ prereq }) => prereq.length > 0) ? (
-                <th rowSpan={2}>Prerequisites</th>
-              ) : (
-                <></>
-              )}
-              <th colSpan={4}>Credits</th>
-              <th rowSpan={2}>Type</th>
+              <th>Code</th>
+              <th>Title</th>
+              <th>Credits</th>
             </tr>
-            <tr>
-              <th>Lecture</th>
-              <th>Tutorial</th>
-              <th>Practical</th>
-              <th>Total</th>
-            </tr>
-          </>
-        )}
-      </thead>
-
-      <tbody>
-        {courses
-          .filter((course) => !course.kind.includes('PE'))
-          .map((course: Course, index) => {
-            const credits = getCredits(course.specifics);
-            return (
-              <tr className="hover:bg-palette-500" key={index} id="rowLink">
-                <td>
-                  <Link href={`/courses/${course.code}`}>{course.code}</Link>
-                </td>
-                <td className="text-start">{course.title}</td>
-
-                {isMobile ? (
-                  <td>{credits[3]}</td>
-                ) : (
-                  <>
-                    {courses.some(({ prereq }) => prereq.length > 0) ? (
-                      <td>
-                        <ul>
-                          {course.prereq.map((prereq, index) => (
-                            <li key={index}>{prereq}</li>
-                          ))}
-                        </ul>
-                      </td>
-                    ) : (
-                      <></>
-                    )}
-                    <td>{credits ? credits[0] : 0}</td>
-                    <td>{credits ? credits[1] : 0}</td>
-                    <td>{credits ? credits[2] : 0}</td>
-                    <td>{credits ? credits[3] : 0}</td>
-                    <td>{course.kind}</td>
-                  </>
-                )}
-              </tr>
-            );
-          })}
-
-        {Object.keys(programmeElectives).map((pool, index) => {
-          const course = courses.find((course) => course.kind === pool);
-          if (!course) return;
-          const credits = getCredits(course.specifics);
-
-          return (
+          ) : (
             <>
-              <tr
-                className="hover:bg-palette-500"
-                key={index}
-                onClick={() => onExpandRow(pool)}
-              >
-                <td />
+              <tr>
+                <th rowSpan={2}>Code</th>
+                <th rowSpan={2}>Title</th>
+                {courses.some(({ prereq }) => prereq.length > 0) ? (
+                  <th rowSpan={2}>Prerequisites</th>
+                ) : (
+                  <></>
+                )}
+                <th colSpan={4}>Credits</th>
+                <th rowSpan={2}>Type</th>
+              </tr>
+              <tr>
+                <th>Lecture</th>
+                <th>Tutorial</th>
+                <th>Practical</th>
+                <th>Total</th>
+              </tr>
+            </>
+          )}
+        </thead>
+
+        <tbody>
+          {courses
+            .filter((course) => !course.kind.includes('PE'))
+            .map((course: Course, index) => {
+              const credits = getCredits(course.specifics);
+              return (
+                <tr className="hover:bg-palette-500" key={index} id="rowLink">
+                  <td>
+                    <Link href={`/courses/${course.code}`}>{course.code}</Link>
+                  </td>
+                  <td className="text-start">{course.title}</td>
+
+                  {isMobile ? (
+                    <td>{credits[3]}</td>
+                  ) : (
+                    <>
+                      {courses.some(({ prereq }) => prereq.length > 0) ? (
+                        <td>
+                          <ul>
+                            {course.prereq.map((prereq, index) => (
+                              <li key={index}>{prereq}</li>
+                            ))}
+                          </ul>
+                        </td>
+                      ) : (
+                        <></>
+                      )}
+                      <td>{credits ? credits[0] : 0}</td>
+                      <td>{credits ? credits[1] : 0}</td>
+                      <td>{credits ? credits[2] : 0}</td>
+                      <td>{credits ? credits[3] : 0}</td>
+                      <td>{course.kind}</td>
+                    </>
+                  )}
+                </tr>
+              );
+            })}
+
+          {Object.keys(programmeElectives).map((pool, index) => {
+            const course = courses.find((course) => course.kind === pool);
+            if (!course) return;
+            const credits = getCredits(course.specifics);
+
+            return (
+              <tr className="hover:bg-palette-500" id="rowLink" key={index}>
+                <td>
+                  <a href={`#PE${index + 1}`} />
+                </td>
                 <td className="text-start">{`Programme Elective ${
                   index + 1
                 }`}</td>
@@ -160,90 +158,111 @@ export default function CoursesTable({
                   </>
                 )}
               </tr>
+            );
+          })}
+        </tbody>
 
-              {programmeElectives[pool].isOpen &&
-                programmeElectives[pool].courses.map((course, index) => {
+        <tfoot>
+          <tr>
+            <th />
+            <th />
+            {isMobile ? (
+              <></>
+            ) : (
+              <>
+                {courses.some(({ prereq }) => prereq.length > 0) ? (
+                  <th />
+                ) : (
+                  <></>
+                )}
+                <th>
+                  {courses.reduce(
+                    (sum, { specifics }) => sum + getCredits(specifics)[0],
+                    0
+                  )}
+                </th>
+                <th>
+                  {courses.reduce(
+                    (sum, { specifics }) => sum + getCredits(specifics)[1],
+                    0
+                  )}
+                </th>
+                <th>
+                  {courses.reduce(
+                    (sum, { specifics }) => sum + getCredits(specifics)[2],
+                    0
+                  )}
+                </th>
+              </>
+            )}
+            <th>
+              {courses.reduce(
+                (sum, { specifics }) => sum + getCredits(specifics)[3],
+                0
+              )}
+            </th>
+            {isMobile ? <></> : <th />}
+          </tr>
+        </tfoot>
+      </table>
+
+      <ElectivesTable programmeElectives={programmeElectives} />
+    </>
+  );
+}
+
+const ElectivesTable = ({
+  programmeElectives,
+}: {
+  programmeElectives: {
+    [pool: string]: { courses: Array<Course>; isOpen: boolean };
+  };
+}) => {
+  return (
+    <>
+      {Object.keys(programmeElectives).map((pool, index) => {
+        return (
+          <>
+            <h4
+              className="mb-4 mt-8"
+              id={`PE${index + 1}`}
+            >{`List of Programme Electives ${index + 1}`}</h4>
+            <table>
+              <thead>
+                <th>Code</th>
+                <th>Title</th>
+                <th>Prerequisites</th>
+              </thead>
+
+              <tbody>
+                {programmeElectives[pool].courses.map((course, innerIndex) => {
                   return (
                     <tr
                       className="hover:bg-palette-500"
-                      key={index}
                       id="rowLink"
+                      key={innerIndex}
                     >
                       <td>
                         <Link href={`/courses/${course.code}`}>
                           {course.code}
                         </Link>
                       </td>
-                      <td className="text-start">{course.title}</td>
-
-                      {isMobile ? (
-                        <td>{credits[3]}</td>
-                      ) : (
-                        <>
-                          {courses.some(({ prereq }) => prereq.length > 0) ? (
-                            <td>
-                              <ul>
-                                {course.prereq.map((prereq, index) => (
-                                  <li key={index}>{prereq}</li>
-                                ))}
-                              </ul>
-                            </td>
-                          ) : (
-                            <></>
-                          )}
-                          <td />
-                          <td />
-                          <td />
-                          <td />
-                          <td />
-                        </>
-                      )}
+                      <td>{course.title}</td>
+                      <td>
+                        <ul>
+                          {course.prereq.map((prereq, index) => (
+                            <li key={index}>{prereq}</li>
+                          ))}
+                        </ul>
+                      </td>
                     </tr>
                   );
                 })}
-            </>
-          );
-        })}
-      </tbody>
-
-      <tfoot>
-        <tr>
-          <th />
-          <th />
-          {isMobile ? (
-            <></>
-          ) : (
-            <>
-              {courses.some(({ prereq }) => prereq.length > 0) ? <th /> : <></>}
-              <th>
-                {courses.reduce(
-                  (sum, { specifics }) => sum + getCredits(specifics)[0],
-                  0
-                )}
-              </th>
-              <th>
-                {courses.reduce(
-                  (sum, { specifics }) => sum + getCredits(specifics)[1],
-                  0
-                )}
-              </th>
-              <th>
-                {courses.reduce(
-                  (sum, { specifics }) => sum + getCredits(specifics)[2],
-                  0
-                )}
-              </th>
-            </>
-          )}
-          <th>
-            {courses.reduce(
-              (sum, { specifics }) => sum + getCredits(specifics)[3],
-              0
-            )}
-          </th>
-          {isMobile ? <></> : <th />}
-        </tr>
-      </tfoot>
-    </table>
+              </tbody>
+            </table>
+          </>
+        );
+      })}
+    </>
   );
-}
+};
