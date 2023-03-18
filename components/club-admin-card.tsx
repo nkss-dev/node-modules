@@ -5,6 +5,14 @@ import Balancer from 'react-wrap-balancer';
 import ImageWithFallback from './fallback-image';
 
 export default function ClubAdminCard({ admin }: { admin: ClubAdmin }) {
+  // TODO: Find better solution to long names
+  var name;
+  var names = admin.name.split(' ');
+  if (names.length === 3) {
+    name = names[0] + ' ' + names[2];
+  } else {
+    name = admin.name;
+  }
   return (
     <Link href={`/users/${admin.roll}`}>
       <button
@@ -30,7 +38,7 @@ export default function ClubAdminCard({ admin }: { admin: ClubAdmin }) {
           />
           <hgroup className="h-fit items-center">
             <h4 className="mb-1">
-              <Balancer className="min-w-fit">{admin.name}</Balancer>
+              <Balancer className="min-w-fit">{name}</Balancer>
             </h4>
             <address>
               <p className="text-palette-300">
