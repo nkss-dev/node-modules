@@ -5,6 +5,8 @@ import DefaultLayout from '../../../components/default-layout';
 import RenderIcon from '../../../components/render-icon';
 import { fetcher } from '../../../utils/fetcher';
 
+export const revalidate = 86400
+
 export async function generateMetadata({
   params,
 }: {
