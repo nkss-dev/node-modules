@@ -48,7 +48,7 @@ export default function HomePage() {
         <p>
           Welcome! This project aims to enable an easier path to figuring your
           way in this college! We have many more features planned that you can
-          find in out about on our Discord server linked below.
+          find out about on our Discord server linked below.
           <br />
           <br />
           <strong>PS:</strong> NKSSS is <em>NOT</em> affiliated with NITKKR and
