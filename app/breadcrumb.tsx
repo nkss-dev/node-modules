@@ -15,6 +15,43 @@ const capitalise = (text: string) => {
     .join(' ');
 };
 
+const quickList = [
+  {
+    heading: 'Calendars',
+    items: [
+      { name: 'Academic Calendar', link: '1iJ6BxMBIqZEfFMe9c4ocidcm_madI13U' },
+      { name: 'Holidays', link: '1l5no5NR7uguRm7zXbpeIqbN9X9IiyDun' },
+    ],
+  },
+  {
+    heading: 'Syllabi',
+    items: [
+      { name: 'Civil Engineering', link: '16GZfj3pzUaiKMx-frey_K2dB2Oy6xe0d' },
+      { name: 'Computer Science', link: '1sgjxNv4gf662kwbNeAGygPD49NvGQ2gL' },
+      {
+        name: 'Electronics And Communication Engineering',
+        link: '1IUDACGOHCO3h-vhx-G8ofwrD3LUfqTP-',
+      },
+      {
+        name: 'Electrical Engineering',
+        link: '1m-xhRr2J-kK-5EUBeRj7M33ipndCfT_t',
+      },
+      {
+        name: 'Information Technology',
+        link: '1hF5sqQb6ifLHcZrc2immFpSn6IoF35OD',
+      },
+      {
+        name: 'Mechanical Engineering',
+        link: '1vvgCKCY8hTbHd4oFT51MRXdyYuT2lSLI',
+      },
+      {
+        name: 'Production and Industrial Engineering',
+        link: '1l--XXOVAGTyhZYGxz_-G6RJT_Bq-FKY9',
+      },
+    ],
+  },
+];
+
 export default function Breadcrumb() {
   const segments = useSelectedLayoutSegments()
     .filter((segment) => !(segment.startsWith('(') && segment.endsWith(')')))
@@ -85,56 +122,29 @@ export default function Breadcrumb() {
               <nav className="absolute right-0 bg-palette-500 min-w-max mt-1 rounded-md shadow-lg">
                 <ul className="py-2">
                   <li className="mb-3">
-                    <p className="px-3">Academic Calendars</p>
+                    <p className="px-3">NKSS-Drive</p>
                     <ul className="text-palette-300">
                       <li className="hover:text-palette-100 list-disc list-inside px-3">
-                        <a href="https://drive.google.com/file/d/1iJ6BxMBIqZEfFMe9c4ocidcm_madI13U">
-                          Revised Academic Calendar
+                        <a href="https://drive.google.com/file/d/1U2taK5kEhOiUJi70ZkU2aBWY83uVuMmD">
+                          Main link
                         </a>
                       </li>
                     </ul>
                   </li>
-
-                  <li className="mb-3">
-                    <p className="px-3">Syllabi</p>
-                    <ul className="text-palette-300">
-                      <li className="hover:text-palette-100 list-disc list-inside px-3">
-                        <a href="https://drive.google.com/file/d/16GZfj3pzUaiKMx-frey_K2dB2Oy6xe0d">
-                          Civil Engineering
-                        </a>
-                      </li>
-                      <li className="hover:text-palette-100 list-disc list-inside px-3">
-                        <a href="https://drive.google.com/file/d/1sgjxNv4gf662kwbNeAGygPD49NvGQ2gL">
-                          Computer Science
-                        </a>
-                      </li>
-                      <li className="hover:text-palette-100 list-disc list-inside px-3">
-                        <a href="https://drive.google.com/file/d/1IUDACGOHCO3h-vhx-G8ofwrD3LUfqTP-">
-                          Electronics And Communication Engineering
-                        </a>
-                      </li>
-                      <li className="hover:text-palette-100 list-disc list-inside px-3">
-                        <a href="https://drive.google.com/file/d/1m-xhRr2J-kK-5EUBeRj7M33ipndCfT_t">
-                          Electrical Engineering
-                        </a>
-                      </li>
-                      <li className="hover:text-palette-100 list-disc list-inside px-3">
-                        <a href="https://drive.google.com/file/d/1hF5sqQb6ifLHcZrc2immFpSn6IoF35OD">
-                          Information Technology
-                        </a>
-                      </li>
-                      <li className="hover:text-palette-100 list-disc list-inside px-3">
-                        <a href="https://drive.google.com/file/d/1vvgCKCY8hTbHd4oFT51MRXdyYuT2lSLI">
-                          Mechanical Engineering
-                        </a>
-                      </li>
-                      <li className="hover:text-palette-100 list-disc list-inside px-3">
-                        <a href="https://drive.google.com/file/d/1l--XXOVAGTyhZYGxz_-G6RJT_Bq-FKY9">
-                          Production and Industrial Engineering
-                        </a>
-                      </li>
-                    </ul>
-                  </li>
+                  {quickList.map(({ heading, items }) => (
+                    <li className="mb-3">
+                      <p className="px-3">{heading}</p>
+                      <ul className="text-palette-300">
+                        {items.map(({ name, link }) => (
+                          <li className="hover:text-palette-100 list-disc list-inside px-3">
+                            <a href={`https://drive.google.com/file/d/${link}`}>
+                              {name}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </li>
+                  ))}
                 </ul>
               </nav>
             )}
