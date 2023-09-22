@@ -23,7 +23,7 @@ const groupAnnouncementsByDate = (announcements: AcademicAnnouncement[]) => {
 
 export default async function AnnouncementsPage() {
   const announcements: Array<AcademicAnnouncement> = await fetcher(
-    'https://api.nksss.live/announcements'
+    '/announcements'
   );
   const groupedAnnouncements = groupAnnouncementsByDate(announcements);
 

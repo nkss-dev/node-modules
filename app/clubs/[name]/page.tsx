@@ -5,7 +5,7 @@ import DefaultLayout from '../../../components/default-layout';
 import RenderIcon from '../../../components/render-icon';
 import { fetcher } from '../../../utils/fetcher';
 
-export const revalidate = 86400
+export const revalidate = 86400;
 
 export async function generateMetadata({
   params,
@@ -13,7 +13,7 @@ export async function generateMetadata({
   params: { name: string };
 }): Promise<Metadata> {
   const { name } = params;
-  const club: Club = await fetcher(`https://api.nksss.live/clubs/${name}`);
+  const club: Club = await fetcher(`/clubs/${name}`);
 
   return {
     description: club.description.about_us,
@@ -28,10 +28,9 @@ export async function generateMetadata({
 }
 
 export async function generateStaticParams() {
-  const clubsResponse = await fetch('https://api.nksss.live/clubs');
-  const clubs = await clubsResponse.json();
+  const clubs: Array<ClubBasic> = await fetcher('/clubs');
 
-  return clubs.data.map((club: ClubBasic) => ({
+  return clubs.map((club: ClubBasic) => ({
     name: club.short_name,
   }));
 }
@@ -42,7 +41,7 @@ export default async function ClubPage({
   params: { name: string };
 }) {
   const { name } = params;
-  const club: Club = await fetcher(`https://api.nksss.live/clubs/${name}`);
+  const club: Club = await fetcher(`/clubs/${name}`);
 
   return (
     <DefaultLayout title={club.name} prompt={club.short_description}>

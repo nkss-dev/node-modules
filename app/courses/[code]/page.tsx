@@ -14,9 +14,7 @@ export async function generateMetadata({
   params: { code: string };
 }): Promise<Metadata> {
   const { code } = params;
-  const course: Course = await fetcher(
-    `https://api.nksss.live/courses/${code}`
-  );
+  const course: Course = await fetcher(`/courses/${code}`);
 
   const description = `The objectives of this course are:\n\n- ${course.objectives.join(
     '\n- '
@@ -35,9 +33,7 @@ export async function generateMetadata({
 }
 
 export async function generateStaticParams() {
-  const courses: Array<Course> = await fetcher(
-    'https://api.nksss.live/courses'
-  );
+  const courses: Array<Course> = await fetcher('/courses');
 
   return courses.map((course) => ({
     code: course.code,
@@ -54,9 +50,7 @@ async function convertCourseContent(content: string[]) {
 
 export default async function CoursePage({ params, searchParams }: any) {
   const { code } = params;
-  const course: Course = await fetcher(
-    `https://api.nksss.live/courses/${code}`
-  );
+  const course: Course = await fetcher(`/courses/${code}`);
   const courseContent = await convertCourseContent(course.content);
 
   return (

@@ -1,5 +1,5 @@
 export const fetcher = async (url: URL | RequestInfo) => {
-  const response = await fetch(url);
+  const response = await fetch(process.env.NEXT_PUBLIC_BREADBOARD_URL! + url);
   const responseJson = await response.json();
 
   if (!response.ok) {

@@ -18,7 +18,7 @@ export default function CoursesPage() {
     isLoading,
     error,
   }: { data: Course[] | undefined; isLoading: boolean; error: any } = useSWR(
-    'https://api.nksss.live/courses',
+    `/courses`,
     fetcher
   );
   if (error) console.error(error);

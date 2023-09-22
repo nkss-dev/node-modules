@@ -36,7 +36,7 @@ const getCategorisedClubs = (
 };
 
 export default async function ClubsPage() {
-  const clubs: Array<ClubBasic> = await fetcher('https://api.nksss.live/clubs');
+  const clubs: Array<ClubBasic> = await fetcher('/clubs');
 
   return (
     <DefaultLayout
