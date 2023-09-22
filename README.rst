@@ -17,4 +17,15 @@ NKSSS Website
     :target: https://typescriptlang.org
     :alt: TypeScript version info
 
-The open-source repository for the `official webpage <https://nksss.live>`_ of NKSSS written in ``TypeScript`` using the ``Next.js``, and ``Tailwind CSS`` frameworks.
+The open-source repository for the `official webpage <https://nksss.live>`_ of NKSSS written in ``TypeScript`` using the ``Next.js``, and ``TailwindCSS`` frameworks.
+
+Running a local instance
+------------------------
+
+1. **Clone the repository:** ``git clone https://github.com/NIT-KKR-Student-Support-System/website``
+
+3. **Install dependencies:**
+    - ``nix develop``: This installs our core dependencies (mainly ``nodejs``)
+    - ``npm i``: This will install all of our project dependencies (``nextjs``, etc.)
+
+4. **Run the project locally:** ``npm run dev``
