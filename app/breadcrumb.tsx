@@ -125,7 +125,10 @@ export default function Breadcrumb() {
                     <p className="px-3">NKSS-Drive</p>
                     <ul className="text-palette-300">
                       <li className="hover:text-palette-100 list-disc list-inside px-3">
-                        <a href="https://drive.google.com/drive/folders/1U2taK5kEhOiUJi70ZkU2aBWY83uVuMmD">
+                        <a
+                          target="_blank"
+                          href="https://drive.google.com/drive/folders/1U2taK5kEhOiUJi70ZkU2aBWY83uVuMmD"
+                        >
                           Main link
                         </a>
                       </li>
@@ -137,7 +140,10 @@ export default function Breadcrumb() {
                       <ul className="text-palette-300">
                         {items.map(({ name, link }) => (
                           <li className="hover:text-palette-100 list-disc list-inside px-3">
-                            <a href={`https://drive.google.com/file/d/${link}`}>
+                            <a
+                              target="_blank"
+                              href={`https://drive.google.com/file/d/${link}`}
+                            >
                               {name}
                             </a>
                           </li>
