@@ -27,7 +27,7 @@ export async function generateMetadata({
     openGraph: {
       title: course.title,
       description: description,
-      url: `https://nksss.live/courses/${code}`,
+      url: `https://node-modules.up.railway.app/courses/${code}`,
     },
   };
 }

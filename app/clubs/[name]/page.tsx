@@ -22,7 +22,7 @@ export async function generateMetadata({
     openGraph: {
       title: club.name,
       description: club.description.about_us,
-      url: 'https://nksss.live/clubs',
+      url: 'https://node-modules.up.railway.app/clubs',
     },
   };
 }

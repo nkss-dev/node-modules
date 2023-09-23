@@ -1,5 +1,5 @@
-NKSSS Website
-=============
+node-modules
+============
 
 .. image:: https://img.shields.io/npm/v/next?label=next.js&logo=next.js
     :target: https://nextjs.org
@@ -17,7 +17,7 @@ NKSSS Website
     :target: https://typescriptlang.org
     :alt: TypeScript version info
 
-The open-source repository for the `official webpage <https://nksss.live>`_ of NKSSS written in ``TypeScript`` using the ``Next.js``, and ``TailwindCSS`` frameworks.
+The code-base for the `official webpage <https://node-modules.up.railway.app>`_ of NKSS written in ``TypeScript`` using the ``Next.js``, and ``TailwindCSS`` frameworks.
 
 Running a local instance
 ------------------------

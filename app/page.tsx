@@ -6,9 +6,9 @@ import Balancer from 'react-wrap-balancer';
 import HomeCardsLayout from '../components/home-cards-layout';
 
 export function generateMetadata(): Metadata {
-  const project_name = 'NIT-KKR Student Support System';
-  const short_project_name = 'NKSSS';
-  const url = 'https://nksss.live';
+  const project_name = 'NIT-KKR Student Support';
+  const short_project_name = 'NKSS';
+  const url = 'https://node-modules.up.railway.app';
   const description =
     'A student run initiative to address all the problems faced by college students which can be solved technologically';
 
