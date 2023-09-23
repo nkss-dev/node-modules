@@ -12,14 +12,6 @@ type Club = {
   socials: Array<ClubSocial>;
 };
 
-type ClubAdmin = {
-  roll: string;
-  name: string;
-  email: string;
-  phone: string;
-  position: string;
-};
-
 type ClubBasic = {
   name: string;
   short_name: string;
@@ -48,6 +40,15 @@ type ClubDescription = {
 type ClubFaculty = {
   name: string;
   phone: string;
+};
+
+type ClubMember = {
+  roll_number: string;
+  name: string;
+  section: string;
+  batch: number;
+  email: string;
+  position: string;
 };
 
 type ClubSocial = {
