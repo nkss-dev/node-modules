@@ -4,17 +4,27 @@ import Balancer from 'react-wrap-balancer';
 
 import ImageWithFallback from './fallback-image';
 
-export default function ClubAdminCard({ admin }: { admin: ClubAdmin }) {
+export default function ClubMemberCard({
+  fullName,
+  href,
+  imageSrc,
+  position,
+}: {
+  fullName: string;
+  href: string;
+  imageSrc: string;
+  position: string;
+}) {
   // TODO: Find better solution to long names
   var name;
-  var names = admin.name.split(' ');
+  var names = fullName.split(' ');
   if (names.length === 3) {
     name = names[0] + ' ' + names[2];
   } else {
-    name = admin.name;
+    name = fullName;
   }
   return (
-    <Link href={`/users/${admin.roll}`}>
+    <Link href={href}>
       <button
         className={clsx(
           'p-2 w-36 h-36',
@@ -31,7 +41,7 @@ export default function ClubAdminCard({ admin }: { admin: ClubAdmin }) {
               'md:h-24 md:w-24',
               'rounded-full'
             )}
-            src={`/assets/users/${admin.roll}.png`}
+            src={`/assets/${imageSrc}.png`}
             width={96}
             height={96}
             alt="profile pic"
@@ -42,7 +52,7 @@ export default function ClubAdminCard({ admin }: { admin: ClubAdmin }) {
             </h4>
             <address>
               <p className="text-palette-300">
-                <small>{admin.position}</small>
+                <small>{position}</small>
               </p>
             </address>
           </hgroup>

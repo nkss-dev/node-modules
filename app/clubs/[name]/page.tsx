@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 
-import ClubAdminCard from '../../../components/club-admin-card';
+import ClubMemberCard from '../../../components/club-member-card';
 import DefaultLayout from '../../../components/default-layout';
 import RenderIcon from '../../../components/render-icon';
 import { fetcher } from '../../../utils/fetcher';
@@ -59,7 +59,12 @@ export default async function ClubPage({
       <ul className="flex flex-row flex-wrap gap-4 mb-6">
         {club.admins.map((admin, index) => (
           <li key={index}>
-            <ClubAdminCard admin={admin} />
+            <ClubMemberCard
+              fullName={admin.name}
+              href={`/users/${admin.roll}`}
+              imageSrc={`users/${admin.roll}`}
+              position={admin.position}
+            />
           </li>
         ))}
       </ul>
