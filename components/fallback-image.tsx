@@ -3,10 +3,11 @@
 import Image, { ImageProps } from 'next/image';
 import { useEffect, useState } from 'react';
 
-import fallbackImage from '../public/assets/404.svg'
+import fallbackImage from '../public/assets/404.svg';
 
-interface ImageWithFallbackProps extends ImageProps {
+interface ImageWithFallbackProps extends Omit<ImageProps, 'src'> {
   fallback?: ImageProps['src'];
+  src?: ImageProps['src'] | null;
 }
 
 export default function ImageWithFallback({
@@ -28,7 +29,7 @@ export default function ImageWithFallback({
     <Image
       alt={alt}
       onError={setError}
-      src={error ? fallback : src}
+      src={error || !src ? fallback : src}
       {...props}
     />
   );
