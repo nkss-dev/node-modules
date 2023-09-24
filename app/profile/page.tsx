@@ -26,45 +26,52 @@ export default async function ProfilePage() {
     student = await fetcher(`/students/${rollNumber}`);
   }
 
+  if (!session || !student)
+    return (
+      <DefaultLayout
+        title="Guest View"
+        description={
+          student ? (
+            student.email
+          ) : (
+            <>
+              You're viewing this page as a guest. Please{' '}
+              <Link className="underline" href="/api/auth/signin">
+                sign in
+              </Link>{' '}
+              to view your profile here!
+            </>
+          )
+        }
+      >
+        <></>
+      </DefaultLayout>
+    );
+
   return (
-    <DefaultLayout
-      title={student?.name || 'Guest'}
-      description={
-        student ? (
-          student.email
-        ) : (
-          <>
-            You're viewing this page as a guest. Please{' '}
-            <Link className="underline" href="/auth/signin">
-              sign in
-            </Link>{' '}
-            to view your profile here!
-          </>
-        )
-      }
-    >
+    <DefaultLayout title={student.name} description={student.email}>
       <section className={clsx('flex justify-between', 'mb-4 sm:mb-6 md:mb-8')}>
         <ul className="my-auto">
           <li>
             <strong>Roll Number: </strong>
-            {student?.roll_number}
+            {student.roll_number}
           </li>
           <li>
             <strong>Section: </strong>
-            {student?.section}
+            {student.section}
           </li>
           <li>
             <strong>Phone: </strong>
-            {student?.mobile.String}
+            {student.mobile.String}
           </li>
           <li>
             <strong>Batch: </strong>
-            {student?.batch}
+            {student.batch}
           </li>
         </ul>
-        {session?.user?.image && (
+        {session.user?.image && (
           <Image
-            src={session?.user?.image}
+            src={session.user.image}
             height={128}
             width={128}
             alt="Display Image"
@@ -76,7 +83,7 @@ export default async function ProfilePage() {
       <br />
 
       <section>
-        {student?.clubs ? (
+        {student.clubs ? (
           <>
             <h3>Clubs</h3>
             <ul className="flex flex-wrap gap-6">
