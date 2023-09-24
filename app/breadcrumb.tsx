@@ -1,12 +1,16 @@
 'use client';
 
 import clsx from 'clsx';
+import { signIn, signOut, useSession } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useSelectedLayoutSegments } from 'next/navigation';
 import { Fragment, useState } from 'react';
 import { BiBell } from 'react-icons/bi';
 import { BsLink45Deg, BsPersonFill } from 'react-icons/bs';
+import { TbLogout } from 'react-icons/tb';
+
+import ImageWithFallback from '../components/fallback-image';
 
 const capitalise = (text: string) => {
   return text
@@ -58,6 +62,8 @@ export default function Breadcrumb() {
     .map((segment) => decodeURIComponent(segment));
 
   const [showQuickList, setShowQuickList] = useState(false);
+
+  const { data: session } = useSession();
 
   return (
     <nav
@@ -164,11 +170,44 @@ export default function Breadcrumb() {
           </li> */}
 
           <li className="p-1">
-            <Link href="/profile">
-              <BsPersonFill
-                className={clsx('h-5 w-5', 'sm:h-6 sm:w-6', 'md:h-7 md:w-7')}
+            {session && segments[0] == 'profile' ? (
+              <TbLogout
+                className={clsx(
+                  'hover:cursor-pointer',
+                  'h-5 w-5',
+                  'sm:h-6 sm:w-6',
+                  'md:h-7 md:w-7'
+                )}
+                onClick={() => signOut({ callbackUrl: '/' })}
+                title="Sign Out"
               />
-            </Link>
+            ) : session ? (
+              <Link href="/profile" title="Open Profile">
+                <ImageWithFallback
+                  className={clsx(
+                    'rounded-full',
+                    'h-5 w-5',
+                    'sm:h-6 sm:w-6',
+                    'md:h-7 md:w-7'
+                  )}
+                  src={session.user?.image}
+                  height={32}
+                  width={32}
+                  alt="Display Picture"
+                />
+              </Link>
+            ) : (
+              <BsPersonFill
+                className={clsx(
+                  'hover:cursor-pointer',
+                  'h-5 w-5',
+                  'sm:h-6 sm:w-6',
+                  'md:h-7 md:w-7'
+                )}
+                onClick={() => signIn('google', { callbackUrl: '/profile' })}
+                title="Sign in using Google"
+              />
+            )}
           </li>
         </ol>
       </section>

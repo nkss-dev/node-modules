@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { FaDiscord, FaFacebook, FaGithub, FaInstagram } from 'react-icons/fa';
 
 import '../styles/globals.css';
+import AuthProvider from './api/auth/provider';
 import Breadcrumb from './breadcrumb';
 
 export default function RootLayout({
@@ -15,11 +16,13 @@ export default function RootLayout({
       <body className="flex flex-col">
         <noscript>You need to enable JavaScript to run this app</noscript>
 
-        <Breadcrumb />
+        <AuthProvider>
+          <Breadcrumb />
 
-        <section className="container flex flex-col grow max-w-screen-lg">
-          {children}
-        </section>
+          <section className="container flex flex-col grow max-w-screen-lg">
+            {children}
+          </section>
+        </AuthProvider>
 
         <footer className="bg-palette-800 py-4 mt-8">
           <section className="align-middle container flex flex-row flex-wrap justify-between max-w-screen-lg">
