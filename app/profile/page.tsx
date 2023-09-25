@@ -13,17 +13,12 @@ export const metadata = {
   description: 'Your profile',
 };
 
-const rollNumberExp: RegExp = /[0-9]{8,}/;
-const getRollNumber = (email: string | null | undefined) =>
-  email?.match(rollNumberExp);
-
 export default async function ProfilePage() {
   const session = await getServerSession(authOptions);
 
-  const rollNumber = getRollNumber(session?.user?.email);
   let student: Student | undefined;
-  if (session) {
-    student = await fetcher(`/students/${rollNumber}`);
+  if (session?.user?.email) {
+    student = await fetcher(`/students/${session.user.email}`);
   }
 
   if (!session || !student)
