@@ -5,10 +5,10 @@ type Student = {
   batch: number;
   email: string;
   mobile: { String: string; Valid: boolean };
-  clubs: Array<ClubMember>;
+  clubs: Array<StudentClubs>;
 };
 
-type ClubMember = {
+type StudentClubs = {
   name: string;
   alias: string | undefined;
   position: string;
