@@ -44,11 +44,14 @@ type ClubFaculty = {
 
 type ClubMember = {
   roll_number: string;
-  name: string;
   section: string;
-  batch: number;
+  name: string;
+  phone: string;
   email: string;
+  batch: number;
   position: string;
+  extra_groups: Array<string>;
+  comments: string;
 };
 
 type ClubSocial = {
