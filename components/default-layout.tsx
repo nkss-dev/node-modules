@@ -16,7 +16,7 @@ export default function DefaultLayout({
   return (
     <>
       <hgroup className="mb-2 sm:mb-4 md:mb-6">
-        <h1>
+        <h1 className="mb-0">
           <Balancer>{title}</Balancer>
         </h1>
         <p>{description}</p>

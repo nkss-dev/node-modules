@@ -17,6 +17,7 @@
 
   h1 {
     @apply text-2xl sm:text-3xl md:text-4xl;
+    @apply mb-2 sm:mb-4 md:mb-6;
     font-weight: bold;
   }
 
