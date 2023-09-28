@@ -28,7 +28,7 @@ export default function RootLayout({
           <section className="align-middle container flex flex-row flex-wrap justify-between max-w-screen-lg">
             <ul className="gap-4 inline-flex flex-wrap">
               <li>
-                <Link href="/">© 2023 NKSSS</Link>
+                <Link href="/">© 2023 NKSS</Link>
               </li>
               <li>
                 <Link href="/about">About</Link>
@@ -43,10 +43,7 @@ export default function RootLayout({
                   </a>
                 </li>
                 <li>
-                  <a
-                    href="https://github.com/NIT-KKR-Student-Support-System"
-                    target="_blank"
-                  >
+                  <a href="https://github.com/nkss-dev" target="_blank">
                     <FaGithub size={20} />
                   </a>
                 </li>

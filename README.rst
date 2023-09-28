@@ -22,7 +22,7 @@ The code-base for the `official webpage <https://node-modules.up.railway.app>`_ 
 Running a local instance
 ------------------------
 
-1. **Clone the repository:** ``git clone https://github.com/NIT-KKR-Student-Support-System/website``
+1. **Clone the repository:** ``git clone https://github.com/nkss-dev/node-modules``
 
 3. **Install dependencies:**
     - ``nix develop``: This installs our core dependencies (mainly ``nodejs``)

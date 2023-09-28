@@ -83,8 +83,8 @@ export default function Breadcrumb() {
                 )}
                 height={34}
                 width={34}
-                src="/nksss.svg"
-                alt="NKSSS Logo"
+                src="/nkss.svg"
+                alt="NKSS Logo"
               />
             </Link>
           </li>

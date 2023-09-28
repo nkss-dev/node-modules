@@ -42,7 +42,7 @@ export default function HomePage() {
     <article className="my-auto">
       <hgroup className="mb-12">
         <h1 className="mb-6">
-          <Balancer>NIT-KKR Student Support System</Balancer>
+          <Balancer>NIT-KKR Student Support</Balancer>
         </h1>
 
         <p>
@@ -51,7 +51,7 @@ export default function HomePage() {
           find out about on our Discord server linked below.
           <br />
           <br />
-          <strong>PS:</strong> NKSSS is <em>NOT</em> affiliated with NITKKR and
+          <strong>PS:</strong> NKSS is <em>NOT</em> affiliated with NITKKR and
           is completely student run.
         </p>
       </hgroup>
