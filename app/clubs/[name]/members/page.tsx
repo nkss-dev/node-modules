@@ -18,6 +18,10 @@ export default async function ClubMembersPage({
     .filter((batch, index) => duplicateBatches.indexOf(batch) === index)
     .sort();
 
+  const adminEmails = clubMembers
+    .filter(({ position }) => position != 'Member')
+    .map(({ email }) => email);
+
   return (
     <>
       <h1>Admins</h1>
@@ -43,7 +47,7 @@ export default async function ClubMembersPage({
       {batches.map((batch) => (
         <>
           <h1>Batch of {batch}</h1>
-          {session ? (
+          {adminEmails.includes(session?.user?.email || '') ? (
             <MemberTable
               clubMembers={clubMembers.filter(
                 (member) => member.batch == batch
@@ -66,7 +70,9 @@ export default async function ClubMembersPage({
             <section className="gap-4 inline-flex mx-auto">
               <FaLock size={32} />
               <p className="my-auto">
-                You need to sign in to view this content
+                {session
+                  ? "You're not authorised to view this content. If you think this is a mistake, contact us at any platform below (see footer)"
+                  : 'You need to sign in to view this content'}
               </p>
             </section>
           )}
