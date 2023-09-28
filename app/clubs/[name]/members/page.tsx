@@ -1,74 +1,79 @@
-"use client";
+import { getServerSession } from 'next-auth';
+import { FaLock } from 'react-icons/fa';
 
-import { fetcher } from "../../../../utils/fetcher";
+import { fetcher } from '../../../../utils/fetcher';
+import { authOptions } from '../../../api/auth/auth';
+import { MemberTable } from './member-table';
 
-export default async function ClubPage({
+export default async function ClubMembersPage({
   params,
 }: {
   params: { name: string };
 }) {
-  const { name } = params;
-  // const data1: Array<clubMember> = await fetcher(`/clubs/${name}/members`);
-  const data: Array<ClubMember> = [
-    {
-      roll_number: "12012109",
-      name: "Mohit Mahipal",
-      section: "CS-A3",
-      batch: 2024,
-      email: "mohit95876@gmail.com",
-      position: "memeber",
-    },
-    {
-      roll_number: "12022005",
-      name: "Priyanshu Tripathi",
-      section: "CS-B5",
-      batch: 2024,
-      email: "priyanshu@gmail.com",
-      position: "memeber",
-    },
-  ];
-  let isMobile: boolean = false;
+  const session = await getServerSession(authOptions);
+  const clubMembers: Array<ClubMember> = await fetcher(`/clubs/GDSC/members`);
+
+  const duplicateBatches = clubMembers.map(({ batch }) => batch);
+  const batches = duplicateBatches
+    .filter((batch, index) => duplicateBatches.indexOf(batch) === index)
+    .sort();
+
   return (
     <>
-      <table className="border-2 w-full">
-        <thead>
-          {isMobile ? (
-            <tr>
-              <th>Code</th>
-              <th>Title</th>
-              <th>Credits</th>
-            </tr>
+      <h1>Admins</h1>
+      <MemberTable
+        clubMembers={clubMembers.filter(({ position }) => position != 'Member')}
+        columns={[
+          { key: 'roll_number', name: 'Roll Number' },
+          { key: 'section', name: 'Section' },
+          { key: 'name', name: 'Name' },
+          { key: 'phone', name: 'Phone' },
+          { key: 'email', name: 'Email' },
+          { key: 'extra_groups', name: 'Extra Groups' },
+        ]}
+        mobileColumns={[
+          { key: 'section', name: 'Section' },
+          { key: 'name', name: 'Name' },
+          { key: 'extra_groups', name: 'Extra Groups' },
+        ]}
+      />
+
+      <hr className="mt-6 mb-4" />
+
+      {batches.map((batch) => (
+        <>
+          <h1>Batch of {batch}</h1>
+          {session ? (
+            <MemberTable
+              clubMembers={clubMembers.filter(
+                (member) => member.batch == batch
+              )}
+              columns={[
+                { key: 'roll_number', name: 'Roll Number' },
+                { key: 'section', name: 'Section' },
+                { key: 'name', name: 'Name' },
+                { key: 'phone', name: 'Phone' },
+                { key: 'email', name: 'Email' },
+                { key: 'extra_groups', name: 'Extra Groups' },
+              ]}
+              mobileColumns={[
+                { key: 'section', name: 'Section' },
+                { key: 'name', name: 'Name' },
+                { key: 'extra_groups', name: 'Extra Groups' },
+              ]}
+            />
           ) : (
-            <>
-              <tr>
-                <th>Roll Number</th>
-                <th>Section</th>
-                <th>Name</th>
-                <th>Batch</th>
-                <th>Email</th>
-                <th>Position</th>
-              </tr>
-            </>
+            <section className="gap-4 inline-flex mx-auto">
+              <FaLock size={32} />
+              <p className="my-auto">
+                You need to sign in to view this content
+              </p>
+            </section>
           )}
-        </thead>
 
-        <tbody>
-          {data.map((person: ClubMember) => {
-            return (
-              <tr>
-                <td>{person.roll_number}</td>
-                <td>{person.section}</td>
-                <td>{person.name}</td>
-                <td>{person.batch}</td>
-                <td>{person.email}</td>
-                <td>{person.position}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-
-        <tfoot></tfoot>
-      </table>
+          <hr className="mt-6 mb-4" />
+        </>
+      ))}
     </>
   );
 }
