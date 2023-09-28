@@ -1,4 +1,5 @@
 import { getServerSession } from 'next-auth';
+import { Fragment } from 'react';
 import { FaLock } from 'react-icons/fa';
 
 import DefaultLayout from '../../../../components/default-layout';
@@ -58,7 +59,7 @@ export default async function ClubMembersPage({
       <hr className="mt-6 mb-4" />
 
       {batches.map((batch) => (
-        <>
+        <Fragment key={batch}>
           <h2>Batch of {batch}</h2>
           {isAuthorised ? (
             <MemberTable
@@ -92,7 +93,7 @@ export default async function ClubMembersPage({
           )}
 
           <hr className="mt-6 mb-4" />
-        </>
+        </Fragment>
       ))}
     </DefaultLayout>
   );
