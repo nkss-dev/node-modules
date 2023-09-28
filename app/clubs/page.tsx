@@ -42,22 +42,7 @@ export default async function ClubsPage() {
     <DefaultLayout
       title="Clubs"
       description="An overview all the clubs and societies of NIT-KKR"
-      prompt={
-        <>
-          <p className="inline-flex">
-            The cards of only the following clubs are enabled:
-          </p>
-          <ul>
-            {clubs.map((club) => {
-              if (club.short_description === 'Lorem Ipsum') {
-                return <></>;
-              } else {
-                return <li>{club.short_name}</li>;
-              }
-            })}
-          </ul>
-        </>
-      }
+      prompt="Only a few of these options work for now as clubs are too lazy to put their data on here."
       alert={true}
     >
       {clubCategories.map((category: ClubCategory, categoryIndex) => {
