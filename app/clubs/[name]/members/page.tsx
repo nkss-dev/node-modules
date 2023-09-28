@@ -1,6 +1,7 @@
 import { getServerSession } from 'next-auth';
 import { FaLock } from 'react-icons/fa';
 
+import DefaultLayout from '../../../../components/default-layout';
 import { fetcher } from '../../../../utils/fetcher';
 import { authOptions } from '../../../api/auth/auth';
 import { MemberTable } from './member-table';
@@ -10,6 +11,7 @@ export default async function ClubMembersPage({
 }: {
   params: { name: string };
 }) {
+  const clubName = params.name;
   const session = await getServerSession(authOptions);
   const clubMembers: Array<ClubMember> = await fetcher(`/clubs/GDSC/members`);
 
@@ -21,10 +23,18 @@ export default async function ClubMembersPage({
   const adminEmails = clubMembers
     .filter(({ position }) => position != 'Member')
     .map(({ email }) => email);
+  const isAuthorised = adminEmails.includes(session?.user?.email || '');
 
   return (
-    <>
-      <h1>Admins</h1>
+    <DefaultLayout
+      title={`Member list of ${params.name}`}
+      description={
+        isAuthorised
+          ? `View and edit all the members of ${clubName}`
+          : `View the post holders of ${clubName}`
+      }
+    >
+      <h2>Admins</h2>
       <MemberTable
         clubMembers={clubMembers.filter(({ position }) => position != 'Member')}
         clubName={params.name}
@@ -47,8 +57,8 @@ export default async function ClubMembersPage({
 
       {batches.map((batch) => (
         <>
-          <h1>Batch of {batch}</h1>
-          {adminEmails.includes(session?.user?.email || '') ? (
+          <h2>Batch of {batch}</h2>
+          {isAuthorised ? (
             <MemberTable
               clubMembers={clubMembers.filter(
                 (member) => member.batch == batch
@@ -69,7 +79,7 @@ export default async function ClubMembersPage({
               ]}
             />
           ) : (
-            <section className="gap-4 inline-flex mx-auto">
+            <section className="flex flex-row gap-4 justify-center">
               <FaLock size={32} />
               <p className="my-auto">
                 {session
@@ -82,6 +92,6 @@ export default async function ClubMembersPage({
           <hr className="mt-6 mb-4" />
         </>
       ))}
-    </>
+    </DefaultLayout>
   );
 }
