@@ -27,6 +27,7 @@ export default async function ClubMembersPage({
       <h1>Admins</h1>
       <MemberTable
         clubMembers={clubMembers.filter(({ position }) => position != 'Member')}
+        clubName={params.name}
         columns={[
           { key: 'roll_number', name: 'Roll Number' },
           { key: 'section', name: 'Section' },
@@ -52,6 +53,7 @@ export default async function ClubMembersPage({
               clubMembers={clubMembers.filter(
                 (member) => member.batch == batch
               )}
+              clubName={params.name}
               columns={[
                 { key: 'roll_number', name: 'Roll Number' },
                 { key: 'section', name: 'Section' },
