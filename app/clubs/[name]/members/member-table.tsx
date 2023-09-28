@@ -19,7 +19,9 @@ const ColumnValues = ({
           ? member[column.key].length
             ? member[column.key].map((element: any, index: number) => (
                 // TODO: Convert to chips
-                <li key={index}>{element}</li>
+                <li className="list-none" key={index}>
+                  {element}
+                </li>
               ))
             : 'None'
           : member[column.key] || '-'}
