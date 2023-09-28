@@ -4,6 +4,7 @@ import { useState } from 'react';
 
 import Dialog from '../../../../components/dialog';
 import useIsScreenLessThan from '../../../../utils/screen-width-check';
+import { MemberForm } from './member-form';
 
 const ColumnValues = ({
   columns,
@@ -43,7 +44,6 @@ export const MemberTable = ({
 }) => {
   const isMobile = useIsScreenLessThan(768);
   const [open, setOpen] = useState(false);
-  const [clubMember, setClubMember] = useState<ClubMember>();
 
   return (
     <table className="border-2 w-full">
@@ -61,34 +61,7 @@ export const MemberTable = ({
           title="Add Member"
           description={`Add a new member to ${clubName} here:`}
         >
-          <form className="flex flex-col gap-4">
-            <input
-              className="bg-palette-500 p-2"
-              placeholder="Roll Number"
-              type="text"
-              value={clubMember?.roll_number}
-              required
-            />
-            <input
-              className="bg-palette-500 p-2"
-              defaultValue="Member"
-              placeholder="Position"
-              type="text"
-              value={clubMember?.position}
-              required
-            />
-            <input
-              className="bg-palette-500 p-2"
-              placeholder="Extra Groups"
-              type="text"
-              value={clubMember?.extra_groups}
-            />
-            <textarea
-              className="bg-palette-500 p-2"
-              placeholder="Comments"
-              value={clubMember?.comments}
-            />
-          </form>
+          <MemberForm existingClubMember={{}} />
         </Dialog>
       </thead>
 
