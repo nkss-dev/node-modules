@@ -13,7 +13,9 @@ export default async function ClubMembersPage({
 }) {
   const clubName = params.name;
   const session = await getServerSession(authOptions);
-  const clubMembers: Array<ClubMember> = await fetcher(`/clubs/GDSC/members`);
+  const clubMembers: Array<ClubMember> = await fetcher(
+    `/clubs/${clubName}/members`
+  );
 
   const duplicateBatches = clubMembers.map(({ batch }) => batch);
   const batches = duplicateBatches
