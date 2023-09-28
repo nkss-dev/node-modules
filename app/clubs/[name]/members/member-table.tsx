@@ -39,19 +39,13 @@ export const MemberTable = ({
   return (
     <table className="border-2 w-full">
       <thead>
-        {isMobile ? (
-          <tr>
-            {mobileColumns.map((column) => (
-              <th key={column.key}>{column.name}</th>
-            ))}
-          </tr>
-        ) : (
-          <tr>
-            {columns.map((column) => (
-              <th key={column.key}>{column.name}</th>
-            ))}
-          </tr>
-        )}
+        <tr>
+          {isMobile
+            ? mobileColumns.map((column) => (
+                <th key={column.key}>{column.name}</th>
+              ))
+            : columns.map((column) => <th key={column.key}>{column.name}</th>)}
+        </tr>
       </thead>
 
       <tbody>
