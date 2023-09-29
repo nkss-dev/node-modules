@@ -3,7 +3,7 @@ import { Fragment } from 'react';
 import { FaLock } from 'react-icons/fa';
 
 import DefaultLayout from '../../../../components/default-layout';
-import { fetcher } from '../../../../utils/fetcher';
+import api from '../../../../utils/api-actions';
 import { authOptions } from '../../../api/auth/auth';
 import { MemberTable } from './member-table';
 
@@ -14,7 +14,7 @@ export default async function ClubMembersPage({
 }) {
   const clubName = params.name;
   const session = await getServerSession(authOptions);
-  const clubMembers: Array<ClubMember> = await fetcher(
+  const clubMembers: Array<ClubMember> = await api.GET(
     `/clubs/${clubName}/members`
   );
 
