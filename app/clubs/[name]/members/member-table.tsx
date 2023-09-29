@@ -16,16 +16,22 @@ const ColumnValues = ({
   <>
     {columns.map((column) => (
       <td key={column.key}>
-        {member[column.key] instanceof Array
-          ? member[column.key].length
-            ? member[column.key].map((element: any, index: number) => (
-                // TODO: Convert to chips
-                <li className="list-none" key={index}>
-                  {element}
-                </li>
-              ))
-            : 'None'
-          : member[column.key] || '-'}
+        {
+          // @ts-expect-error
+          member[column.key] instanceof Array
+            ? // @ts-expect-error
+              member[column.key].length
+              ? // @ts-expect-error
+                member[column.key].map((element: any, index: number) => (
+                  // TODO: Convert to chips
+                  <li className="list-none" key={index}>
+                    {element}
+                  </li>
+                ))
+              : 'None'
+            : // @ts-expect-error
+              member[column.key] || '-'
+        }
       </td>
     ))}
   </>
