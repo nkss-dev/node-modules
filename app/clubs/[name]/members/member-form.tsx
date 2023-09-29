@@ -6,7 +6,7 @@ import { experimental_useFormState as useFormState } from 'react-dom';
 // @ts-expect-error
 import { experimental_useFormStatus as useFormStatus } from 'react-dom';
 
-import { createMember } from '../../../actions/club-members';
+import { createMember } from '@/api/actions/club-members';
 
 const initialState = {
   message: null,
