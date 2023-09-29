@@ -64,19 +64,6 @@ export default function Dialog({
                   <Title>{title}</Title>
                   <Description>{description}</Description>
                   {children}
-                  <div
-                    style={{
-                      display: 'flex',
-                      marginTop: 25,
-                      justifyContent: 'flex-end',
-                    }}
-                  >
-                    <Close asChild>
-                      <button className="bg-palette-500 p-2 rounded-lg">
-                        Save changes
-                      </button>
-                    </Close>
-                  </div>
 
                   <Close asChild>
                     <button

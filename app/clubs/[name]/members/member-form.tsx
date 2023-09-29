@@ -1,5 +1,6 @@
 'use client';
 
+import { DialogClose } from '@radix-ui/react-dialog';
 import { useState } from 'react';
 
 export const MemberForm = ({
@@ -66,6 +67,19 @@ export const MemberForm = ({
         placeholder="Comments"
         value={clubMember.comments}
       />
+      <div
+        style={{
+          display: 'flex',
+          marginTop: 25,
+          justifyContent: 'flex-end',
+        }}
+      >
+        <DialogClose asChild>
+          <button className="bg-palette-500 p-2 rounded-lg" type="submit">
+            Save changes
+          </button>
+        </DialogClose>
+      </div>
     </form>
   );
 };
