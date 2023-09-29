@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 import DefaultLayout from '../../../components/default-layout';
 import RenderMarkdown from '../../../components/render-markdown';
-import { fetcher } from '../../../utils/fetcher';
+import api from '../../../utils/api-actions';
 
 export const fetchCache = 'default-no-store';
 
@@ -14,7 +14,7 @@ export async function generateMetadata({
   params: { code: string };
 }): Promise<Metadata> {
   const { code } = params;
-  const course: Course = await fetcher(`/courses/${code}`);
+  const course: Course = await api.GET(`/courses/${code}`);
 
   const description = `The objectives of this course are:\n\n- ${course.objectives.join(
     '\n- '
@@ -33,7 +33,7 @@ export async function generateMetadata({
 }
 
 export async function generateStaticParams() {
-  const courses: Array<Course> = await fetcher('/courses');
+  const courses: Array<Course> = await api.GET('/courses');
 
   return courses.map((course) => ({
     code: course.code,
@@ -50,7 +50,7 @@ async function convertCourseContent(content: string[]) {
 
 export default async function CoursePage({ params, searchParams }: any) {
   const { code } = params;
-  const course: Course = await fetcher(`/courses/${code}`);
+  const course: Course = await api.GET(`/courses/${code}`);
   const courseContent = await convertCourseContent(course.content);
 
   return (

@@ -6,7 +6,7 @@ import Balancer from 'react-wrap-balancer';
 import useSWR from 'swr';
 
 import Chip from '../../../components/chip';
-import { fetcher } from '../../../utils/fetcher';
+import api from '../../../utils/api-actions';
 import CoursesTable from './courses-table';
 
 const branches = ['CE', 'CS', 'EC', 'EE', 'IT', 'ME', 'PI'] as const;
@@ -19,7 +19,7 @@ export default function CoursesPage() {
     error,
   }: { data: Course[] | undefined; isLoading: boolean; error: any } = useSWR(
     `/courses`,
-    fetcher
+    api.GET
   );
   if (error) console.error(error);
 

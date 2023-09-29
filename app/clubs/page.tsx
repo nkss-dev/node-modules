@@ -2,7 +2,7 @@ import { Fragment } from 'react';
 
 import ClubCard from '../../components/club-card';
 import DefaultLayout from '../../components/default-layout';
-import { fetcher } from '../../utils/fetcher';
+import api from '../../utils/api-actions';
 
 export const metadata = {
   title: 'Clubs',
@@ -36,7 +36,7 @@ const getCategorisedClubs = (
 };
 
 export default async function ClubsPage() {
-  const clubs: Array<ClubBasic> = await fetcher('/clubs');
+  const clubs: Array<ClubBasic> = await api.GET('/clubs');
 
   return (
     <DefaultLayout

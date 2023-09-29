@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 import ClubMemberCard from '../../../components/club-member-card';
 import DefaultLayout from '../../../components/default-layout';
 import RenderIcon from '../../../components/render-icon';
-import { fetcher } from '../../../utils/fetcher';
+import api from '../../../utils/api-actions';
 
 export const revalidate = 86400;
 
@@ -13,7 +13,7 @@ export async function generateMetadata({
   params: { name: string };
 }): Promise<Metadata> {
   const { name } = params;
-  const club: Club = await fetcher(`/clubs/${name}`);
+  const club: Club = await api.GET(`/clubs/${name}`);
 
   return {
     description: club.description.about_us,
@@ -28,7 +28,7 @@ export async function generateMetadata({
 }
 
 export async function generateStaticParams() {
-  const clubs: Array<ClubBasic> = await fetcher('/clubs');
+  const clubs: Array<ClubBasic> = await api.GET('/clubs');
 
   return clubs.map((club: ClubBasic) => ({
     name: club.short_name,
@@ -41,7 +41,7 @@ export default async function ClubPage({
   params: { name: string };
 }) {
   const { name } = params;
-  const club: Club = await fetcher(`/clubs/${name}`);
+  const club: Club = await api.GET(`/clubs/${name}`);
 
   return (
     <DefaultLayout title={club.name} prompt={club.short_description}>

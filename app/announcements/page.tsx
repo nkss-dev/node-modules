@@ -1,4 +1,4 @@
-import { fetcher } from '../../utils/fetcher';
+import api from '../../utils/api-actions';
 import formatDate from '../../utils/format-date';
 
 export const metadata = {
@@ -22,7 +22,7 @@ const groupAnnouncementsByDate = (announcements: AcademicAnnouncement[]) => {
 };
 
 export default async function AnnouncementsPage() {
-  const announcements: Array<AcademicAnnouncement> = await fetcher(
+  const announcements: Array<AcademicAnnouncement> = await api.GET(
     '/announcements'
   );
   const groupedAnnouncements = groupAnnouncementsByDate(announcements);

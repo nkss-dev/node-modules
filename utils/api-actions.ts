@@ -1,4 +1,4 @@
-export const fetcher = async (url: URL | RequestInfo) => {
+export const get = async (url: URL | RequestInfo) => {
   const response = await fetch(process.env.NEXT_PUBLIC_BREADBOARD_URL! + url, {
     credentials: 'include',
     headers: {
@@ -15,3 +15,5 @@ export const fetcher = async (url: URL | RequestInfo) => {
 
   return responseJson.data;
 };
+
+export default { GET: get };

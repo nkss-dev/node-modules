@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 import ClubMemberCard from '../../components/club-member-card';
 import DefaultLayout from '../../components/default-layout';
-import { fetcher } from '../../utils/fetcher';
+import api from '../../utils/api-actions';
 import { authOptions } from '../api/auth/auth';
 
 export const metadata = {
@@ -18,7 +18,7 @@ export default async function ProfilePage() {
 
   let student: Student | undefined;
   if (session?.user?.email) {
-    student = await fetcher(`/students/${session.user.email}`);
+    student = await api.GET(`/students/${session.user.email}`);
   }
 
   if (!session || !student)
