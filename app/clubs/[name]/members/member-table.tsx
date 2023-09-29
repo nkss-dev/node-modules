@@ -62,6 +62,7 @@ export const MemberTable = ({
             : columns.map((column) => <th key={column.key}>{column.name}</th>)}
         </tr>
         <Dialog
+          className="max-w-sm min-w-sm"
           open={open}
           onChange={setOpen}
           title="Add Member"
