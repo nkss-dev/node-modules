@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 
-import Dialog from '../../../../components/dialog';
-import useIsScreenLessThan from '../../../../utils/screen-width-check';
+import Dialog from '@/components/dialog';
+import useIsScreenLessThan from '@/utils/screen-width-check';
 import { MemberForm } from './member-form';
 
 const ColumnValues = ({

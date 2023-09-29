@@ -3,7 +3,7 @@
 import { revalidatePath } from 'next/cache';
 import { ZodError, z } from 'zod';
 
-import api from '../../utils/api-actions';
+import api from '@/utils/api-actions';
 
 const clubNameSchema = z.string();
 

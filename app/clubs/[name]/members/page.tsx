@@ -2,9 +2,9 @@ import { getServerSession } from 'next-auth';
 import { Fragment } from 'react';
 import { FaLock } from 'react-icons/fa';
 
-import DefaultLayout from '../../../../components/default-layout';
-import api from '../../../../utils/api-actions';
-import { authOptions } from '../../../api/auth/auth';
+import DefaultLayout from '@/components/default-layout';
+import api from '@/utils/api-actions';
+import { authOptions } from '@/api/auth/auth';
 import { MemberTable } from './member-table';
 
 export default async function ClubMembersPage({
