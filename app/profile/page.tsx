@@ -3,10 +3,10 @@ import { getServerSession } from 'next-auth';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import ClubMemberCard from '../../components/club-member-card';
-import DefaultLayout from '../../components/default-layout';
-import api from '../../utils/api-actions';
-import { authOptions } from '../api/auth/auth';
+import ClubMemberCard from '@/components/club-member-card';
+import DefaultLayout from '@/components/default-layout';
+import api from '@/utils/api-actions';
+import { authOptions } from '@/api/auth/auth';
 
 export const metadata = {
   title: 'Profile',

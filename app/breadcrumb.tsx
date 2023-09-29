@@ -10,7 +10,7 @@ import { BiBell } from 'react-icons/bi';
 import { BsLink45Deg, BsPersonFill } from 'react-icons/bs';
 import { TbLogout } from 'react-icons/tb';
 
-import ImageWithFallback from '../components/fallback-image';
+import ImageWithFallback from '@/components/fallback-image';
 
 const capitalise = (text: string) => {
   return text

@@ -1,9 +1,9 @@
 import { Metadata } from 'next';
 
-import ClubMemberCard from '../../../components/club-member-card';
-import DefaultLayout from '../../../components/default-layout';
-import RenderIcon from '../../../components/render-icon';
-import api from '../../../utils/api-actions';
+import ClubMemberCard from '@/components/club-member-card';
+import DefaultLayout from '@/components/default-layout';
+import RenderIcon from '@/components/render-icon';
+import api from '@/utils/api-actions';
 
 export const revalidate = 86400;
 

@@ -2,9 +2,9 @@ import { Metadata } from 'next';
 import { serialize } from 'next-mdx-remote/serialize';
 import Link from 'next/link';
 
-import DefaultLayout from '../../../components/default-layout';
-import RenderMarkdown from '../../../components/render-markdown';
-import api from '../../../utils/api-actions';
+import DefaultLayout from '@/components/default-layout';
+import RenderMarkdown from '@/components/render-markdown';
+import api from '@/utils/api-actions';
 
 export const fetchCache = 'default-no-store';
 

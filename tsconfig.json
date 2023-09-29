@@ -22,7 +22,14 @@
       {
         "name": "next"
       }
-    ]
+    ],
+    "paths": {
+      "@/api/*": ["./app/api/*"],
+      "@/assets/*": ["./public/assets/*"],
+      "@/components/*": ["./components/*"],
+      "@/styles/*": ["./styles/*"],
+      "@/utils/*": ["./utils/*"]
+    }
   },
   "include": [
     "next-env.d.ts",

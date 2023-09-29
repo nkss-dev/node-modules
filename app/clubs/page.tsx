@@ -1,8 +1,8 @@
 import { Fragment } from 'react';
 
-import ClubCard from '../../components/club-card';
-import DefaultLayout from '../../components/default-layout';
-import api from '../../utils/api-actions';
+import ClubCard from '@/components/club-card';
+import DefaultLayout from '@/components/default-layout';
+import api from '@/utils/api-actions';
 
 export const metadata = {
   title: 'Clubs',

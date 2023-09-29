@@ -1,5 +1,5 @@
-import api from '../../utils/api-actions';
-import formatDate from '../../utils/format-date';
+import api from '@/utils/api-actions';
+import formatDate from '@/utils/format-date';
 
 export const metadata = {
   title: 'Announcements',

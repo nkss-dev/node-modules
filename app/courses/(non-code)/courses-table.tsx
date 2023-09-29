@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
-import useIsScreenLessThan from '../../../utils/screen-width-check';
+import useIsScreenLessThan from '@/utils/screen-width-check';
 
 export default function CoursesTable({
   branch,

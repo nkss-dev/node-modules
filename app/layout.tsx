@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import { FaDiscord, FaFacebook, FaGithub, FaInstagram } from 'react-icons/fa';
 
-import '../styles/globals.css';
-import AuthProvider from './api/auth/provider';
+import '@/styles/globals.css';
+import AuthProvider from '@/api/auth/provider';
 import Breadcrumb from './breadcrumb';
 
 export default function RootLayout({

@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 import { BsBook, BsMegaphone, BsPeople } from 'react-icons/bs';
 import Balancer from 'react-wrap-balancer';
 
-import HomeCardsLayout from '../components/home-cards-layout';
+import HomeCardsLayout from '@/components/home-cards-layout';
 
 export function generateMetadata(): Metadata {
   const project_name = 'NIT-KKR Student Support';
