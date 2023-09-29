@@ -1,7 +1,30 @@
-import { DialogClose } from '@radix-ui/react-dialog';
-import { useState } from 'react';
+'use client';
 
-import { submit } from './form-submit';
+import { useState } from 'react';
+// @ts-expect-error
+import { experimental_useFormState as useFormState } from 'react-dom';
+// @ts-expect-error
+import { experimental_useFormStatus as useFormStatus } from 'react-dom';
+
+import { createMember } from '../../../actions/club-members';
+
+const initialState = {
+  message: null,
+};
+
+const SubmitButton = () => {
+  const { pending } = useFormStatus();
+
+  return (
+    <button
+      aria-disabled={pending}
+      className="bg-palette-500 p-2 rounded-lg"
+      type="submit"
+    >
+      {pending ? 'Loading...' : 'Add'}
+    </button>
+  );
+};
 
 export const MemberForm = ({
   clubName,
@@ -10,10 +33,17 @@ export const MemberForm = ({
   clubName: string;
   existingClubMember: any;
 }) => {
+  const [state, formAction] = useFormState(createMember, initialState);
   const [clubMember, setClubMember] = useState<any>(existingClubMember);
 
   return (
-    <form action={submit} className="flex flex-col gap-4">
+    <form action={formAction} className="flex flex-col gap-4">
+      {state?.message && (
+        <p aria-live="polite" className="text-red-400">
+          {state.message}
+        </p>
+      )}
+
       <input hidden name="club-name" readOnly type="text" value={clubName} />
 
       <input
@@ -82,11 +112,7 @@ export const MemberForm = ({
           justifyContent: 'flex-end',
         }}
       >
-        <DialogClose asChild>
-          <button className="bg-palette-500 p-2 rounded-lg" type="submit">
-            Save changes
-          </button>
-        </DialogClose>
+        <SubmitButton />
       </div>
     </form>
   );
