@@ -1,17 +1,21 @@
-'use client';
-
 import { DialogClose } from '@radix-ui/react-dialog';
 import { useState } from 'react';
 
+import { submit } from './form-submit';
+
 export const MemberForm = ({
+  clubName,
   existingClubMember,
 }: {
+  clubName: string;
   existingClubMember: any;
 }) => {
   const [clubMember, setClubMember] = useState<any>(existingClubMember);
 
   return (
-    <form className="flex flex-col gap-4">
+    <form action={submit} className="flex flex-col gap-4">
+      <input hidden name="club-name" readOnly type="text" value={clubName} />
+
       <input
         className="bg-palette-500 p-2"
         onChange={(event) =>
@@ -19,10 +23,11 @@ export const MemberForm = ({
             return { ...member, roll_number: event.target.value };
           })
         }
+        name="roll-number"
         placeholder="Roll Number"
+        required
         type="text"
         value={clubMember.roll_number}
-        required
       />
       <input
         className="bg-palette-500 p-2"
@@ -32,10 +37,11 @@ export const MemberForm = ({
             return { ...member, position: event.target.value };
           })
         }
+        name="position"
         placeholder="Position"
+        required
         type="text"
         value={clubMember.position}
-        required
       />
       <select
         className="bg-palette-500 p-2"
@@ -47,6 +53,7 @@ export const MemberForm = ({
             };
           })
         }
+        name="extra-groups"
         placeholder="Extra Groups"
         value={clubMember.extra_groups}
       >
@@ -64,6 +71,7 @@ export const MemberForm = ({
             return { ...member, comments: event.target.value };
           })
         }
+        name="comments"
         placeholder="Comments"
         value={clubMember.comments}
       />

@@ -61,7 +61,7 @@ export const MemberTable = ({
           title="Add Member"
           description={`Add a new member to ${clubName} here:`}
         >
-          <MemberForm existingClubMember={{}} />
+          <MemberForm clubName={clubName} existingClubMember={{}} />
         </Dialog>
       </thead>
 
