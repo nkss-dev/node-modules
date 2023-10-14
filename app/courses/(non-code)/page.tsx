@@ -59,7 +59,7 @@ export default function CoursesPage() {
     <>
       <table className="w-full">
         <tbody>
-          <tr className="flex flex-row justify-between gap-4">
+          <tr className="flex flex-row justify-between gap-4 text-palette-800 dark:text-palette-100">
             <td className="border-none px-0">
               <fieldset className="p-2 sm:p-3 md:p-4 border-2 rounded border-palette-400">
                 <legend className="px-2">Choose your branch</legend>
@@ -124,15 +124,15 @@ export default function CoursesPage() {
 
       {!isLoading && !(branch && semester) && filteredCourses.length > 0 ? (
         <>
-          {branch || semester ? <></> : <h2>All courses</h2>}
-          {branch ? <h2>All courses in the {branch} branch</h2> : <></>}
-          {semester ? <h2>All courses in semester {semester}</h2> : <></>}
+          {branch || semester ? <></> : <h2 className='text-palette-800 dark:text-palette-100'>All courses</h2>}
+          {branch ? <h2 className='text-palette-800 dark:text-palette-100'>All courses in the {branch} branch</h2> : <></>}
+          {semester ? <h2 className='text-palette-800 dark:text-palette-100'>All courses in semester {semester}</h2> : <></>}
 
           <ul>
             {filteredCourses.map((course) => {
               return (
                 <Link href={`/courses/${course.code}`} key={course.code}>
-                  <li className="list-disclosure-closed ml-4">
+                  <li className="list-disclosure-closed ml-4 text-palette-800 dark:text-palette-100">
                     <h4>
                       {course.code}:{' '}
                       <span className="font-normal">{course.title}</span>
