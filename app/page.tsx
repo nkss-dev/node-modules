@@ -41,11 +41,11 @@ export default function HomePage() {
   return (
     <article className="my-auto">
       <hgroup className="mb-12">
-        <h1 className="mb-6">
+        <h1 className="mb-6 text-palette-800 dark:text-palette-100">
           <Balancer>NIT-KKR Student Support</Balancer>
         </h1>
 
-        <p>
+        <p className='text-palette-600 dark:text-palette-200'>
           Welcome! This project aims to enable an easier path to figuring your
           way in this college! We have many more features planned that you can
           find out about on our Discord server linked below.
