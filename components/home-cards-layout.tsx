@@ -26,7 +26,7 @@ export default function HomeCardsLayout({
           className={clsx(
             'h-12 w-12 p-3',
             'md:h-16 md:w-16 md:p-4',
-            'bg-palette-400 rounded-full'
+            'bg-palette-800 dark:bg-palette-400 rounded-full'
           )}
         >
           {children}
@@ -38,7 +38,7 @@ export default function HomeCardsLayout({
           >
             <Balancer className="min-w-fit">{title}</Balancer>
           </h3>
-          <p className="max-w-fit">
+          <p className="max-w-fit text-palette-800 dark:text-palette-300">
             <small className="min-w-fit">{description}</small>
           </p>
         </hgroup>

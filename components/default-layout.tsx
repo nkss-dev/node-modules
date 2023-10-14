@@ -15,7 +15,7 @@ export default function DefaultLayout({
 }) {
   return (
     <>
-      <hgroup className="mb-2 sm:mb-4 md:mb-6">
+      <hgroup className="mb-2 sm:mb-4 md:mb-6 text-palette-700 dark:text-palette-100">
         <h1>
           <Balancer>{title}</Balancer>
         </h1>

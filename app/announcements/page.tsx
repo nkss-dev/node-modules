@@ -31,21 +31,21 @@ export default async function AnnouncementsPage() {
     <ul>
       {Array.from(groupedAnnouncements).map(
         ([dateKey, announcementForDate], index) => (
-          <li className="mb-6" key={index}>
+          <li className="mb-6 text-palette-900 dark:text-palette-100" key={index}>
             <h4>
               {dateKey.slice(0, 2)}
               <sup>{dateKey.slice(2, 4)}</sup>
               {dateKey.slice(4)}
             </h4>
 
-            <ul className="text-palette-300 ml-4 sm:ml-6 md:ml-8">
+            <ul className="text-palette-800 dark:text-palette-300 ml-4 sm:ml-6 md:ml-8">
               {announcementForDate.map((announcement, innerIndex) => (
                 <li className="list-disc mt-2" key={`${index}-${innerIndex}`}>
                   {announcement.subtitle ? (
                     <ul>
                       <li>
                         <a
-                          className="hover:text-palette-100"
+                          className="hover:text-palette-400 dark:hover:text-palette-100"
                           href={announcement.title_link}
                           target="_blank"
                         >
@@ -54,7 +54,7 @@ export default async function AnnouncementsPage() {
                       </li>
                       <li>
                         <a
-                          className="hover:text-palette-100"
+                          className="hover:text-palette-400 dark:hover:text-palette-100"
                           href={announcement.subtitle_link}
                           target="_blank"
                         >
@@ -64,7 +64,7 @@ export default async function AnnouncementsPage() {
                     </ul>
                   ) : (
                     <a
-                      className="hover:text-palette-100"
+                      className="hover:text-palette-400 dark:hover:text-palette-100"
                       href={announcement.title_link}
                       target="_blank"
                     >

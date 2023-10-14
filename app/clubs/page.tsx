@@ -26,7 +26,7 @@ const getCategorisedClubs = (
   const filteredClubs = clubs.filter((club) => club.category === category);
 
   if (filteredClubs.length === 0)
-    return <p>No club found for the {category} category</p>;
+    return <p className='text-red-400'>No club found for the {category} category</p>;
 
   return filteredClubs.map((club, index) => (
     <li key={index}>
@@ -63,7 +63,7 @@ export default async function ClubsPage() {
       {clubCategories.map((category: ClubCategory, categoryIndex) => {
         return (
           <Fragment key={categoryIndex}>
-            <h2>{category}</h2>
+            <h2 className='text-palette-700 dark:text-palette-100'>{category}</h2>
             <ol className="flex flex-row flex-wrap gap-2 sm:gap-4 mb-8">
               {getCategorisedClubs(category, clubs)}
             </ol>

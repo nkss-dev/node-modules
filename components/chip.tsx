@@ -20,7 +20,7 @@ export default function Chip({
         'md:h-8 md:px-3 md:text-sm',
         isSelected && 'bg-palette-500',
         'border items-center rounded-full',
-        'text-palette-200 hover:bg-palette-500'
+        'text-palette-800 dark:text-palette-200 hover:bg-palette-500 hover:text-palette-100'
       )}
       disabled={disabled}
       onClick={onClick}

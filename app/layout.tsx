@@ -13,7 +13,7 @@ export default function RootLayout({
   return (
     <html>
       <head />
-      <body className="flex flex-col">
+      <body className="flex flex-col bg-palette-200 dark:bg-palette-900">
         <noscript>You need to enable JavaScript to run this app</noscript>
 
         <AuthProvider>
@@ -24,7 +24,7 @@ export default function RootLayout({
           </section>
         </AuthProvider>
 
-        <footer className="bg-palette-800 py-4 mt-8">
+        <footer className="bg-palette-700 dark:bg-palette-800 py-4 mt-8">
           <section className="align-middle container flex flex-row flex-wrap justify-between max-w-screen-lg">
             <ul className="gap-4 inline-flex flex-wrap">
               <li>
