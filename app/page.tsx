@@ -59,7 +59,7 @@ export default function HomePage() {
       <nav className="h-min">
         <ol className="grid grid-cols-1 sm:grid-cols-6 grid-auto-rows gap-8">
           <li
-            className={clsx('col-start-1 row-start-1 w-fit', 'sm:col-span-2')}
+            className={clsx('col-start-1 row-start-1 w-fit hover:shadow-lg shadow p-4 rounded-3xl', 'sm:col-span-2')}
           >
             <HomeCardsLayout
               href="/announcements"
@@ -72,7 +72,7 @@ export default function HomePage() {
 
           <li
             className={clsx(
-              'col-start-1 row-start-2 w-fit',
+              'col-start-1 row-start-2 w-fit hover:shadow-lg shadow p-4 rounded-3xl',
               'sm:col-span-2 sm:col-start-5 sm:row-start-1 sm:justify-self-end',
               'md:col-start-3 md:row-start-1 md:justify-self-center'
             )}
@@ -88,7 +88,7 @@ export default function HomePage() {
 
           <li
             className={clsx(
-              'col-start-1 row-start-3 w-fit',
+              'col-start-1 row-start-3 w-fit hover:shadow-lg shadow p-4 rounded-3xl',
               'sm:col-span-2 sm:col-start-3 sm:row-start-2 sm:justify-self-center',
               'md:col-start-5 md:row-start-1 md:justify-self-end'
             )}
